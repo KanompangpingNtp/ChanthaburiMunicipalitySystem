@@ -125,6 +125,7 @@
     .btn-viewall:hover {
         transform: scale(1.05);
     }
+
 </style>
 
 <main class="bg-page6">
@@ -137,31 +138,32 @@
     <div class="container d-flex align-items-center justify-content-center gap-4 mt-4">
         <div class="col-6 d-flex flex-column align-content-center justify-content-center bg-view">
             <div class="bg-view-in d-flex flex-column justify-content-center align-items-center gap-3 overflow-auto">
-                <?php
-              // ใช้ for loop เพื่อวนลูป 12 ครั้ง
-              for ($i = 1; $i <= 14; $i++) {
-                  ?>
+                @foreach($pressRelease as $release)
                 <div class="card-view">
                     <div class="d-flex justify-content-between align-content-center">
                         <div class="title text-truncate d-flex justify-content-start align-items-center">
-                            <img src="{{ asset('images/pages/6/hextacle.png') }}" alt="hextacle" width="25"
-                                height="25"> title
+                            <img src="{{ asset('images/pages/6/hextacle.png') }}" alt="hextacle" width="25" height="25">
+                            {{ $release->title_name }}
                         </div>
-                        <div class="date pt-1"><i class="fa-solid fa-calendar-days text-warning"></i> date</div>
+                        <div class="date pt-1">
+                            <i class="fa-solid fa-calendar-days text-warning"></i>
+                            {{ $release->created_at->format('d/m/Y') }}
+                        </div>
                     </div>
                     <div class="content">
                         <div class="pdf-item ms-3">
                             <i class="fa-solid fa-file-pdf text-danger"></i>
-                            <a href="#" target="_blank" class="text-primary">
-                                pdf
+                            @if($release->pdfs->isNotEmpty())
+                            <a href="{{ asset('storage/' . $release->pdfs->first()->post_pdf_file) }}" target="_blank" class="text-primary">
+                                ดู PDF
                             </a>
+                            @else
+                            <span class="text-muted">ไม่มีไฟล์ PDF</span>
+                            @endif
                         </div>
                     </div>
                 </div>
-                <?php
-              }
-              ?>
-
+                @endforeach
             </div>
         </div>
         <div class="col-6 d-flex flex-column align-items-center justify-content-between pt-5">
