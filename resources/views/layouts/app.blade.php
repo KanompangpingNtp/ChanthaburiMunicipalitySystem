@@ -36,7 +36,7 @@
 
         /* ส่วนที่ใช้ควบคุมสีของ scrollbar */
         ::-webkit-scrollbar-thumb {
-            background-color: #26a8ff;
+            background-color: #848484;
             /* สีของ scrollbar */
             border-radius: 10px;
             /* ทำให้ขอบ scrollbar เป็นมุมมน */
