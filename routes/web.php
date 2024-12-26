@@ -7,6 +7,7 @@ use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\ProcurementResultsController;
 use App\Http\Controllers\AveragePriceController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\DataPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,11 @@ use App\Http\Controllers\RevenueController;
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
-});
+// Route::get('/', function () {
+//     return view('home.index');
+// });
+
+Route::get('/', [DataPostController::class, 'HomeIndex'])->name('HomeIndex');
 
 //admin PressRelease
 Route::get('/PressRelease/page', [PressReleaseController::class, 'PressReleaseHome'])->name('PressReleaseHome');

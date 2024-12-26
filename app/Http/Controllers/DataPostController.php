@@ -46,7 +46,7 @@ class DataPostController extends Controller
                 $query->where('type_name', 'งานเก็บรายได้');
             })->get();
 
-        return view('user.home.home', compact(
+        return view('home.index', compact(
             'pressRelease',
             'activity',
             'procurement',
