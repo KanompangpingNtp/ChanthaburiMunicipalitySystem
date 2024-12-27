@@ -10,7 +10,10 @@
     }
 
     .bg-adept-7 {
-        background: linear-gradient(to left, rgba(0, 60, 86, 0.9), rgba(0, 184, 184, 0.9));
+        background-image: url('{{ asset('images/pages/7/bg-header-page-7.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .bg-adept-7 p {
@@ -137,70 +140,119 @@
     <div class="container d-flex align-items-center justify-content-center gap-4 mt-4">
         <div class="col-6 d-flex flex-column align-content-center justify-content-center bg-view">
             <div class="bg-view-in d-flex flex-column justify-content-center align-items-center gap-3 overflow-auto">
-                @foreach($activity as $activitys)
-                <div class="card-view">
-                    <div class="d-flex justify-content-between align-content-center">
-                        <div class="title text-truncate d-flex justify-content-start align-items-center">
-                            <img src="{{ asset('images/pages/6/hextacle.png') }}" alt="hextacle" width="25" height="25">
-                            {{ $activitys->title_name }}
+                @foreach ($activity as $activitys)
+                    <div class="card-view"
+                        onclick="showCarouselActivity({{ $activitys->photos->toJson() }}, '{{ $activitys->details }}')">
+                        <div class="d-flex justify-content-between align-content-center">
+                            <div class="title text-truncate d-flex justify-content-start align-items-center">
+                                <img src="{{ asset('images/pages/7/triagle.png') }}" alt="triagle" width="25"
+                                    height="25">
+                                {{ $activitys->title_name }}
+                            </div>
+                            <div class="date pt-1">
+                                <i class="fa-solid fa-calendar-days text-warning"></i>
+                                {{ $activitys->created_at->format('d/m/Y') }}
+                            </div>
                         </div>
-                        <div class="date pt-1">
-                            <i class="fa-solid fa-calendar-days text-warning"></i>
-                            {{ $activitys->created_at->format('d/m/Y') }}
+                        <div class="content">
+                            <div class="pdf-item ms-3">
+                                <i class="fa-solid fa-file-pdf text-danger"></i>
+                                @if ($activitys->pdfs->isNotEmpty())
+                                    <a href="{{ asset('storage/' . $activitys->pdfs->first()->post_pdf_file) }}"
+                                        target="_blank" class="text-primary">
+                                        ดู PDF
+                                    </a>
+                                @else
+                                    <span class="text-muted">ไม่มีไฟล์ PDF</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                    <div class="content">
-                        <div class="pdf-item ms-3">
-                            <i class="fa-solid fa-file-pdf text-danger"></i>
-                            @if($activitys->pdfs->isNotEmpty())
-                            <a href="{{ asset('storage/' . $activitys->pdfs->first()->post_pdf_file) }}" target="_blank" class="text-primary">
-                                ดู PDF
-                            </a>
-                            @else
-                            <span class="text-muted">ไม่มีไฟล์ PDF</span>
-                            @endif
-                        </div>
-                    </div>
-                </div>
                 @endforeach
-
             </div>
         </div>
-        <div class="col-6 d-flex flex-column align-items-center justify-content-between pt-5">
-            <!-- ช่องรูป 4 อัน -->
-            <div class="row g-4">
-                <!-- Card 1 -->
-                <div class="col-12 col-md-6">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="image 1">
+        <!-- ส่วนขวา -->
+        <div class="col-6 d-flex flex-column align-items-start justify-content-center bg-view">
+
+            <div class="bg-view-in d-flex flex-column justify-content-start align-items-center">
+                <!-- Carousel -->
+                <div id="carouselActivity" class="carousel slide w-100 " data-bs-ride="carousel">
+                    <!-- Indicators -->
+                    <div class="carousel-indicators" id="carouselIndicatorsActivity">
+                        <!-- Indicators จะถูกเพิ่มที่นี่โดย JavaScript -->
                     </div>
+                    <div class="carousel-inner " id="carouselInnerActivity">
+                        <!-- รูปภาพจะถูกเพิ่มที่นี่โดย JavaScript -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselActivity"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselActivity"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <!-- Card 2 -->
-                <div class="col-12 col-md-6">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="image 2">
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="col-12 col-md-6">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="image 3">
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="col-12 col-md-6">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="image 4">
-                    </div>
+                <!-- ข้อความ -->
+                <div class="mt-3 p-3 bg-light w-100 text-center shadow-sm overflow-auto"
+                    style="border-radius: 20px; min-height: 200px; max-height: 200px;">
+                    <p id="detailTextActivity" class="mb-0" style="font-size: 2rem;">lorem</p>
                 </div>
             </div>
-
-            <!-- ปุ่มดูทั้งหมด -->
-            <div class="d-flex justify-content-end mt-4 w-100">
-                <button class="btn-viewall"><i class="fa-solid fa-play text-primary"></i> ดูทั้งหมด</button>
-            </div>
-
         </div>
-
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstActivity = @json($activity->first()); // ดึงข้อมูลกิจกรรมแรก
+            if (firstActivity && firstActivity.photos.length > 0) {
+                showCarouselActivity(firstActivity.photos, firstActivity.details); // แสดงข้อมูลแรก
+            }
+        });
+
+        function showCarouselActivity(photos, detail) {
+            const carouselInner = document.getElementById("carouselInnerActivity");
+            const carouselIndicators = document.getElementById("carouselIndicatorsActivity");
+            const detailText = document.getElementById("detailTextActivity");
+
+            // ล้างข้อมูลเก่าของภาพและ Indicators
+            carouselInner.innerHTML = "";
+            carouselIndicators.innerHTML = "";
+
+            // เพิ่มรูปภาพและ Indicators ใหม่
+            photos.forEach((photo, index) => {
+                // สร้าง Carousel Item
+                const carouselItem = document.createElement("div");
+                carouselItem.className = `carousel-item ${index === 0 ? "active" : ""}`; // รูปแรก active
+                carouselItem.innerHTML = `
+                  <img src="/storage/${photo.post_photo_file}" class="d-block w-100" alt="Image ${index + 1} " style="object-fit: cover; max-height: 400px; border-radius: 20px; margin-top: 5px;">
+              `;
+                carouselInner.appendChild(carouselItem);
+
+                // สร้าง Indicator
+                const indicator = document.createElement("button");
+                indicator.type = "button";
+                indicator.dataset.bsTarget = "#carouselActivity";
+                indicator.dataset.bsSlideTo = index;
+                indicator.className = index === 0 ? "active" : "";
+                indicator.setAttribute("aria-current", index === 0 ? "true" : "false");
+                indicator.setAttribute("aria-label", `Slide ${index + 1}`);
+                carouselIndicators.appendChild(indicator);
+            });
+
+            // แสดงรายละเอียดกิจกรรม
+            detailText.textContent = detail || "ไม่มีรายละเอียด";
+
+            // สร้าง Carousel ใหม่และตั้งค่าไปยังสไลด์แรก
+            const carouselElement = document.querySelector("#carouselActivity");
+            const carousel = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
+            carousel.to(0); // ไปที่ภาพแรกสุด
+        }
+    </script>
+
 </main>
+<!-- ปุ่มดูทั้งหมด -->
+{{-- <div class="d-flex justify-content-end mt-4 w-100">
+                <button class="btn-viewall"><i class="fa-solid fa-play text-primary"></i> ดูทั้งหมด</button>
+            </div> --}}
