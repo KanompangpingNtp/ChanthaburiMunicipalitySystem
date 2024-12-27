@@ -79,10 +79,12 @@
         /* ป้องกันเนื้อหาเกินขอบ */
     }
 
-    .carousel-inner img {
-        height: 700px;
-        overflow: hidden;
-        /* ป้องกันไม่ให้ภาพล้นออกนอกกรอบ */
+    .carousel-item img {
+        object-fit: cover;
+        /* หรือ "contain" ขึ้นอยู่กับว่าต้องการให้ภาพถูกตัดหรือไม่ */
+        height: 100%;
+        /* หรือกำหนดความสูงที่เหมาะสม */
+        width: 100%;
     }
 </style>
 <!-- Content Section -->
@@ -97,23 +99,20 @@
         <div class="bg-view-in-detail shadow">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
                 <div class="carousel-indicators">
-                    @php
-                        $numOfImages = 5; // กำหนดจำนวนภาพ
-                    @endphp
-                    @for ($i = 0; $i < $numOfImages; $i++)
-                        <button type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="{{ $i }}" class="{{ $i === 0 ? 'active' : '' }}"
-                            aria-current="{{ $i === 0 ? 'true' : 'false' }}"
-                            aria-label="Slide {{ $i + 1 }}"></button>
-                    @endfor
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
                 </div>
-                <div class="carousel-inner rounded ">
-                    @for ($i = 1; $i <= $numOfImages; $i++)
-                        <div class="carousel-item {{ $i === 1 ? 'active' : '' }}">
-                            <img src="https://via.placeholder.com/800x400.png?text=Image+{{ $i }}"
-                                class="d-block w-100" alt="Image {{ $i }}">
-                        </div>
-                    @endfor
+                <div class="carousel-inner rounded">
+                    <!-- สไลด์แรก -->
+                    <div class="carousel-item active">
+                        <img src="{{ asset('images/pages/3/newyear.png') }}" class="d-block w-100" alt="Image 1">
+                    </div>
+                    <!-- สไลด์ที่สอง -->
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/pages/3/plugin.png') }}" class="d-block w-100" alt="Image 2">
+                    </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
@@ -126,6 +125,7 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+
         </div>
     </div>
     </div>

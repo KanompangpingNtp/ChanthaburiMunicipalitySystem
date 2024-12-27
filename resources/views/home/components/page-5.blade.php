@@ -183,11 +183,11 @@
                 </div>
             </div>
             <div class="col-8 ms-5 p-3 d-flex align-items-center justify-content-end bg-video">
-                <video class="rounded" controls width="100%">
-                    <source src="path-to-video.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/3DpmJR0x2nE" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                    style="border-radius: 20px;"></iframe>
             </div>
+
         </div>
     </div>
     <div class="fixed-footer-page5">
