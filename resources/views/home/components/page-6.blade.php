@@ -172,7 +172,7 @@
             </div>
         </div>
         <div class="col-6 d-flex flex-column align-items-start justify-content-center bg-view">
-            <div class="bg-view-in d-flex flex-column justify-content-start align-items-center">
+            <div class="bg-view-in d-flex flex-column justify-content-start align-items-center w-100">
                 <!-- Carousel -->
                 <div id="carouselPressRelease" class="carousel slide w-100" data-bs-ride="carousel">
                     <!-- Indicators -->

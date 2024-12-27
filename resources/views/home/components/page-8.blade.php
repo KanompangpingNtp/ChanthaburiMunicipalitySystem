@@ -22,7 +22,7 @@
 
     .title-page8 {
         color: white;
-        font-size: 5rem;
+        font-size: 4rem;
         padding-top: 10px;
         text-shadow:
             3px 3px 0px black,
