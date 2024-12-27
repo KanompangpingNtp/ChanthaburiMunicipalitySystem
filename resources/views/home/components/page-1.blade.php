@@ -194,7 +194,7 @@
     <div class="container content-page1 d-flex" style=" width: 100%;">
         <!-- ฝั่งซ้าย (ข้อความ) -->
         <div class="col-6 d-flex flex-column justify-content-start align-items-start" style="height: 70vh;">
-            <a href="#" class="btn-login">เข้าสู่ระบบ / ลงทะเบียน</a>
+            <a href="{{route('showLoginForm')}}" class="btn-login">เข้าสู่ระบบ</a>
             <div class="bg-dark-transparent">
                 <div class="text-white title lh-1">เมืองน่าอยู่</div>
                 <div class="text-warning detail ">ศูนย์กลางทางเศรษฐกิจ คุณภาพชีวิตที่ดี <br>

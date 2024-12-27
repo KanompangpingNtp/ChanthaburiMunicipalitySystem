@@ -8,6 +8,7 @@ use App\Http\Controllers\ProcurementResultsController;
 use App\Http\Controllers\AveragePriceController;
 use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\DataPostController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,32 +27,38 @@ use App\Http\Controllers\DataPostController;
 
 Route::get('/', [DataPostController::class, 'HomeIndex'])->name('HomeIndex');
 
-//admin PressRelease
-Route::get('/PressRelease/page', [PressReleaseController::class, 'PressReleaseHome'])->name('PressReleaseHome');
-Route::post('/PressRelease/create', [PressReleaseController::class, 'PressReleaseCreate'])->name('PressReleaseCreate');
-Route::delete('/PressRelease/delete{id}', [PressReleaseController::class, 'PressReleaseDelete'])->name('PressReleaseDelete');
+Route::middleware(['check.auth'])->group(function () {
+    //admin PressRelease
+    Route::get('/PressRelease/page', [PressReleaseController::class, 'PressReleaseHome'])->name('PressReleaseHome');
+    Route::post('/PressRelease/create', [PressReleaseController::class, 'PressReleaseCreate'])->name('PressReleaseCreate');
+    Route::delete('/PressRelease/delete{id}', [PressReleaseController::class, 'PressReleaseDelete'])->name('PressReleaseDelete');
 
-//admin Activity
-Route::get('/Activity/page', [ActivityController::class, 'ActivityHome'])->name('ActivityHome');
-Route::post('/Activity/create', [ActivityController::class, 'ActivityCreate'])->name('ActivityCreate');
-Route::delete('/Activity/delete{id}', [ActivityController::class, 'ActivityDelete'])->name('ActivityDelete');
+    //admin Activity
+    Route::get('/Activity/page', [ActivityController::class, 'ActivityHome'])->name('ActivityHome');
+    Route::post('/Activity/create', [ActivityController::class, 'ActivityCreate'])->name('ActivityCreate');
+    Route::delete('/Activity/delete{id}', [ActivityController::class, 'ActivityDelete'])->name('ActivityDelete');
 
-//admin Procurement
-Route::get('/Procurement/page', [ProcurementController::class, 'ProcurementHome'])->name('ProcurementHome');
-Route::post('/Procurement/create', [ProcurementController::class, 'ProcurementCreate'])->name('ProcurementCreate');
-Route::delete('/Procurement/delete{id}', [ProcurementController::class, 'ProcurementDelete'])->name('ProcurementDelete');
+    //admin Procurement
+    Route::get('/Procurement/page', [ProcurementController::class, 'ProcurementHome'])->name('ProcurementHome');
+    Route::post('/Procurement/create', [ProcurementController::class, 'ProcurementCreate'])->name('ProcurementCreate');
+    Route::delete('/Procurement/delete{id}', [ProcurementController::class, 'ProcurementDelete'])->name('ProcurementDelete');
 
-//admin ProcurementResults
-Route::get('/ProcurementResults/page', [ProcurementResultsController::class, 'ProcurementResultsHome'])->name('ProcurementResultsHome');
-Route::post('/ProcurementResults/create', [ProcurementResultsController::class, 'ProcurementResultsCreate'])->name('ProcurementResultsCreate');
-Route::delete('/ProcurementResults/delete{id}', [ProcurementResultsController::class, 'ProcurementResultsDelete'])->name('ProcurementResultsDelete');
+    //admin ProcurementResults
+    Route::get('/ProcurementResults/page', [ProcurementResultsController::class, 'ProcurementResultsHome'])->name('ProcurementResultsHome');
+    Route::post('/ProcurementResults/create', [ProcurementResultsController::class, 'ProcurementResultsCreate'])->name('ProcurementResultsCreate');
+    Route::delete('/ProcurementResults/delete{id}', [ProcurementResultsController::class, 'ProcurementResultsDelete'])->name('ProcurementResultsDelete');
 
-//admin AveragePrice
-Route::get('/AveragePrice/page', [AveragePriceController::class, 'AveragePriceHome'])->name('AveragePriceHome');
-Route::post('/AveragePrice/create', [AveragePriceController::class, 'AveragePriceCreate'])->name('AveragePriceCreate');
-Route::delete('/AveragePrice/delete{id}', [AveragePriceController::class, 'AveragePriceDelete'])->name('AveragePriceDelete');
+    //admin AveragePrice
+    Route::get('/AveragePrice/page', [AveragePriceController::class, 'AveragePriceHome'])->name('AveragePriceHome');
+    Route::post('/AveragePrice/create', [AveragePriceController::class, 'AveragePriceCreate'])->name('AveragePriceCreate');
+    Route::delete('/AveragePrice/delete{id}', [AveragePriceController::class, 'AveragePriceDelete'])->name('AveragePriceDelete');
 
-//admin Revenue
-Route::get('/Revenue/page', [RevenueController::class, 'RevenueHome'])->name('RevenueHome');
-Route::post('/Revenue/create', [RevenueController::class, 'RevenueCreate'])->name('RevenueCreate');
-Route::delete('/Revenue/delete{id}', [AveragePriceController::class, 'RevenueDelete'])->name('RevenueDelete');
+    //admin Revenue
+    Route::get('/Revenue/page', [RevenueController::class, 'RevenueHome'])->name('RevenueHome');
+    Route::post('/Revenue/create', [RevenueController::class, 'RevenueCreate'])->name('RevenueCreate');
+    Route::delete('/Revenue/delete{id}', [AveragePriceController::class, 'RevenueDelete'])->name('RevenueDelete');
+});
+
+Route::get('/showLoginForm', [AuthController::class, 'showLoginForm'])->name('showLoginForm');
+Route::post('/login', [AuthController::class, 'login'])->name('Login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
