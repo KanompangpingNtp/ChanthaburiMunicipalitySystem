@@ -175,7 +175,7 @@
         <div class="d-flex align-content-start justify-content-center ">
             <!-- Facebook Page Plugin -->
             <div class="fb-page" data-href="https://www.facebook.com/chanthaburi.town.municipality" data-tabs="timeline"
-                data-width="280" data-height="720" data-small-header="false" data-adapt-container-width="false"
+                data-width="300" data-height="720" data-small-header="false" data-adapt-container-width="false"
                 data-hide-cover="false" data-show-facepile="true">
                 <blockquote cite="https://www.facebook.com/chanthaburi.town.municipality" class="fb-xfbml-parse-ignore">
                     <a href="https://www.facebook.com/chanthaburi.town.municipality">Facebook</a>
