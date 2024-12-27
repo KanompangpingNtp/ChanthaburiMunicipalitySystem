@@ -26,7 +26,7 @@
     }
 
     .bg-view {
-        background-color: rgb(208, 208, 208);
+        background: linear-gradient(to top, #004867, #00c5c5);
         height: 45rem;
         padding-left: 20px;
         padding-right: 20px;
@@ -36,7 +36,7 @@
     }
 
     .bg-view-in {
-        background-color: rgb(235, 235, 235);
+        background-color: rgb(226, 226, 226, 0.9);
         height: 40rem;
         border-radius: 3%;
         padding-left: 10px;

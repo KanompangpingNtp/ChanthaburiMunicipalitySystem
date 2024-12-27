@@ -163,7 +163,7 @@
             <div class="luxury-button" onclick="changeContent('เก็บรายได้', {{ json_encode($revenue) }})">งานเก็บรายได้
             </div>
         </div>
-        <div class="d-flex flex-column align-content-center justify-content-center border bg-view-page8 w-100">
+        <div class="d-flex flex-column align-content-center justify-content-center bg-view-page8 w-100">
             <div class="title-page8 font-sarabun-bold d-flex justify-content-center align-items-center" id="titlePage">
                 ประกาศ EGP
             </div>
@@ -172,9 +172,23 @@
                 <!-- เนื้อหาที่จะถูกเปลี่ยนแปลงที่นี่ -->
             </div>
         </div>
+        <div class="d-flex align-content-start justify-content-center ">
+            <!-- Facebook Page Plugin -->
+            <div class="fb-page" data-href="https://www.facebook.com/chanthaburi.town.municipality" data-tabs="timeline"
+                data-width="300" data-height="720" data-small-header="false" data-adapt-container-width="false"
+                data-hide-cover="false" data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/chanthaburi.town.municipality" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/chanthaburi.town.municipality">Facebook</a>
+                </blockquote>
+            </div>
+        </div>
     </div>
 
 </main>
+
+<!-- สคริปต์ Facebook SDK -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0"
+    nonce="A4Z4J6YV"></script>
 
 <script>
     function changeContent(topic, data) {

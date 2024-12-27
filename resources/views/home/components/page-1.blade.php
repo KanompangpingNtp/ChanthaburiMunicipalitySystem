@@ -208,7 +208,8 @@
             <div class="bg-blue">
                 <p>สื่อประชาสัมพันธ์เทศบาลเมืองจันทบุรี</p>
                 <div class="d-flex align-items-center justify-content-center gap-4">
-                    <a href="#"><img src="{{ asset('images/pages/1/facebook-logo.png') }}" alt="facebook"></a>
+                    <a href="https://www.facebook.com/chanthaburi.town.municipality" target="_blank"><img
+                            src="{{ asset('images/pages/1/facebook-logo.png') }}" alt="facebook"></a>
                     <a href="#"><img src="{{ asset('images/pages/1/tiktok.png') }}" alt="tiktok"></a>
                     <a href="#"><img src="{{ asset('images/pages/1/youtube.png') }}" alt="youtube"></a>
                     <a href="#"><img src="{{ asset('images/pages/1/messeger.png') }}" alt="messeger"></a>
