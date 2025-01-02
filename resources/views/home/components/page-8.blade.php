@@ -33,12 +33,10 @@
 
     .bg-view-in-page8 {
         background-color: rgb(235, 235, 235, 0.4);
-        height: 40rem;
+        height: 36rem;
         border-radius: 3%;
         padding-left: 10px;
         padding-right: 10px;
-        padding-bottom: 5px;
-        padding-top: 5px;
     }
 
     .card-view-page8 {
@@ -63,7 +61,7 @@
     }
 
     .card-view-page8 .title {
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: #333;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -167,10 +165,19 @@
             <div class="title-page8 font-sarabun-bold d-flex justify-content-center align-items-center" id="titlePage">
                 ประกาศ EGP
             </div>
-            <div class="bg-view-in-page8 d-flex flex-column justify-content-center align-items-center gap-3 overflow-auto"
+            <div class="bg-view-in-page8 d-flex flex-column justify-content-center align-items-center gap-1 overflow-auto"
                 id="contentArea">
                 <!-- เนื้อหาที่จะถูกเปลี่ยนแปลงที่นี่ -->
             </div>
+            <div id="pagination" class="d-flex justify-content-center mt-3">
+                <button id="prevBtn" class="btn btn-outline-dark me-2" style="display:none;">
+                    <i class="fa-solid fa-chevron-left"></i> ก่อนหน้า
+                </button>
+                <button id="nextBtn" class="btn btn-outline-dark" style="display:none;">
+                    ถัดไป <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            
         </div>
         <div class="d-flex align-content-start justify-content-center ">
             <!-- Facebook Page Plugin -->
@@ -191,56 +198,99 @@
     nonce="A4Z4J6YV"></script>
 
 <script>
-    function changeContent(topic, data) {
-        // เปลี่ยนหัวข้อ
-        document.getElementById('titlePage').innerHTML = 'ประกาศ ' + topic;
+    let currentPage = 1;  // หน้าปัจจุบัน
+const itemsPerPage = 5;  // จำนวนรายการที่แสดงในแต่ละหน้า
+let allItems = []; // ข้อมูลทั้งหมด (จะถูกโหลดจาก backend)
 
-        // เปลี่ยนเนื้อหาของการแสดงผล
-        let contentArea = document.getElementById('contentArea');
-        contentArea.innerHTML = ''; // ล้างเนื้อหาปัจจุบัน
+// ฟังก์ชันที่ใช้แสดงเนื้อหา
+function changeContent(topic, data) {
+    // เปลี่ยนหัวข้อ
+    document.getElementById('titlePage').innerHTML = 'ประกาศ ' + topic;
 
-        // ลูปข้อมูลจากตัวแปร data ที่ส่งมา
-        data.forEach(item => {
-            console.log(item);
+    // เก็บข้อมูลทั้งหมด
+    allItems = data;
 
-            let newContent = document.createElement('div');
-            newContent.className = 'card-view-page8';
+    // เรียกใช้ฟังก์ชันเพื่อแสดงข้อมูลตามหน้า
+    displayItems();
+}
 
-            // ตรวจสอบและวนลูปผ่าน pdfs เพื่อสร้างรายการ PDF
-            let pdfContent = '';
-            if (item.pdfs && item.pdfs.length > 0) {
-                pdfContent = item.pdfs.map(pdf => `
-          <div class="pdf-item ms-3">
-              <i class="fa-solid fa-file-pdf text-danger"></i>
-              <a href="{{ asset('storage/${pdf.post_pdf_file}') }}" target="_blank" class="text-primary">
-                          ${pdf.post_pdf_file.split('/').pop()}
-                      </a>
-          </div>
-      `).join(''); // รวม HTML ของ PDF แต่ละไฟล์
-            } else {
-                pdfContent = '<div class="text-danger">ไม่มีข้อมูล PDF</div>';
+// ฟังก์ชันเพื่อแสดงข้อมูลในหน้าที่เลือก
+function displayItems() {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = currentPage * itemsPerPage;
+
+    // เลือกข้อมูลในหน้าที่ต้องการแสดง
+    const itemsToDisplay = allItems.slice(startIndex, endIndex);
+    let contentArea = document.getElementById('contentArea');
+    contentArea.innerHTML = ''; // ล้างเนื้อหาที่มีอยู่
+
+    // ลูปผ่านข้อมูลเพื่อแสดงผล
+    itemsToDisplay.forEach(item => {
+        let newContent = document.createElement('div');
+        newContent.className = 'card-view-page8';
+
+        // ตรวจสอบและวนลูปผ่าน pdfs เพื่อสร้างรายการ PDF
+        let pdfContent = '';
+        if (item.pdfs && item.pdfs.length > 0) {
+            pdfContent = item.pdfs.map(pdf => `
+                <div class="pdf-item ms-3">
+                    <i class="fa-solid fa-file-pdf text-danger"></i>
+                    <a href="{{ asset('storage/${pdf.post_pdf_file}') }}" target="_blank" class="text-primary">
+                        ${pdf.post_pdf_file.split('/').pop()}
+                    </a>
+                </div>
+            `).join(''); // รวม HTML ของ PDF แต่ละไฟล์
+        } else {
+            pdfContent = '<div class="text-danger">ไม่มีข้อมูล PDF</div>';
+        }
+
+        // ฟังก์ชันตัดข้อความ title_name ให้ไม่เกิน 40 ตัวอักษร
+        const truncateTitle = (title) => {
+            if (title.length > 40) {
+                return title.substring(0, 40) + '...'; // ตัดข้อความให้เหลือแค่ 40 ตัวอักษรและเพิ่ม '...'
             }
+            return title;
+        };
 
-            // สร้างเนื้อหาใหม่
-            newContent.innerHTML = `
-      <div class="d-flex justify-content-between align-content-center">
-          <div class="title text-truncate d-flex justify-content-start align-items-center">
-              <img src="{{ asset('images/pages/8/bell.png') }}" alt="bell" width="25" height="25"> ${item.title_name}
-          </div>
-          <div class="date pt-1"><i class="fa-solid fa-calendar-days text-warning"></i> ${item.date}</div>
-      </div>
-      <div class="content">
-          ${pdfContent} <!-- แสดงรายการ PDF ที่มี -->
-      </div>
-  `;
+        // สร้างเนื้อหาใหม่
+        newContent.innerHTML = `
+            <div class="d-flex justify-content-between align-content-center">
+                <div class="title text-truncate d-flex justify-content-start align-items-center">
+                    <img src="{{ asset('images/pages/8/bell.png') }}" alt="bell" width="25" height="25"> ${truncateTitle(item.title_name)}
+                </div>
+                <div class="date pt-1"><i class="fa-solid fa-calendar-days text-warning"></i> ${item.date}</div>
+            </div>
+            <div class="content">
+                ${pdfContent} <!-- แสดงรายการ PDF ที่มี -->
+            </div>
+        `;
 
-            contentArea.appendChild(newContent); // เพิ่มเนื้อหาลงในส่วนที่แสดงผล
-        });
+        contentArea.appendChild(newContent); // เพิ่มเนื้อหาลงในส่วนที่แสดงผล
+    });
 
+    // แสดงหรือซ่อนปุ่ม "ก่อนหน้า" และ "ถัดไป"
+    document.getElementById('prevBtn').style.display = currentPage === 1 ? 'none' : 'inline-block';
+    document.getElementById('nextBtn').style.display = currentPage * itemsPerPage >= allItems.length ? 'none' : 'inline-block';
+}
+
+// ฟังก์ชันที่ใช้เมื่อคลิก "ก่อนหน้า"
+document.getElementById('prevBtn').addEventListener('click', function() {
+    if (currentPage > 1) {
+        currentPage--;
+        displayItems();
     }
+});
 
-    // เมื่อโหลดหน้าเว็บ เรียกฟังก์ชัน changeContent เพื่อเลือก "ประกาศ EGP"
-    window.onload = function() {
-        changeContent('EGP', @json($procurement));
+// ฟังก์ชันที่ใช้เมื่อคลิก "ถัดไป"
+document.getElementById('nextBtn').addEventListener('click', function() {
+    if (currentPage * itemsPerPage < allItems.length) {
+        currentPage++;
+        displayItems();
     }
+});
+
+// เมื่อโหลดหน้าเว็บ เรียกฟังก์ชัน changeContent เพื่อเลือก "ประกาศ EGP"
+window.onload = function() {
+    changeContent('EGP', @json($procurement));  // เปลี่ยนให้เหมาะสมกับข้อมูลของคุณ
+}
 </script>
