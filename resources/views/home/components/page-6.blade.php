@@ -213,47 +213,66 @@
         });
 
         function showCarouselPressRelease(photos, detail) {
-            const carouselInner = document.getElementById("carouselInnerPressRelease");
-            const carouselIndicators = document.getElementById("carouselIndicatorsPressRelease");
-            const detailText = document.getElementById("detailTextPressRelease");
+    const carouselInner = document.getElementById("carouselInnerPressRelease");
+    const carouselIndicators = document.getElementById("carouselIndicatorsPressRelease");
+    const detailText = document.getElementById("detailTextPressRelease");
 
-            // ล้างข้อมูลเก่าของภาพและ Indicators
-            carouselInner.innerHTML = "";
-            carouselIndicators.innerHTML = "";
+    // ล้างข้อมูลเก่าของภาพและ Indicators
+    carouselInner.innerHTML = "";
+    carouselIndicators.innerHTML = "";
 
-            // ตรวจสอบว่า photos มีข้อมูลหรือไม่
-            if (!photos || photos.length === 0) {
-                return; // ไม่ทำอะไรหากไม่มีรูปภาพ
-            }
+    // ตรวจสอบว่า photos มีข้อมูลหรือไม่
+    if (!photos || photos.length === 0) {
+        // แสดงรูปภาพที่กำหนดไว้
+        const defaultImage = "{{ asset('images/pages/5/logox.png') }}"; // ใส่ path รูป default ที่คุณต้องการ
+        const carouselItem = document.createElement("div");
+        carouselItem.className = "carousel-item active";
+        carouselItem.innerHTML = `
+            <img src="${defaultImage}" class="d-block w-100" alt="Default Image" style="object-fit: cover; max-height: 400px; border-radius: 20px; margin-top: 5px;">
+        `;
+        carouselInner.appendChild(carouselItem);
 
-            // เพิ่มรูปภาพและ Indicators ใหม่
-            photos.forEach((photo, index) => {
-                // สร้าง Carousel Item
-                const carouselItem = document.createElement("div");
-                carouselItem.className = `carousel-item ${index === 0 ? "active" : ""}`; // รูปแรก active
-                carouselItem.innerHTML = `
-                  <img src="/storage/${photo.post_photo_file}" class="d-block w-100" alt="Image ${index + 1}" style="object-fit: cover; max-height: 400px; border-radius: 20px; margin-top: 5px;">
-              `;
-                carouselInner.appendChild(carouselItem);
+        // ไม่มี Indicators กรณีเป็นรูป Default
 
-                // สร้าง Indicator
-                const indicator = document.createElement("button");
-                indicator.type = "button";
-                indicator.dataset.bsTarget = "#carouselPressRelease";
-                indicator.dataset.bsSlideTo = index;
-                indicator.className = index === 0 ? "active" : "";
-                indicator.setAttribute("aria-current", index === 0 ? "true" : "false");
-                indicator.setAttribute("aria-label", `Slide ${index + 1}`);
-                carouselIndicators.appendChild(indicator);
-            });
+        // แสดงรายละเอียดกิจกรรม
+        detailText.textContent = detail || "ไม่มีรายละเอียด";
 
-            // แสดงรายละเอียดกิจกรรม
-            detailText.textContent = detail || "ไม่มีรายละเอียด";
+        // สร้าง Carousel ใหม่และตั้งค่าไปยังสไลด์แรก
+        const carouselElement = document.querySelector("#carouselPressRelease");
+        const carousel = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
+        carousel.to(0); // ไปที่ภาพแรกสุด
+        return;
+    }
 
-            // สร้าง Carousel ใหม่และตั้งค่าไปยังสไลด์แรก
-            const carouselElement = document.querySelector("#carouselPressRelease");
-            const carousel = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
-            carousel.to(0); // ไปที่ภาพแรกสุด
-        }
+    // เพิ่มรูปภาพและ Indicators ใหม่
+    photos.forEach((photo, index) => {
+        // สร้าง Carousel Item
+        const carouselItem = document.createElement("div");
+        carouselItem.className = `carousel-item ${index === 0 ? "active" : ""}`; // รูปแรก active
+        carouselItem.innerHTML = `
+            <img src="/storage/${photo.post_photo_file}" class="d-block w-100" alt="Image ${index + 1}" style="object-fit: cover; max-height: 400px; border-radius: 20px; margin-top: 5px;">
+        `;
+        carouselInner.appendChild(carouselItem);
+
+        // สร้าง Indicator
+        const indicator = document.createElement("button");
+        indicator.type = "button";
+        indicator.dataset.bsTarget = "#carouselPressRelease";
+        indicator.dataset.bsSlideTo = index;
+        indicator.className = index === 0 ? "active" : "";
+        indicator.setAttribute("aria-current", index === 0 ? "true" : "false");
+        indicator.setAttribute("aria-label", `Slide ${index + 1}`);
+        carouselIndicators.appendChild(indicator);
+    });
+
+    // แสดงรายละเอียดกิจกรรม
+    detailText.textContent = detail || "ไม่มีรายละเอียด";
+
+    // สร้าง Carousel ใหม่และตั้งค่าไปยังสไลด์แรก
+    const carouselElement = document.querySelector("#carouselPressRelease");
+    const carousel = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
+    carousel.to(0); // ไปที่ภาพแรกสุด
+}
+
     </script>
 </main>

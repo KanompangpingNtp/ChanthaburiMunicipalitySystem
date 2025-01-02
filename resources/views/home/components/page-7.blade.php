@@ -69,7 +69,7 @@
     }
 
     .card-view .title {
-        font-size: 2rem;
+        font-size: 1rem;
         color: #333;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -145,11 +145,11 @@
                         onclick="showCarouselActivity({{ $activitys->photos->toJson() }}, '{{ $activitys->details }}')">
                         <div class="d-flex justify-content-between align-content-center">
                             <div class="title text-truncate d-flex justify-content-start align-items-center">
-                                <img src="{{ asset('images/pages/7/triagle.png') }}" alt="triagle" width="25"
-                                    height="25">
-                                {{ $activitys->title_name }}
+                                <img src="{{ asset('images/pages/7/triagle.png') }}" alt="triagle" width="25" height="25">
+                                {{ Str::words($activitys->title_name, 23, '...') }}
                             </div>
-                            <div class="date pt-1">
+                            
+                            <div class="date pt-1" style="font-size: 20px;">
                                 <i class="fa-solid fa-calendar-days text-warning"></i>
                                 {{ $activitys->created_at->format('d/m/Y') }}
                             </div>
@@ -212,43 +212,55 @@
         });
 
         function showCarouselActivity(photos, detail) {
-            const carouselInner = document.getElementById("carouselInnerActivity");
-            const carouselIndicators = document.getElementById("carouselIndicatorsActivity");
-            const detailText = document.getElementById("detailTextActivity");
+    const carouselInner = document.getElementById("carouselInnerActivity");
+    const carouselIndicators = document.getElementById("carouselIndicatorsActivity");
+    const detailText = document.getElementById("detailTextActivity");
 
-            // ล้างข้อมูลเก่าของภาพและ Indicators
-            carouselInner.innerHTML = "";
-            carouselIndicators.innerHTML = "";
+    // ล้างข้อมูลเก่าของภาพและ Indicators
+    carouselInner.innerHTML = "";
+    carouselIndicators.innerHTML = "";
 
-            // เพิ่มรูปภาพและ Indicators ใหม่
-            photos.forEach((photo, index) => {
-                // สร้าง Carousel Item
-                const carouselItem = document.createElement("div");
-                carouselItem.className = `carousel-item ${index === 0 ? "active" : ""}`; // รูปแรก active
-                carouselItem.innerHTML = `
-                  <img src="/storage/${photo.post_photo_file}" class="d-block w-100" alt="Image ${index + 1} " style="object-fit: cover; max-height: 400px; border-radius: 20px; margin-top: 5px;">
-              `;
-                carouselInner.appendChild(carouselItem);
+    if (photos && photos.length > 0) {
+        // เพิ่มรูปภาพและ Indicators ใหม่
+        photos.forEach((photo, index) => {
+            // สร้าง Carousel Item
+            const carouselItem = document.createElement("div");
+            carouselItem.className = `carousel-item ${index === 0 ? "active" : ""}`; // รูปแรก active
+            carouselItem.innerHTML = `
+                <img src="/storage/${photo.post_photo_file}" class="d-block w-100" alt="Image ${index + 1}" style="object-fit: cover; max-height: 400px; border-radius: 20px; margin-top: 5px;">
+            `;
+            carouselInner.appendChild(carouselItem);
 
-                // สร้าง Indicator
-                const indicator = document.createElement("button");
-                indicator.type = "button";
-                indicator.dataset.bsTarget = "#carouselActivity";
-                indicator.dataset.bsSlideTo = index;
-                indicator.className = index === 0 ? "active" : "";
-                indicator.setAttribute("aria-current", index === 0 ? "true" : "false");
-                indicator.setAttribute("aria-label", `Slide ${index + 1}`);
-                carouselIndicators.appendChild(indicator);
-            });
+            // สร้าง Indicator
+            const indicator = document.createElement("button");
+            indicator.type = "button";
+            indicator.dataset.bsTarget = "#carouselActivity";
+            indicator.dataset.bsSlideTo = index;
+            indicator.className = index === 0 ? "active" : "";
+            indicator.setAttribute("aria-current", index === 0 ? "true" : "false");
+            indicator.setAttribute("aria-label", `Slide ${index + 1}`);
+            carouselIndicators.appendChild(indicator);
+        });
+    } else {
+        // กรณีไม่มีรูปภาพ แสดงรูป Default
+        const defaultImage = "{{ asset('images/pages/5/logox.png') }}"; // ใส่ path รูป default ที่คุณต้องการ
+        const carouselItem = document.createElement("div");
+        carouselItem.className = "carousel-item active";
+        carouselItem.innerHTML = `
+            <img src="${defaultImage}" class="d-block w-100" alt="Default Image" style="object-fit: cover; max-height: 400px; border-radius: 20px; margin-top: 5px;">
+        `;
+        carouselInner.appendChild(carouselItem);
+    }
 
-            // แสดงรายละเอียดกิจกรรม
-            detailText.textContent = detail || "ไม่มีรายละเอียด";
+    // แสดงรายละเอียดกิจกรรม
+    detailText.textContent = detail || "ไม่มีรายละเอียด";
 
-            // สร้าง Carousel ใหม่และตั้งค่าไปยังสไลด์แรก
-            const carouselElement = document.querySelector("#carouselActivity");
-            const carousel = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
-            carousel.to(0); // ไปที่ภาพแรกสุด
-        }
+    // สร้าง Carousel ใหม่และตั้งค่าไปยังสไลด์แรก
+    const carouselElement = document.querySelector("#carouselActivity");
+    const carousel = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
+    carousel.to(0); // ไปที่ภาพแรกสุด
+}
+
     </script>
 
 </main>
