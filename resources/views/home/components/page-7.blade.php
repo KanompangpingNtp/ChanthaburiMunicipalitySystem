@@ -172,6 +172,10 @@
                     </div>
                 @endforeach
             </div>
+            <!-- ปุ่ม Pagination -->
+            <div class="d-flex justify-content-center mt-2">
+                {{ $activities->links('pagination::bootstrap-5') }}
+            </div>
         </div>
         <!-- ส่วนขวา -->
         <div class="col-6 d-flex flex-column align-items-start justify-content-center bg-view">
@@ -208,7 +212,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const activityTitleElements = document.querySelectorAll(
-            '.activityTitle'); // ใช้ querySelectorAll เพื่อเลือกหลายๆ องค์ประกอบ
+                '.activityTitle'); // ใช้ querySelectorAll เพื่อเลือกหลายๆ องค์ประกอบ
 
             // ลูปผ่านทุกองค์ประกอบ
             activityTitleElements.forEach(activityTitleElement => {
@@ -241,7 +245,7 @@
             const firstActivity = @json($activity->first()); // ดึงข้อมูลกิจกรรมแรก
             if (firstActivity && firstActivity.photos.length > 0) {
                 showCarouselActivity(firstActivity.photos, firstActivity.details); // แสดงข้อมูลแรก
-            }else {
+            } else {
                 console.error('ข้อมูลแรกไม่มีภาพหรือรายละเอียด'); // แจ้งข้อผิดพลาดถ้าไม่มีข้อมูล
             }
         });

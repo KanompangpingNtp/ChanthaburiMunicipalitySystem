@@ -170,6 +170,10 @@
                     </div>
                 @endforeach
             </div>
+            <!-- ปุ่ม Pagination -->
+            <div class="d-flex justify-content-center mt-2">
+                {{ $activities->links('pagination::bootstrap-5') }}
+            </div>
         </div>
         <div class="col-6 d-flex flex-column align-items-start justify-content-center bg-view">
             <div class="bg-view-in d-flex flex-column justify-content-start align-items-center w-100">

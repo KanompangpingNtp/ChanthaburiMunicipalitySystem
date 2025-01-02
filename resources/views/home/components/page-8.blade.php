@@ -33,12 +33,10 @@
 
     .bg-view-in-page8 {
         background-color: rgb(235, 235, 235, 0.4);
-        height: 40rem;
+        height: 36rem;
         border-radius: 3%;
         padding-left: 10px;
         padding-right: 10px;
-        padding-bottom: 5px;
-        padding-top: 5px;
     }
 
     .card-view-page8 {
@@ -171,6 +169,15 @@
                 id="contentArea">
                 <!-- เนื้อหาที่จะถูกเปลี่ยนแปลงที่นี่ -->
             </div>
+            <div id="pagination" class="d-flex justify-content-center mt-3">
+                <button id="prevBtn" class="btn btn-outline-dark me-2" style="display:none;">
+                    <i class="fa-solid fa-chevron-left"></i> ก่อนหน้า
+                </button>
+                <button id="nextBtn" class="btn btn-outline-dark" style="display:none;">
+                    ถัดไป <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            
         </div>
         <div class="d-flex align-content-start justify-content-center ">
             <!-- Facebook Page Plugin -->
@@ -191,16 +198,34 @@
     nonce="A4Z4J6YV"></script>
 
 <script>
-    function changeContent(topic, data) {
+    let currentPage = 1;  // หน้าปัจจุบัน
+const itemsPerPage = 5;  // จำนวนรายการที่แสดงในแต่ละหน้า
+let allItems = []; // ข้อมูลทั้งหมด (จะถูกโหลดจาก backend)
+
+// ฟังก์ชันที่ใช้แสดงเนื้อหา
+function changeContent(topic, data) {
     // เปลี่ยนหัวข้อ
     document.getElementById('titlePage').innerHTML = 'ประกาศ ' + topic;
 
-    // เปลี่ยนเนื้อหาของการแสดงผล
-    let contentArea = document.getElementById('contentArea');
-    contentArea.innerHTML = ''; // ล้างเนื้อหาปัจจุบัน
+    // เก็บข้อมูลทั้งหมด
+    allItems = data;
 
-    // ลูปข้อมูลจากตัวแปร data ที่ส่งมา
-    data.forEach(item => {
+    // เรียกใช้ฟังก์ชันเพื่อแสดงข้อมูลตามหน้า
+    displayItems();
+}
+
+// ฟังก์ชันเพื่อแสดงข้อมูลในหน้าที่เลือก
+function displayItems() {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = currentPage * itemsPerPage;
+
+    // เลือกข้อมูลในหน้าที่ต้องการแสดง
+    const itemsToDisplay = allItems.slice(startIndex, endIndex);
+    let contentArea = document.getElementById('contentArea');
+    contentArea.innerHTML = ''; // ล้างเนื้อหาที่มีอยู่
+
+    // ลูปผ่านข้อมูลเพื่อแสดงผล
+    itemsToDisplay.forEach(item => {
         let newContent = document.createElement('div');
         newContent.className = 'card-view-page8';
 
@@ -242,11 +267,30 @@
 
         contentArea.appendChild(newContent); // เพิ่มเนื้อหาลงในส่วนที่แสดงผล
     });
+
+    // แสดงหรือซ่อนปุ่ม "ก่อนหน้า" และ "ถัดไป"
+    document.getElementById('prevBtn').style.display = currentPage === 1 ? 'none' : 'inline-block';
+    document.getElementById('nextBtn').style.display = currentPage * itemsPerPage >= allItems.length ? 'none' : 'inline-block';
 }
+
+// ฟังก์ชันที่ใช้เมื่อคลิก "ก่อนหน้า"
+document.getElementById('prevBtn').addEventListener('click', function() {
+    if (currentPage > 1) {
+        currentPage--;
+        displayItems();
+    }
+});
+
+// ฟังก์ชันที่ใช้เมื่อคลิก "ถัดไป"
+document.getElementById('nextBtn').addEventListener('click', function() {
+    if (currentPage * itemsPerPage < allItems.length) {
+        currentPage++;
+        displayItems();
+    }
+});
 
 // เมื่อโหลดหน้าเว็บ เรียกฟังก์ชัน changeContent เพื่อเลือก "ประกาศ EGP"
 window.onload = function() {
-    changeContent('EGP', @json($procurement));
+    changeContent('EGP', @json($procurement));  // เปลี่ยนให้เหมาะสมกับข้อมูลของคุณ
 }
-
 </script>
