@@ -32,7 +32,7 @@ class ActivityController extends Controller
             'date' => 'nullable|date',
             'title_name' => 'nullable|string|max:255',
             'topic_name' => 'nullable|string|max:255',
-            'details' => 'nullable|string|max:255',
+            'details' => 'nullable|string',
             'title_image' => 'file|mimes:jpg,jpeg,png',
             'file_post' => 'nullable|array',
             'file_post.*' => 'file|mimes:jpg,jpeg,png,pdf',

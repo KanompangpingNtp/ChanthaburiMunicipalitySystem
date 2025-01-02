@@ -1,6 +1,8 @@
 @extends('admin.layout.admin_layout')
 @section('user_content')
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
 <h2 class="text-center">จัดการข่าวประชาสัมพันธ์</h2>
 
 <br>
@@ -75,7 +77,7 @@
 <br>
 <br>
 
-<table class="table table-bordered text-center">
+<table class="table table-bordered text-center" id="data_table">
     <thead>
         <tr>
             <th>#</th>
@@ -96,12 +98,12 @@
                 <td>{{ $postDetail->details ?? 'N/A' }}</td>
                 <td>
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#showFile-{{ $postDetail->id }}">
-                        แสดงไฟล์
+                        <i class="bi bi-database"></i>
                     </button>
                     <form action="{{ route('PressReleaseDelete', $postDetail->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">ลบ</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="bi bi-trash"></i></button>
                     </form>
                 </td>
             </tr>
@@ -169,4 +171,9 @@
 
 
 <script src="{{ asset('js/multipart_files.js') }}"></script>
+<script src="{{asset('js/datatable.js')}}"></script>
+
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" defer></script>
