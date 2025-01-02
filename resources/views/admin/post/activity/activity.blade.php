@@ -76,7 +76,6 @@
     <thead class="text-center">
         <tr>
             <th>#</th>
-            {{-- <th>ประเภท</th> --}}
             <th>วันที่</th>
             <th>ชื่อเรื่อง</th>
             <th>หัวข้อ</th>
@@ -84,16 +83,16 @@
             <th>การจัดการ</th>
         </tr>
     </thead>
+    @if($postDetails->isNotEmpty())
     <tbody class="text-center">
-        @forelse ($postDetails as $index => $postDetail)
+        @foreach ($postDetails as $index => $postDetail)
         <tr>
             <td>{{ $index + 1 }}</td>
-            {{-- <td>{{ $postDetail->postType->type_name ?? 'N/A' }}</td> --}}
             <td>{{ $postDetail->date ?? 'N/A' }}</td>
             <td>{{ $postDetail->title_name ?? 'N/A' }}</td>
             <td>{{ $postDetail->topic_name ?? 'N/A' }}</td>
             <td>{{ $postDetail->details ?? 'N/A' }}</td>
-            <td class="text-center col-md-1">
+            <td>
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#showFile-{{ $postDetail->id }}">
                     <i class="bi bi-database"></i>
                 </button>
@@ -104,12 +103,9 @@
                 </form>
             </td>
         </tr>
-        @empty
-        <tr>
-            <td colspan="7" class="text-center">No posts found.</td>
-        </tr>
-        @endforelse
+        @endforeach
     </tbody>
+    @endif
 </table>
 
 <!-- ย้าย Modal ออกมาจาก Table -->

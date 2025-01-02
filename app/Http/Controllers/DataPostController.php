@@ -11,16 +11,22 @@ class DataPostController extends Controller
     public function HomeIndex()
     {
         //ข่าวประชาสัมพันธ์
+        // $pressRelease = PostDetail::with('postType', 'videos', 'photos', 'pdfs')
+        //     ->whereHas('postType', function ($query) {
+        //         $query->where('type_name', 'ข่าวประชาสัมพันธ์');
+        //     })->get();
         $pressRelease = PostDetail::with('postType', 'videos', 'photos', 'pdfs')
             ->whereHas('postType', function ($query) {
                 $query->where('type_name', 'ข่าวประชาสัมพันธ์');
-            })->get();
+            })
+            ->paginate(6);
 
         //กิจกรรม
         $activity = PostDetail::with('postType', 'videos', 'photos', 'pdfs')
             ->whereHas('postType', function ($query) {
                 $query->where('type_name', 'กิจกรรม');
-            })->get();
+            })
+            ->paginate(6);
 
         //ประกาศจัดซื้อจัดจ้าง
         $procurement = PostDetail::with('postType', 'pdfs')
