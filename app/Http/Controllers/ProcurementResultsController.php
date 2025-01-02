@@ -29,7 +29,7 @@ class ProcurementResultsController extends Controller
             'post_type_id' => 'required|exists:post_types,id',
             'date' => 'nullable|date',
             'file_post' => 'nullable|array',
-            'file_post.*' => 'file|max:10240', // ตรวจสอบขนาดไฟล์
+            'file_post.*' => 'file', // ตรวจสอบขนาดไฟล์
             'title_name' => 'nullable|string',
         ]);
 

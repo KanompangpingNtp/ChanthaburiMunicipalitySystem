@@ -30,7 +30,7 @@ class RevenueController extends Controller
             'date' => 'nullable|date',
             'title_name' => 'nullable|string',
             'file_post' => 'nullable|array',
-            'file_post.*' => 'file|max:10240',
+            'file_post.*' => 'file',
         ]);
 
         $postDetail = PostDetail::create([

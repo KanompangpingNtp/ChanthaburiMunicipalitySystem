@@ -35,8 +35,8 @@ class PressReleaseController extends Controller
             'details' => 'nullable|string|max:255',
             'title_image' => 'file|mimes:jpg,jpeg,png',
             'file_post' => 'nullable|array',
-            'file_post.*' => 'file|mimes:jpg,jpeg,png,pdf|max:10240',
-            'file_video' => 'nullable|file|mimes:mp4,avi,mov,wmv|max:51200',
+            'file_post.*' => 'file|mimes:jpg,jpeg,png,pdf',
+            'file_video' => 'nullable|file|mimes:mp4,avi,mov,wmv',
         ]);
 
         // dd($request);

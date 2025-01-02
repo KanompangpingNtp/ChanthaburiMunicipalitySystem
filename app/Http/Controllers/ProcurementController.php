@@ -30,7 +30,7 @@ class ProcurementController extends Controller
             'date' => 'nullable|date',
             'title_name' => 'nullable|string',
             'file_post' => 'nullable|array',
-            'file_post.*' => 'file|max:10240', // ตรวจสอบขนาดไฟล์
+            'file_post.*' => 'file' // ตรวจสอบขนาดไฟล์
         ]);
 
         $postDetail = PostDetail::create([
