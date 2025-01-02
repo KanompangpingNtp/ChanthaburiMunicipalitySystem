@@ -147,7 +147,7 @@
                             <div class="title text-truncate d-flex justify-content-start align-items-center">
                                 <img src="{{ asset('images/pages/6/hextacle.png') }}" alt="hextacle" width="25"
                                     height="25">
-                                {{ $release->title_name }}
+                                {{ Str::words($release->title_name, 23, '...') }}
                             </div>
                             <div class="date pt-1">
                                 <i class="fa-solid fa-calendar-days text-warning"></i>
