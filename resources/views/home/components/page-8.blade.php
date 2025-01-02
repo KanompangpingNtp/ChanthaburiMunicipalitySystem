@@ -63,7 +63,7 @@
     }
 
     .card-view-page8 .title {
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: #333;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -167,7 +167,7 @@
             <div class="title-page8 font-sarabun-bold d-flex justify-content-center align-items-center" id="titlePage">
                 ประกาศ EGP
             </div>
-            <div class="bg-view-in-page8 d-flex flex-column justify-content-center align-items-center gap-3 overflow-auto"
+            <div class="bg-view-in-page8 d-flex flex-column justify-content-center align-items-center gap-1 overflow-auto"
                 id="contentArea">
                 <!-- เนื้อหาที่จะถูกเปลี่ยนแปลงที่นี่ -->
             </div>
@@ -192,55 +192,61 @@
 
 <script>
     function changeContent(topic, data) {
-        // เปลี่ยนหัวข้อ
-        document.getElementById('titlePage').innerHTML = 'ประกาศ ' + topic;
+    // เปลี่ยนหัวข้อ
+    document.getElementById('titlePage').innerHTML = 'ประกาศ ' + topic;
 
-        // เปลี่ยนเนื้อหาของการแสดงผล
-        let contentArea = document.getElementById('contentArea');
-        contentArea.innerHTML = ''; // ล้างเนื้อหาปัจจุบัน
+    // เปลี่ยนเนื้อหาของการแสดงผล
+    let contentArea = document.getElementById('contentArea');
+    contentArea.innerHTML = ''; // ล้างเนื้อหาปัจจุบัน
 
-        // ลูปข้อมูลจากตัวแปร data ที่ส่งมา
-        data.forEach(item => {
-            console.log(item);
+    // ลูปข้อมูลจากตัวแปร data ที่ส่งมา
+    data.forEach(item => {
+        let newContent = document.createElement('div');
+        newContent.className = 'card-view-page8';
 
-            let newContent = document.createElement('div');
-            newContent.className = 'card-view-page8';
+        // ตรวจสอบและวนลูปผ่าน pdfs เพื่อสร้างรายการ PDF
+        let pdfContent = '';
+        if (item.pdfs && item.pdfs.length > 0) {
+            pdfContent = item.pdfs.map(pdf => `
+                <div class="pdf-item ms-3">
+                    <i class="fa-solid fa-file-pdf text-danger"></i>
+                    <a href="{{ asset('storage/${pdf.post_pdf_file}') }}" target="_blank" class="text-primary">
+                        ${pdf.post_pdf_file.split('/').pop()}
+                    </a>
+                </div>
+            `).join(''); // รวม HTML ของ PDF แต่ละไฟล์
+        } else {
+            pdfContent = '<div class="text-danger">ไม่มีข้อมูล PDF</div>';
+        }
 
-            // ตรวจสอบและวนลูปผ่าน pdfs เพื่อสร้างรายการ PDF
-            let pdfContent = '';
-            if (item.pdfs && item.pdfs.length > 0) {
-                pdfContent = item.pdfs.map(pdf => `
-          <div class="pdf-item ms-3">
-              <i class="fa-solid fa-file-pdf text-danger"></i>
-              <a href="{{ asset('storage/${pdf.post_pdf_file}') }}" target="_blank" class="text-primary">
-                          ${pdf.post_pdf_file.split('/').pop()}
-                      </a>
-          </div>
-      `).join(''); // รวม HTML ของ PDF แต่ละไฟล์
-            } else {
-                pdfContent = '<div class="text-danger">ไม่มีข้อมูล PDF</div>';
+        // ฟังก์ชันตัดข้อความ title_name ให้ไม่เกิน 40 ตัวอักษร
+        const truncateTitle = (title) => {
+            if (title.length > 40) {
+                return title.substring(0, 40) + '...'; // ตัดข้อความให้เหลือแค่ 40 ตัวอักษรและเพิ่ม '...'
             }
+            return title;
+        };
 
-            // สร้างเนื้อหาใหม่
-            newContent.innerHTML = `
-      <div class="d-flex justify-content-between align-content-center">
-          <div class="title text-truncate d-flex justify-content-start align-items-center">
-              <img src="{{ asset('images/pages/8/bell.png') }}" alt="bell" width="25" height="25"> ${item.title_name}
-          </div>
-          <div class="date pt-1"><i class="fa-solid fa-calendar-days text-warning"></i> ${item.date}</div>
-      </div>
-      <div class="content">
-          ${pdfContent} <!-- แสดงรายการ PDF ที่มี -->
-      </div>
-  `;
+        // สร้างเนื้อหาใหม่
+        newContent.innerHTML = `
+            <div class="d-flex justify-content-between align-content-center">
+                <div class="title text-truncate d-flex justify-content-start align-items-center">
+                    <img src="{{ asset('images/pages/8/bell.png') }}" alt="bell" width="25" height="25"> ${truncateTitle(item.title_name)}
+                </div>
+                <div class="date pt-1"><i class="fa-solid fa-calendar-days text-warning"></i> ${item.date}</div>
+            </div>
+            <div class="content">
+                ${pdfContent} <!-- แสดงรายการ PDF ที่มี -->
+            </div>
+        `;
 
-            contentArea.appendChild(newContent); // เพิ่มเนื้อหาลงในส่วนที่แสดงผล
-        });
+        contentArea.appendChild(newContent); // เพิ่มเนื้อหาลงในส่วนที่แสดงผล
+    });
+}
 
-    }
+// เมื่อโหลดหน้าเว็บ เรียกฟังก์ชัน changeContent เพื่อเลือก "ประกาศ EGP"
+window.onload = function() {
+    changeContent('EGP', @json($procurement));
+}
 
-    // เมื่อโหลดหน้าเว็บ เรียกฟังก์ชัน changeContent เพื่อเลือก "ประกาศ EGP"
-    window.onload = function() {
-        changeContent('EGP', @json($procurement));
-    }
 </script>
