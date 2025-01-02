@@ -139,6 +139,6 @@ class PressReleaseController extends Controller
 
         $postDetail->delete();
 
-        return redirect()->route('your_route_name')->with('success', 'โพสถูกลบเรียบร้อยแล้ว!');
+        return redirect()->back()->with('success', 'โพสถูกลบเรียบร้อยแล้ว!');
     }
 }
