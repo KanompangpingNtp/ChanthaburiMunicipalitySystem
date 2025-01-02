@@ -1,6 +1,6 @@
 <style>
     .bg-page10 {
-        background-image: url('{{ asset('images/pages/10/bg-10.png') }}');
+        background-image: url('{{ asset('images/pages/10/bg-10s.png') }}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
