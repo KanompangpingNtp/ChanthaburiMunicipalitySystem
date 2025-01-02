@@ -69,7 +69,7 @@
     }
 
     .card-view .title {
-        font-size: 1rem;
+        font-size: 1.5rem;
         color: #333;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -82,7 +82,7 @@
 
 
     .card-view .date {
-        font-size: 1.5rem;
+        font-size: 1rem;
         color: #555;
     }
 
@@ -139,17 +139,17 @@
     </div>
     <div class="container d-flex align-items-center justify-content-center gap-4 mt-4">
         <div class="col-6 d-flex flex-column align-content-center justify-content-center bg-view">
-            <div class="bg-view-in d-flex flex-column justify-content-center align-items-center gap-3 overflow-auto">
+            <div class="bg-view-in d-flex flex-column justify-content-center align-items-start gap-3 overflow-auto">
                 @foreach ($activity as $activitys)
                     <div class="card-view"
                         onclick="showCarouselActivity({{ $activitys->photos->toJson() }}, '{{ $activitys->details }}')">
                         <div class="d-flex justify-content-between align-content-center">
                             <div class="title text-truncate d-flex justify-content-start align-items-center">
-                                <img src="{{ asset('images/pages/7/triagle.png') }}" alt="triagle" width="25" height="25">
-                                {{ Str::words($activitys->title_name, 23, '...') }}
+                                <img src="{{ asset('images/pages/7/triagle.png') }}" alt="triagle" width="20" height="20">
+                                {{ Str::words($activitys->title_name, 20, '...') }}
                             </div>
                             
-                            <div class="date pt-1" style="font-size: 20px;">
+                            <div class="date pt-1">
                                 <i class="fa-solid fa-calendar-days text-warning"></i>
                                 {{ $activitys->created_at->format('d/m/Y') }}
                             </div>
