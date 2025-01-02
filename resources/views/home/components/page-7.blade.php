@@ -128,6 +128,7 @@
     .btn-viewall:hover {
         transform: scale(1.05);
     }
+
 </style>
 
 <main class="bg-page7">
@@ -172,10 +173,7 @@
                     </div>
                 @endforeach
             </div>
-            <!-- ปุ่ม Pagination -->
-            <div class="d-flex justify-content-center mt-2">
-                {{ $activities->links('pagination::bootstrap-5') }}
-            </div>
+
         </div>
         <!-- ส่วนขวา -->
         <div class="col-6 d-flex flex-column align-items-start justify-content-center bg-view">
