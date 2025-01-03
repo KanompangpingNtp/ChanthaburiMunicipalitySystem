@@ -140,7 +140,7 @@
     </div>
     <div class="container d-flex align-items-center justify-content-center gap-4 mt-4">
         <div class="col-6 d-flex flex-column align-content-center justify-content-center bg-view">
-            <div class="bg-view-in d-flex flex-column justify-content-center align-items-start mt-5 overflow-auto">
+            <div class="bg-view-in d-flex flex-column justify-content-center align-items-start mt-5 ">
                 @foreach ($activity as $activitys)
                     <div class="card-view mb-1"
                         onclick="showCarouselActivity({{ $activitys->photos->toJson() }}, '{{ $activitys->details }}')">

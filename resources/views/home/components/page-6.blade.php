@@ -139,7 +139,7 @@
     </div>
     <div class="container d-flex align-items-center justify-content-center gap-4 mt-4">
         <div class="col-6 d-flex flex-column align-content-center justify-content-center bg-view">
-            <div class="bg-view-in d-flex flex-column justify-content-center align-items-start gap-3 overflow-auto">
+            <div class="bg-view-in d-flex flex-column justify-content-center align-items-start gap-3">
                 @foreach ($pressRelease as $release)
                     <div class="card-view"
                         onclick="showCarouselPressRelease({{ $release->photos->toJson() }}, '{{ $release->details }}')">
