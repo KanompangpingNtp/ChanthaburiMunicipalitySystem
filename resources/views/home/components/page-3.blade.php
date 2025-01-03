@@ -113,6 +113,22 @@
                     <div class="carousel-item">
                         <img src="{{ asset('images/pages/3/plugin.png') }}" class="d-block w-100" alt="Image 2">
                     </div>
+                    <!-- สไลด์ที่สอง -->
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/pages/3/10.jpg') }}" class="d-block w-100" alt="Image 2">
+                    </div>
+                    <!-- สไลด์ที่สอง -->
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/pages/3/11.jpg') }}" class="d-block w-100" alt="Image 2">
+                    </div>
+                    <!-- สไลด์ที่สอง -->
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/pages/3/12.jpg') }}" class="d-block w-100" alt="Image 2">
+                    </div>
+                    <!-- สไลด์ที่สอง -->
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/pages/3/13.jpg') }}" class="d-block w-100" alt="Image 2">
+                    </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
