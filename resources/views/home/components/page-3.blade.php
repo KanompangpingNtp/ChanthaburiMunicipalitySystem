@@ -82,7 +82,7 @@
     .carousel-item img {
         object-fit: cover;
         /* หรือ "contain" ขึ้นอยู่กับว่าต้องการให้ภาพถูกตัดหรือไม่ */
-        height: 800px;
+        height: 600px;
         /* หรือกำหนดความสูงที่เหมาะสม */
         width: 100%;
     }
