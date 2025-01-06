@@ -240,7 +240,7 @@
                 </a>
 
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#moreOptions1">
-                    จักการประกาศ
+                    จัดการประกาศ
                 </a>
                 <div id="moreOptions1" class="collapse bg-option-nav mx-2">
                     <div class="nav-item">
