@@ -277,7 +277,7 @@
 
     <!-- Main Content: Carousel Section -->
     <div class="container d-flex align-items-end justify-content-center gap-4 flex-grow-1">
-        <div class="d-flex flex-column align-items-end justify-content-center w-100 mb-4">
+        <div class="d-flex flex-column align-items-end justify-content-center w-100 my-4">
             <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
                 <!-- Indicators -->
                 <div class="carousel-indicators">
