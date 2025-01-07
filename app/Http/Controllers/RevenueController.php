@@ -61,6 +61,52 @@ class RevenueController extends Controller
         return redirect()->back()->with('success', 'ไฟล์ประกาศถูกเพิ่มแล้ว!');
     }
 
+    public function RevenueUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'date' => 'nullable|date',
+            'title_name' => 'nullable|string',
+            'file_post' => 'nullable|array',
+            'file_post.*' => 'file|mimes:pdf|max:2048',
+            'delete_files' => 'nullable|array',
+            'delete_files.*' => 'exists:post_pdfs,id',
+        ]);
+
+        $postDetail = PostDetail::findOrFail($id);
+
+        // อัปเดตข้อมูลทั่วไป
+        $postDetail->update([
+            'date' => $request->date,
+            'title_name' => $request->title_name,
+        ]);
+
+        // ลบไฟล์ที่ถูกเลือก
+        if ($request->delete_files) {
+            $filesToDelete = PostPdf::whereIn('id', $request->delete_files)->get();
+            foreach ($filesToDelete as $file) {
+                // ลบไฟล์ออกจาก Storage
+                Storage::disk('public')->delete($file->post_pdf_file);
+                // ลบข้อมูลในฐานข้อมูล
+                $file->delete();
+            }
+        }
+
+        // อัปโหลดไฟล์ใหม่ถ้ามี
+        if ($request->hasFile('file_post')) {
+            foreach ($request->file('file_post') as $file) {
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('pdf', $filename, 'public');
+
+                PostPdf::create([
+                    'post_detail_id' => $postDetail->id,
+                    'post_pdf_file' => $path,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'แก้ไขประกาศสำเร็จ!');
+    }
+
     public function RevenueDelete($id)
     {
         $postDetail = PostDetail::findOrFail($id);

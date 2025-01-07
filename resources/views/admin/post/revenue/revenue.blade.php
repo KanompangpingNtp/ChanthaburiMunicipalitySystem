@@ -79,6 +79,9 @@
                 @endforeach
             </td>
             <td class="text-center">
+                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $postDetail->id }}">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
                 <form action="{{ route('RevenueDelete', $postDetail->id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
@@ -93,6 +96,64 @@
         @endforelse
     </tbody>
 </table>
+
+@foreach ($postDetails as $postDetail)
+<div class="modal fade" id="editModal{{ $postDetail->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $postDetail->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="margin-top: 5%;">
+        <div class="modal-content">
+            <form action="{{ route('RevenueUpdate', $postDetail->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel{{ $postDetail->id }}">แก้ไขประกาศ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- วันที่ -->
+                    <div class="mb-3">
+                        <label for="date{{ $postDetail->id }}" class="form-label">วันที่</label>
+                        <input type="date" class="form-control" id="date{{ $postDetail->id }}" name="date" value="{{ $postDetail->date }}">
+                    </div>
+
+                    <!-- ชื่อเรื่อง -->
+                    <div class="mb-3">
+                        <label for="title{{ $postDetail->id }}" class="form-label">ชื่อเรื่อง</label>
+                        <input type="text" class="form-control" id="title{{ $postDetail->id }}" name="title_name" value="{{ $postDetail->title_name }}">
+                    </div>
+
+                    <!-- แสดงไฟล์ PDF ที่มีอยู่ -->
+                    <div class="mb-3">
+                        <label class="form-label">ไฟล์ PDF ที่มีอยู่ (หากต้องการเปลี่ยนไฟล์เดิมให้เลือกไฟล์ที่มีอยู่แล้วตรงนี้ และอัพโหลดไฟล์ใหม่)</label>
+                        <div>
+                            @foreach ($postDetail->pdfs as $pdf)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="delete_files[]" value="{{ $pdf->id }}" id="deleteFile{{ $pdf->id }}">
+                                    <label class="form-check-label" for="deleteFile{{ $pdf->id }}">
+                                        <a href="{{ asset('storage/' . $pdf->post_pdf_file) }}" target="_blank">
+                                            {{ basename($pdf->post_pdf_file) }}
+                                        </a>
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- อัปโหลดไฟล์ PDF ใหม่ -->
+                    <div class="mb-3">
+                        <label for="file_post{{ $postDetail->id }}" class="form-label">อัปโหลดไฟล์ PDF ใหม่</label>
+                        <input type="file" class="form-control" id="file_post{{ $postDetail->id }}" name="file_post[]" multiple>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <script src="{{asset('js/datatable.js')}}"></script>
 
