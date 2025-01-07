@@ -129,6 +129,58 @@
         transform: scale(1.05);
     }
 
+    .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.6); /* เพิ่มพื้นหลังเข้ม */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* ทำให้เป็นปุ่มกลม */
+  }
+
+  .carousel-control-prev-icon:hover,
+  .carousel-control-next-icon:hover {
+    background-color: rgba(255, 255, 255, 0.9); /* เพิ่มสีพื้นหลังเมื่อ hover */
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    top: 50%; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+  }
+
+  .carousel-control-prev-icon::before,
+  .carousel-control-next-icon::before {
+    font-size: 30px; /* เพิ่มขนาดลูกศร */
+    font-weight: bold;
+  }
+
+  .carousel-control-prev {
+    left: -20px; /* เพิ่มระยะจากขอบซ้าย */
+  }
+
+  .carousel-control-next {
+    right: -20px; /* เพิ่มระยะจากขอบขวา */
+  }
+
+  @media (max-width: 768px) {
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 40px;
+      height: 40px;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      width: 40px;
+      height: 40px;
+    }
+    .carousel-control-prev-icon::before,
+    .carousel-control-next-icon::before {
+      font-size: 20px;
+    }
+  }
+
 </style>
 
 <main class="bg-page7">
@@ -139,43 +191,43 @@
         </div>
     </div>
     <div class="container d-flex align-items-center justify-content-center gap-4 mt-4">
-        <div class="col-6 d-flex flex-column align-content-center justify-content-center bg-view">
-            <div class="bg-view-in d-flex flex-column justify-content-center align-items-start mt-5 ">
-                @foreach ($activity as $activitys)
-                    <div class="card-view mb-1"
-                        onclick="showCarouselActivity({{ $activitys->photos->toJson() }}, '{{ $activitys->details }}')">
-                        <div class="d-flex justify-content-between align-content-center">
-                            <div class="title text-truncate d-flex justify-content-start align-items-center">
-                                <img src="{{ asset('images/pages/7/triagle.png') }}" alt="triagle" width="20"
-                                    height="20">
-                                <span class="activityTitle">{{ $activitys->title_name }}</span>
+        <div class="d-flex flex-column align-content-center justify-content-center">
+            <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                @foreach ($activity->chunk(4) as $chunk)
+                  <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                    <div class="row">
+                      @foreach ($chunk as $activitys)
+                        <div class="col-md-3">
+                          <div class="card">
+                            <img src="{{ $activitys->photos->isNotEmpty() ? asset($activitys->photos->first()->url) : 'default-image.jpg' }}" 
+                                 class="card-img-top" alt="Activity Image">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ Str::limit( $activitys->title_name, 60) }}</h5>
+                              <p class="card-text" style="font-size: 18px;">{{ Str::limit($activitys->details, 70) }}</p>
+                              <a href="#" class="btn btn-primary w-100">ดูเพิ่มเติม</a>
                             </div>
-
-
-                            <div class="date pt-1">
-                                <i class="fa-solid fa-calendar-days text-warning"></i>
-                                {{ $activitys->created_at->format('d/m/Y') }}
-                            </div>
+                          </div>
                         </div>
-                        <div class="content">
-                            <div class="pdf-item ms-3">
-                                <i class="fa-solid fa-file-pdf text-danger"></i>
-                                @if ($activitys->pdfs->isNotEmpty())
-                                    <a href="{{ asset('storage/' . $activitys->pdfs->first()->post_pdf_file) }}"
-                                        target="_blank" class="text-primary">
-                                        ดู PDF
-                                    </a>
-                                @else
-                                    <span class="text-muted">ไม่มีไฟล์ PDF</span>
-                                @endif
-                            </div>
-                        </div>
+                      @endforeach
                     </div>
+                  </div>
                 @endforeach
+              </div>
+          
+              <!-- Controls -->
+              <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-
-        </div>
-        <!-- ส่วนขวา -->
+          </div>
+          
+        {{-- <!-- ส่วนขวา -->
         <div class="col-6 d-flex flex-column align-items-start justify-content-center bg-view">
 
             <div class="bg-view-in d-flex flex-column justify-content-start align-items-center w-100">
@@ -205,8 +257,12 @@
                     <p id="detailTextActivity" class="mb-0" style="font-size: 1.5rem;">ไม่มีเนื้อหา</p>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
+    <div class="container">
+        <a href="" class="w-100 btn btn-outline-primary">ดูทั้งหมด</a>
+    </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const activityTitleElements = document.querySelectorAll(

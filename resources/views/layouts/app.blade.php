@@ -118,69 +118,7 @@
             border-right: 3px solid rgb(255, 208, 91);
         }
 
-        .bg-menu {
-            background: linear-gradient(to right, rgba(0, 60, 86, 0.8), rgba(0, 184, 184, 0.8));
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-
-        .navbar-hidden {
-            transform: translateY(100%);
-        }
-
-        .navbar-item {
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            display: block;
-            padding: 2px 10px;
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-item img {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 5px;
-            transition: transform 0.3s ease;
-            /* เพิ่ม effect การขยายขนาดของไอคอน */
-        }
-
-        .navbar-item div {
-            font-size: 23px;
-            transition: color 0.3s ease;
-            /* เพิ่มการเปลี่ยนแปลงสีของข้อความ */
-        }
-
-        .navbar-item:hover {
-            color: #00b8b8;
-            /* เปลี่ยนสีของข้อความเมื่อ hover */
-            border-radius: 10px;
-            /* เพิ่มมุมโค้งเพื่อให้ดูนุ่มนวล */
-        }
-
-        .navbar-item:hover img {
-            transform: scale(1.1);
-            /* ขยายขนาดไอคอนให้ใหญ่ขึ้นเมื่อ hover */
-        }
-
-        .navbar-item:hover div {
-            color: #00b8b8;
-            /* เปลี่ยนสีของข้อความเมื่อ hover */
-        }
-
-        /* แสดงแนวตั้งไอคอนและข้อความ */
-        .navbar-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+        
 
 
         /* ซ่อน border-left และ border-right เมื่อหน้าจอเล็กกว่า lg */
@@ -229,7 +167,7 @@
 </head>
 
 <body class="d-flex flex-column">
-    <div class="  bg-menu pb-2 pt-3">
+    {{-- <div class="  bg-menu pb-2 pt-3">
         <div class="container d-flex flex-wrap justify-content-evenly">
             <div class="d-flex flex-column align-items-center justify-content-center">
                 <a href="#" class="navbar-item">
@@ -275,7 +213,7 @@
             </div>
         </div>
 
-    </div>
+    </div> --}}
 
     @yield('content')
     {{-- <footer class="text-white">
@@ -318,7 +256,7 @@
         </div>
     </footer> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+    {{-- <script>
         let lastScrollTop = 0; // ตำแหน่งการเลื่อนล่าสุด
         const navbar = document.querySelector('.bg-menu');
 
@@ -335,7 +273,7 @@
 
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // ทำให้ค่าไม่ติดลบ
         });
-    </script>
+    </script> --}}
 </body>
 
 </html>
