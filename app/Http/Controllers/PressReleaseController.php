@@ -161,4 +161,79 @@ class PressReleaseController extends Controller
 
         return redirect()->back()->with('success', 'แก้ไขข้อมูลเรียบร้อยแล้ว!');
     }
+
+    public function updateFile(Request $request, $id)
+    {
+        $postDetail = PostDetail::findOrFail($id);
+
+        // ลบไฟล์เก่าที่ถูกเลือก
+        if ($request->has('delete_photo')) {
+            foreach ($request->delete_photo as $photoId) {
+                $photo = PostPhoto::find($photoId);
+                if ($photo) {
+                    // ลบไฟล์จาก storage
+                    Storage::disk('public')->delete($photo->post_photo_file);
+                    // ลบข้อมูลจากฐานข้อมูล
+                    $photo->delete();
+                }
+            }
+        }
+
+        if ($request->has('delete_video')) {
+            foreach ($request->delete_video as $videoId) {
+                $video = PostVideo::find($videoId);
+                if ($video) {
+                    // ลบไฟล์จาก storage
+                    Storage::disk('public')->delete($video->post_video_file);
+                    // ลบข้อมูลจากฐานข้อมูล
+                    $video->delete();
+                }
+            }
+        }
+
+        if ($request->has('delete_pdf')) {
+            foreach ($request->delete_pdf as $pdfId) {
+                $pdf = PostPdf::find($pdfId);
+                if ($pdf) {
+                    // ลบไฟล์จาก storage
+                    Storage::disk('public')->delete($pdf->post_pdf_file);
+                    // ลบข้อมูลจากฐานข้อมูล
+                    $pdf->delete();
+                }
+            }
+        }
+
+        // อัปโหลดไฟล์ใหม่
+        if ($request->hasFile('file_post')) {
+            foreach ($request->file('file_post') as $file) {
+                $filename = time() . '_' . $file->getClientOriginalName();
+                if ($file->getClientOriginalExtension() == 'pdf') {
+                    $path = $file->storeAs('pdf', $filename, 'public');
+                    PostPdf::create([
+                        'post_detail_id' => $postDetail->id,
+                        'post_pdf_file' => $path,
+                    ]);
+                } elseif (in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png'])) {
+                    $path = $file->storeAs('photo', $filename, 'public');
+                    PostPhoto::create([
+                        'post_detail_id' => $postDetail->id,
+                        'post_photo_file' => $path,
+                        'post_photo_status' => '2',
+                    ]);
+                }
+            }
+        }
+
+        if ($request->hasFile('file_video')) {
+            $file = $request->file('file_video');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('videos', $filename, 'public');
+            PostVideo::create([
+                'post_detail_id' => $postDetail->id,
+                'post_video_file' => $path,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'แก้ไขข้อมูลเรียบร้อยแล้ว!');
+    }
 }

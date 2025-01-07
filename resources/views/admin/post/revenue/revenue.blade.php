@@ -65,7 +65,7 @@
         </tr>
     </thead>
     <tbody class="text-center">
-        @forelse ($postDetails as $index => $postDetail)
+        @foreach ($postDetails as $index => $postDetail)
         <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $postDetail->postType->type_name ?? 'N/A' }}</td>
@@ -82,18 +82,14 @@
                 <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $postDetail->id }}">
                     <i class="bi bi-pencil-square"></i>
                 </button>
-                <form action="{{ route('RevenueDelete', $postDetail->id) }}" method="POST" style="display:inline;">
+                <form action="{{ route('ProcurementResultsDelete', $postDetail->id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="bi bi-trash"></i></button>
                 </form>
             </td>
         </tr>
-        @empty
-        <tr>
-            <td colspan="6" class="text-center">ไม่พบข้อมูล</td>
-        </tr>
-        @endforelse
+        @endforeach
     </tbody>
 </table>
 

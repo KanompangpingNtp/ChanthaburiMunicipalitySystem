@@ -65,7 +65,7 @@
         </tr>
     </thead>
     <tbody class="text-center">
-        @forelse ($postDetails as $index => $postDetail)
+        @foreach ($postDetails as $index => $postDetail)
         <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $postDetail->postType->type_name ?? 'N/A' }}</td>
@@ -89,11 +89,7 @@
                 </form>
             </td>
         </tr>
-        @empty
-        <tr>
-            <td colspan="5" class="text-center">ไม่พบข้อมูล</td>
-        </tr>
-        @endforelse
+        @endforeach
     </tbody>
 </table>
 
