@@ -142,7 +142,7 @@
         /* สีข้อความเป็นสีขาวเมื่อ hover */
     }
 
-    .btn-costom-card{
+    .btn-costom-card {
         display: inline-block;
         font-size: 20px;
         padding: 4px 10px;
@@ -264,6 +264,7 @@
         background-color: #00b8b8;
         /* สีปุ่มเมื่อ active */
     }
+
 </style>
 
 <main class="bg-page7 d-flex flex-column justify-content-between align-items-center w-100">
@@ -282,34 +283,35 @@
                 <!-- Indicators -->
                 <div class="carousel-indicators">
                     @foreach ($activity->chunk(4) as $index => $chunk)
-                        <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}"
-                            class="{{ $index === 0 ? 'active' : '' }}"
-                            aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-                            aria-label="Slide {{ $index + 1 }}"></button>
+                    <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                     @endforeach
                 </div>
 
                 <!-- Carousel Items -->
                 <div class="carousel-inner">
                     @foreach ($activity->chunk(4) as $chunk)
-                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                            <div class="row">
-                                @foreach ($chunk as $activitys)
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <img src="{{ $activitys->photos->isNotEmpty() ? asset($activitys->photos->first()->url) : 'default-image.jpg' }}"
-                                                class="card-img-top" alt="Activity Image">
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{ Str::limit($activitys->title_name, 60) }}</h5>
-                                                <p class="card-text" style="font-size: 18px;">
-                                                    {{ Str::limit($activitys->details, 70) }}</p>
-                                                <a href="#" class="btn-costom-card w-100">ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i></a>
-                                            </div>
-                                        </div>
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                        <div class="row">
+                            @foreach ($chunk as $activitys)
+                            <div class="col-md-3">
+                                <div class="card">
+                                    {{-- แสดงรูปภาพ --}}
+                                    @if($activitys->photos->isNotEmpty())
+                                    <img src="{{ asset('storage/' . $activitys->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
+                                    @else
+                                    <img src="default-image.jpg" class="card-img-top" alt="Default Image">
+                                    @endif
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ Str::limit($activitys->title_name, 60) }}</h5>
+                                        <p class="card-text" style="font-size: 18px;">
+                                            {{ Str::limit($activitys->details, 70) }}</p>
+                                        <a href="#" class="btn-costom-card w-100">ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i></a>
                                     </div>
-                                @endforeach
+                                </div>
                             </div>
+                            @endforeach
                         </div>
+                    </div>
                     @endforeach
                 </div>
 
