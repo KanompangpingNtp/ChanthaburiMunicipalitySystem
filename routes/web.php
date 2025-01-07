@@ -33,6 +33,7 @@ Route::middleware(['check.auth'])->group(function () {
     Route::post('/PressRelease/create', [PressReleaseController::class, 'PressReleaseCreate'])->name('PressReleaseCreate');
     Route::delete('/PressRelease/delete{id}', [PressReleaseController::class, 'PressReleaseDelete'])->name('PressReleaseDelete');
     Route::put('/PressRelease/update/{id}', [PressReleaseController::class, 'PressReleaseUpdate'])->name('PressReleaseUpdate');
+    Route::put('/PressRelease/{id}/updatefile', [PressReleaseController::class, 'updateFile'])->name('updateFile');
 
     //admin Activity
     Route::get('/Activity/page', [ActivityController::class, 'ActivityHome'])->name('ActivityHome');
