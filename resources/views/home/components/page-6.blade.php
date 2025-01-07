@@ -112,22 +112,6 @@
         text-decoration: underline;
     }
 
-    .btn-viewall {
-        display: inline-block;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        border-radius: 12px;
-        margin-bottom: 10px;
-        background: linear-gradient(to right, #003c56, #00b8b8);
-        color: white;
-        transition: transform 0.3s ease;
-        /* แยก transition สำหรับ background และ transform */
-    }
-
-    .btn-viewall:hover {
-        transform: scale(1.05);
-    }
 </style>
 
 <main class="bg-page6">
