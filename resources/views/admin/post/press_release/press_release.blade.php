@@ -90,30 +90,74 @@
     </thead>
     <tbody>
         @forelse ($postDetails as $index => $postDetail)
-            <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $postDetail->date ?? 'N/A' }}</td>
-                <td>{{ $postDetail->title_name ?? 'N/A' }}</td>
-                <td>{{ $postDetail->topic_name ?? 'N/A' }}</td>
-                <td>{{ $postDetail->details ?? 'N/A' }}</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#showFile-{{ $postDetail->id }}">
-                        <i class="bi bi-database"></i>
-                    </button>
-                    <form action="{{ route('PressReleaseDelete', $postDetail->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="bi bi-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
+        <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $postDetail->date ?? 'N/A' }}</td>
+            <td>{{ $postDetail->title_name ?? 'N/A' }}</td>
+            <td>{{ $postDetail->topic_name ?? 'N/A' }}</td>
+            <td>{{ $postDetail->details ?? 'N/A' }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#showFile-{{ $postDetail->id }}">
+                    <i class="bi bi-database"></i>
+                </button>
+
+                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal-{{ $postDetail->id }}">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+
+                <form action="{{ route('PressReleaseDelete', $postDetail->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="bi bi-trash"></i></button>
+                </form>
+            </td>
+        </tr>
         @empty
-            <tr>
-                <td colspan="7" class="text-center">No posts found.</td>
-            </tr>
+        <tr>
+            <td colspan="7" class="text-center">No posts found.</td>
+        </tr>
         @endforelse
     </tbody>
 </table>
+
+@foreach ($postDetails as $postDetail)
+<div class="modal fade" id="editModal-{{ $postDetail->id }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $postDetail->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="margin-top: 5%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel-{{ $postDetail->id }}">แก้ไขข่าวประชาสัมพันธ์</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('PressReleaseUpdate', $postDetail->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="date-{{ $postDetail->id }}" class="form-label">วันที่</label>
+                        <input type="date" class="form-control" id="date-{{ $postDetail->id }}" name="date" value="{{ $postDetail->date }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="title_name-{{ $postDetail->id }}" class="form-label">ชื่อเรื่อง</label>
+                        <input type="text" class="form-control" id="title_name-{{ $postDetail->id }}" name="title_name" value="{{ $postDetail->title_name }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="topic_name-{{ $postDetail->id }}" class="form-label">หัวข้อ</label>
+                        <input type="text" class="form-control" id="topic_name-{{ $postDetail->id }}" name="topic_name" value="{{ $postDetail->topic_name }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="details-{{ $postDetail->id }}" class="form-label">รายละเอียด</label>
+                        <textarea class="form-control" id="details-{{ $postDetail->id }}" name="details">{{ $postDetail->details }}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 
 @foreach ($postDetails as $postDetail)
 <div class="modal fade" id="showFile-{{ $postDetail->id }}" tabindex="-1" aria-labelledby="showFileLabel-{{ $postDetail->id }}" aria-hidden="true">

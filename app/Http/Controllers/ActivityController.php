@@ -140,4 +140,24 @@ class ActivityController extends Controller
 
         return redirect()->back()->with('success', 'โพสถูกลบเรียบร้อยแล้ว!');
     }
+
+    public function ActivityUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'date' => 'nullable|date',
+            'title_name' => 'nullable|string|max:255',
+            'topic_name' => 'nullable|string|max:255',
+            'details' => 'nullable|string',
+        ]);
+
+        $postDetail = PostDetail::findOrFail($id);
+        $postDetail->update([
+            'date' => $request->date,
+            'title_name' => $request->title_name,
+            'topic_name' => $request->topic_name,
+            'details' => $request->details,
+        ]);
+
+        return redirect()->back()->with('success', 'แก้ไขข้อมูลเรียบร้อยแล้ว!');
+    }
 }
