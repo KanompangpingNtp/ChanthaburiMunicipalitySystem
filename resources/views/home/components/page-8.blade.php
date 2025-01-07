@@ -150,7 +150,7 @@
 <main class="d-flex align-items-center justify-content-center bg-page8">
     <div class="container d-flex flex-lg-row flex-column align-items-center justify-content-center gap-4">
         <div class="d-flex flex-column align-content-center justify-content-around gap-4">
-            <div class="luxury-button" onclick="changeContent('EGP', {{ json_encode($procurement) }})">ประกาศ EGP</div>
+            {{-- <div class="luxury-button" onclick="changeContent('EGP', {{ json_encode($procurement) }})">ประกาศ EGP</div> --}}
             <div class="luxury-button" onclick="changeContent('จัดซื้อจัดจ้าง', {{ json_encode($procurement) }})">
                 ประกาศจัดซื้อจัดจ้าง</div>
             <div class="luxury-button"
@@ -163,7 +163,7 @@
         </div>
         <div class="d-flex flex-column align-content-center justify-content-center bg-view-page8 w-100">
             <div class="title-page8 font-sarabun-bold d-flex justify-content-center align-items-center" id="titlePage">
-                ประกาศ EGP
+                ประกาศจัดซื้อจัดจ้าง
             </div>
             <div class="bg-view-in-page8 d-flex flex-column justify-content-center align-items-center gap-1 overflow-auto"
                 id="contentArea">
@@ -291,6 +291,6 @@ document.getElementById('nextBtn').addEventListener('click', function() {
 
 // เมื่อโหลดหน้าเว็บ เรียกฟังก์ชัน changeContent เพื่อเลือก "ประกาศ EGP"
 window.onload = function() {
-    changeContent('EGP', @json($procurement));  // เปลี่ยนให้เหมาะสมกับข้อมูลของคุณ
+    changeContent('จัดซื้อจัดจ้าง', @json($procurement));  // เปลี่ยนให้เหมาะสมกับข้อมูลของคุณ
 }
 </script>

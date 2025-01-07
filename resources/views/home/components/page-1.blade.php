@@ -155,6 +155,70 @@
         transform: scale(1.2);
         /* ขยายขนาดไอคอนเมื่อ hover */
     }
+
+    .bg-menu {
+        background: linear-gradient(to right, rgba(0, 60, 86, 0.8), rgba(0, 184, 184, 0.8));
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+    }
+
+
+    .navbar-hidden {
+        transform: translateY(100%);
+    }
+
+    .navbar-item {
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        padding: 2px 10px;
+        margin: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-item img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 5px;
+        transition: transform 0.3s ease;
+        /* เพิ่ม effect การขยายขนาดของไอคอน */
+    }
+
+    .navbar-item div {
+        font-size: 23px;
+        transition: color 0.3s ease;
+        /* เพิ่มการเปลี่ยนแปลงสีของข้อความ */
+    }
+
+    .navbar-item:hover {
+        color: #00b8b8;
+        /* เปลี่ยนสีของข้อความเมื่อ hover */
+        border-radius: 10px;
+        /* เพิ่มมุมโค้งเพื่อให้ดูนุ่มนวล */
+    }
+
+    .navbar-item:hover img {
+        transform: scale(1.1);
+        /* ขยายขนาดไอคอนให้ใหญ่ขึ้นเมื่อ hover */
+    }
+
+    .navbar-item:hover div {
+        color: #00b8b8;
+        /* เปลี่ยนสีของข้อความเมื่อ hover */
+    }
+
+    /* แสดงแนวตั้งไอคอนและข้อความ */
+    .navbar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
 <main class="d-flex align-items-start justify-content-center bg-page1">
     <header class="text-black fixed-top">
@@ -194,7 +258,7 @@
     <div class="container content-page1 d-flex" style=" width: 100%;">
         <!-- ฝั่งซ้าย (ข้อความ) -->
         <div class="col-6 d-flex flex-column justify-content-start align-items-start" style="height: 70vh;">
-            <a href="{{route('showLoginForm')}}" class="btn-login">เข้าสู่ระบบ</a>
+            <a href="{{ route('showLoginForm') }}" class="btn-login">เข้าสู่ระบบ</a>
             <div class="bg-dark-transparent">
                 <div class="text-white title lh-1">เมืองน่าอยู่</div>
                 <div class="text-warning detail ">ศูนย์กลางทางเศรษฐกิจ คุณภาพชีวิตที่ดี <br>
@@ -213,6 +277,53 @@
                     <a href="#"><img src="{{ asset('images/pages/1/tiktok.png') }}" alt="tiktok"></a>
                     <a href="#"><img src="{{ asset('images/pages/1/youtube.png') }}" alt="youtube"></a>
                     <a href="#"><img src="{{ asset('images/pages/1/messeger.png') }}" alt="messeger"></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="  bg-menu pb-2 pt-3">
+            <div class="container d-flex flex-wrap justify-content-evenly">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <a href="#" class="navbar-item">
+                        <img src="{{ asset('images/navbar/users.png') }}" alt="users">
+                        <div>คู่มือประชาชน</div>
+                    </a>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <a href="#" class="navbar-item">
+                        <img src="{{ asset('images/navbar/service.png') }}" alt="service">
+                        <div>e-service</div>
+                    </a>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <a href="#" class="navbar-item">
+                        <img src="{{ asset('images/navbar/law.png') }}" alt="law">
+                        <div>ร้องเรียนการทุจริต</div>
+                    </a>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <a href="#" class="navbar-item">
+                        <img src="{{ asset('images/navbar/speech.png') }}" alt="speech">
+                        <div>สารจันทบุรี</div>
+                    </a>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <a href="#" class="navbar-item">
+                        <img src="{{ asset('images/navbar/search.png') }}" alt="search">
+                        <div>ข้อมูลพื้นฐาน</div>
+                    </a>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <a href="#" class="navbar-item">
+                        <img src="{{ asset('images/navbar/icon.png') }}" alt="icon">
+                        <div>ศูนย์ข้อมูลข่าวสาร</div>
+                    </a>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <a href="#" class="navbar-item">
+                        <img src="{{ asset('images/navbar/facebook.png') }}" alt="facebook">
+                        <div>FBเพจเทศบาล</div>
+                    </a>
                 </div>
             </div>
 
