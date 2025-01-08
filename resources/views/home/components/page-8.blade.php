@@ -146,6 +146,15 @@
     .text-primary:hover {
         text-decoration: underline;
     }
+
+    .hover-effect {
+        transition: transform 0.3s ease, opacity 0.3s ease; /* การเปลี่ยนแปลงของภาพ */
+    }
+
+    .hover-effect:hover {
+        transform: scale(1.02); /* ขยายภาพเมื่อ hover */
+        opacity: 0.8; /* ทำให้ภาพโปร่งแสง */
+    }
 </style>
 <main class="d-flex align-items-center justify-content-center bg-page8">
     <div class="container d-flex flex-lg-row flex-column align-items-center justify-content-center gap-4">
@@ -179,10 +188,13 @@
             </div>
             
         </div>
-        <div class="d-flex align-content-start justify-content-center ">
+        <div class="d-flex flex-column align-content-start justify-content-center gap-2">
+            <a href="https://infocenter.oic.go.th/เทศบาลเมืองจันทบุรี/topic.php?gid=8729&mid=1021" class="hover-effect">
+                <img src="{{asset('images/pages/8/BN.png')}}" alt="bn" width="310px;">
+            </a>
             <!-- Facebook Page Plugin -->
             <div class="fb-page" data-href="https://www.facebook.com/chanthaburi.town.municipality" data-tabs="timeline"
-                data-width="300" data-height="720" data-small-header="false" data-adapt-container-width="false"
+                data-width="300" data-height="600" data-small-header="false" data-adapt-container-width="false"
                 data-hide-cover="false" data-show-facepile="true">
                 <blockquote cite="https://www.facebook.com/chanthaburi.town.municipality" class="fb-xfbml-parse-ignore">
                     <a href="https://www.facebook.com/chanthaburi.town.municipality">Facebook</a>
