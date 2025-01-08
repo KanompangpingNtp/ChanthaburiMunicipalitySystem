@@ -115,6 +115,7 @@
             height: 60px;
             font-size: 28px;
             z-index: 1100;
+            /* ทำให้ navbar อยู่เหนือเนื้อหาหลัก */
             transition: left 0.3s ease, width 0.3s ease;
         }
 
@@ -151,6 +152,10 @@
             font-size: 23px;
             color: #2f2f2f;
             transition: margin-left 0.3s ease;
+            z-index: 100;
+            /* เพิ่ม z-index เพื่อให้อยู่ด้านบนของ sidebar หรือ navbar */
+            padding-top: 50px;
+            /* เพิ่ม padding-top เพื่อให้เนื้อหาหลักไม่ถูกปิดทับโดย navbar */
         }
 
         .main-content h3 {
