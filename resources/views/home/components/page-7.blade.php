@@ -264,13 +264,14 @@
         background-color: #00b8b8;
         /* สีปุ่มเมื่อ active */
     }
-
-    .img-fixed {
-    width: 100%; /* ทำให้รูปภาพเต็มความกว้างของคอลัมน์ */
-    height: 200px; /* ความสูงที่กำหนด */
-    object-fit: cover; /* ปรับให้ภาพถูกครอบแต่ยังคงอัตราส่วน */
-    object-position: center; /* จัดภาพให้อยู่ตรงกลาง */
+    .img-container {
+    height: 300px; /* ความสูงที่กำหนดเท่ากัน */
+    overflow: hidden; /* ตัดส่วนเกิน */
 }
+
+
+
+
 
 </style>
 
@@ -285,7 +286,7 @@
 
     <!-- Main Content: Carousel Section -->
     <div class="container d-flex align-items-end justify-content-center gap-4 flex-grow-1">
-        <div class="d-flex flex-column align-items-end justify-content-center w-100 my-4">
+        <div class="d-flex flex-column align-items-end justify-content-center my-4">
             <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
                 <!-- Indicators -->
                 <div class="carousel-indicators">
@@ -304,9 +305,13 @@
                                 <div class="card">
                                     {{-- แสดงรูปภาพ --}}
                                     @if($activitys->photos->isNotEmpty())
-                                    <img src="{{ asset('storage/' . $activitys->photos->first()->post_photo_file) }}" class="card-img-top img-fixed" alt="Activity Image">
+                                    <div class="img-container w-100">
+                                        <img src="{{ asset('storage/' . $activitys->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
+                                    </div>
                                     @else
-                                    <img src="default-image.jpg" class="card-img-top img-fixed" alt="Default Image">
+                                    <div class="img-container">
+                                        <img src="default-image.jpg" class="card-img-top" alt="Default Image">
+                                    </div>
                                     @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{ Str::limit($activitys->title_name, 60) }}</h5>
@@ -321,6 +326,7 @@
                     </div>
                     @endforeach
                 </div>
+                
                 
 
                 <!-- Controls -->
