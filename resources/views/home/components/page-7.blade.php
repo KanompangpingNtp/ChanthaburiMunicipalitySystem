@@ -265,6 +265,13 @@
         /* สีปุ่มเมื่อ active */
     }
 
+    .img-fixed {
+    width: 100%; /* ทำให้รูปภาพเต็มความกว้างของคอลัมน์ */
+    height: 200px; /* ความสูงที่กำหนด */
+    object-fit: cover; /* ปรับให้ภาพถูกครอบแต่ยังคงอัตราส่วน */
+    object-position: center; /* จัดภาพให้อยู่ตรงกลาง */
+}
+
 </style>
 
 <main class="bg-page7 d-flex flex-column justify-content-between align-items-center w-100">
@@ -297,9 +304,9 @@
                                 <div class="card">
                                     {{-- แสดงรูปภาพ --}}
                                     @if($activitys->photos->isNotEmpty())
-                                    <img src="{{ asset('storage/' . $activitys->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
+                                    <img src="{{ asset('storage/' . $activitys->photos->first()->post_photo_file) }}" class="card-img-top img-fixed" alt="Activity Image">
                                     @else
-                                    <img src="default-image.jpg" class="card-img-top" alt="Default Image">
+                                    <img src="default-image.jpg" class="card-img-top img-fixed" alt="Default Image">
                                     @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{ Str::limit($activitys->title_name, 60) }}</h5>
@@ -314,6 +321,7 @@
                     </div>
                     @endforeach
                 </div>
+                
 
                 <!-- Controls -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
