@@ -320,7 +320,7 @@
                     </a>
                 </div>
                 <div class="d-flex flex-column align-items-center justify-content-center">
-                    <a href="#" class="navbar-item">
+                    <a href="https://www.facebook.com/chanthaburi.town.municipality" class="navbar-item" target="_blank">
                         <img src="{{ asset('images/navbar/facebook.png') }}" alt="facebook">
                         <div>FBเพจเทศบาล</div>
                     </a>
