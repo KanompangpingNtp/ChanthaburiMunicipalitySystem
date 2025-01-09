@@ -314,8 +314,8 @@
                                     </div>
                                     @endif
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ Str::limit($activitys->title_name, 60) }}</h5>
-                                        <p class="card-text" style="font-size: 18px;">
+                                        <h5 class="card-title" style="font-size: 22px;">{{ Str::limit($activitys->title_name, 60) }}</h5>
+                                        <p class="card-text" style="font-size: 16px;">
                                             {{ Str::limit($activitys->details, 70) }}</p>
                                         <a href="#" class="btn-costom-card w-100">ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i></a>
                                     </div>
