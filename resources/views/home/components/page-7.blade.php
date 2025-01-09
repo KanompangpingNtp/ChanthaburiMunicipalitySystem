@@ -6,7 +6,7 @@
         background-repeat: no-repeat;
         min-height: 90vh;
         position: relative;
-        padding-bottom: 5rem;
+        padding-bottom: 1rem;
     }
 
     .bg-adept-7 {
@@ -343,7 +343,7 @@
     </div>
 
     <!-- View All Button -->
-    <div class="container d-flex align-items-center justify-content-center mt-5">
+    <div class="container d-flex align-items-center justify-content-center mt-4">
         <a href="" class="w-100 btn-viewall"> ดูกิจกรรมทั้งหมด <i class="fa-solid fa-circle-chevron-right"></i></a>
     </div>
 
