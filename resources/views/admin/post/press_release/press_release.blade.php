@@ -161,7 +161,7 @@
 
 @foreach ($postDetails as $postDetail)
 <div class="modal fade" id="showFile-{{ $postDetail->id }}" tabindex="-1" aria-labelledby="showFileLabel-{{ $postDetail->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-xl" style="margin-top: 5%;">
+    <div class="modal-dialog modal-lg" style="margin-top: 5%;">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="showFileLabel-{{ $postDetail->id }}">แสดงไฟล์</h1>
