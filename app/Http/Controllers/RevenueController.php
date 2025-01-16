@@ -18,6 +18,7 @@ class RevenueController extends Controller
         $postTypeId = $postTypes->firstWhere('type_name', 'งานเก็บรายได้')->id;
         $postDetails = PostDetail::with('postType', 'pdfs')
             ->where('post_type_id', $postTypeId)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('admin.post.revenue.revenue', compact('postDetails', 'postTypes'));

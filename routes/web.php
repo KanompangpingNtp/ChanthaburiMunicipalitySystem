@@ -40,6 +40,7 @@ Route::middleware(['check.auth'])->group(function () {
     Route::post('/Activity/create', [ActivityController::class, 'ActivityCreate'])->name('ActivityCreate');
     Route::delete('/Activity/delete{id}', [ActivityController::class, 'ActivityDelete'])->name('ActivityDelete');
     Route::put('/Activity/update/{id}', [ActivityController::class, 'ActivityUpdate'])->name('ActivityUpdate');
+    Route::put('/Activity/{id}/updatefile', [ActivityController::class, 'ActivityUpdateFile'])->name('ActivityUpdateFile');
 
     //admin Procurement
     Route::get('/Procurement/page', [ProcurementController::class, 'ProcurementHome'])->name('ProcurementHome');

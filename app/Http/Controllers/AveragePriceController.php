@@ -18,6 +18,7 @@ class AveragePriceController extends Controller
         $postTypeId = $postTypes->firstWhere('type_name', 'ประกาศราคากลาง')->id;
         $postDetails = PostDetail::with('postType', 'pdfs')
             ->where('post_type_id', $postTypeId)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('admin.post.average_price.average_price', compact('postDetails', 'postTypes'));
