@@ -24,6 +24,12 @@
     </script>
     @endif
 
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="">ระบบจัดการข้อมูล</a>
@@ -89,7 +95,7 @@
                                 <a class="nav-link" href="{{route('RevenueHome')}}">งานเก็บรายได้</a>
                             </nav>
                         </div>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{route('ManagePersonnel')}}">
                             <div class="sb-nav-link-icon">
                                 <i class="bi bi-database-add"></i>
                             </div>

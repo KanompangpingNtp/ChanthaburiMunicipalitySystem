@@ -3,9 +3,7 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 
-<h2 class="text-center">จัดการข่าวประชาสัมพันธ์</h2>
-
-<br>
+<h2 class="text-center">จัดการข่าวประชาสัมพันธ์</h2><br>
 
 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
     สร้างข่าวประชาสัมพันธ์
@@ -100,10 +98,6 @@
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#FileData-{{ $postDetail->id }}">
                     <i class="bi bi-file-image"></i>
                 </button>
-
-                {{-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#showFile-{{ $postDetail->id }}">
-                    <i class="bi bi-database-exclamation"></i>
-                </button> --}}
 
                 <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal-{{ $postDetail->id }}">
                     <i class="bi bi-pencil-square"></i>
