@@ -18,7 +18,7 @@ class ActivityController extends Controller
         $postTypes = PostType::all();
 
         $postTypeId = $postTypes->firstWhere('type_name', 'กิจกรรม')->id;
-        $postDetails = PostDetail::with('postType','photos','pdfs','videos')
+        $postDetails = PostDetail::with('postType', 'photos', 'pdfs', 'videos')
             ->where('post_type_id', $postTypeId)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -159,14 +159,6 @@ class ActivityController extends Controller
             'details' => $request->details,
         ]);
 
-        return redirect()->back()->with('success', 'แก้ไขข้อมูลเรียบร้อยแล้ว!');
-    }
-
-    public function ActivityUpdateFile(Request $request, $id)
-    {
-        $postDetail = PostDetail::findOrFail($id);
-
-        // ลบไฟล์เก่าที่ถูกเลือก
         if ($request->has('delete_photo')) {
             foreach ($request->delete_photo as $photoId) {
                 $photo = PostPhoto::find($photoId);

@@ -1,218 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Default Title')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Admin</title>
+    <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        @font-face {
-            font-family: 'THSarabunNew';
-            src: url('/fonts/THSarabunNew.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'THSarabunNew';
-            src: url('/fonts/THSarabunNew-Bold.ttf') format('truetype');
-            font-weight: bold;
-            font-style: normal;
-        }
-
-        .min-h-screen {
-            min-height: 100vh;
-        }
-
-        .font-sarabun {
-            font-family: 'THSarabunNew', sans-serif;
-            font-size: 18px;
-        }
-
-        .font-sarabun-bold {
-            font-family: 'THSarabunNew', sans-serif;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        /* Body styles */
-        body {
-            background: linear-gradient(to bottom, rgb(247, 251, 255), rgb(222, 222, 222));
-            font-family: 'THSarabunNew', sans-serif;
-            min-height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background-color: #fefefe;
-            color: #004ddc;
-            min-height: 100vh;
-            /* ความสูงขั้นต่ำของ sidebar */
-            max-height: 100vh;
-            /* จำกัดความสูงสูงสุดเท่ากับหน้าจอ */
-            padding-top: 0.5rem;
-            padding-left: 5px;
-            padding-right: 7px;
-            position: fixed;
-            /* ทำให้ sidebar ติดกับด้านซ้ายของหน้าจอ */
-            top: 0;
-            left: 0;
-            width: 250px;
-            z-index: 1200;
-            transition: transform 0.3s ease;
-            box-shadow: 6px 0px 20px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            /* เพิ่มแถบเลื่อนในแนวตั้งเมื่อเนื้อหาเกิน */
-            overflow-x: hidden;
-            /* ซ่อนแถบเลื่อนแนวนอน */
-            scrollbar-width: thin;
-            /* (สำหรับเบราว์เซอร์ที่รองรับ) กำหนดความกว้างของ scrollbar */
-            scrollbar-color: #b3e5fc #fefefe;
-            /* สีของ scrollbar */
-        }
-
-
-        .sidebar a {
-            color: #004ddc;
-            text-decoration: none;
-            padding: 15px 25px;
-            border-radius: 8px;
-            font-size: 25px;
-            margin-bottom: 2px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .sidebar a i {
-            margin-right: 10px;
-            font-size: 15px;
-        }
-
-        .sidebar a:hover {
-            background-color: #004ddc;
-            color: white;
-            transform: translateX(3px);
-        }
-
-        .sidebar .hover-active {
-            background-color: #004ddc;
-            color: white;
-            transform: translateX(3px);
-            margin-bottom: 5px;
-        }
-
-        /* Navbar */
-        .navbar {
-            background-color: #fefefe;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 250px;
-            width: calc(100% - 250px);
-            height: 60px;
-            font-size: 28px;
-            z-index: 1100;
-            /* ทำให้ navbar อยู่เหนือเนื้อหาหลัก */
-            transition: left 0.3s ease, width 0.3s ease;
-        }
-
-        .navbar button {
-            font-size: 20px;
-        }
-
-        .navbar.collapsed {
-            left: 0;
-            width: 100%;
-        }
-
-        .navbar .nav-link {
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .navbar .nav-link:hover {
-            color: #b3e5fc;
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 3rem;
-            background-color: rgba(255, 255, 255, 0.933);
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            min-height: 90vh;
-            width: auto;
-            margin-top: 75px;
-            margin-bottom: 30px;
-            margin-left: 265px;
-            margin-right: 15px;
-            font-size: 23px;
-            color: #2f2f2f;
-            transition: margin-left 0.3s ease;
-            z-index: 100;
-            /* เพิ่ม z-index เพื่อให้อยู่ด้านบนของ sidebar หรือ navbar */
-            padding-top: 50px;
-            /* เพิ่ม padding-top เพื่อให้เนื้อหาหลักไม่ถูกปิดทับโดย navbar */
-        }
-
-        .main-content h3 {
-            font-size: 36px;
-            font-weight: bold;
-            color: #004ddc;
-        }
-
-        .main-content input {
-            font-size: 23px;
-            color: #2f2f2f;
-        }
-
-        .main-content select {
-            font-size: 23px;
-            color: #2f2f2f;
-        }
-
-        .main-content button {
-            font-size: 23px;
-        }
-
-        .custom-border-bottom {
-            border-bottom: 3px solid #007bff;
-            /* เปลี่ยนความหนาและสีของเส้น */
-        }
-
-        .bg-option-nav {
-            background-color: #e3f7ff;
-            border-radius: 20px;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.show {
-                transform: translateX(0);
-            }
-
-            .navbar {
-                left: 0;
-                width: 100%;
-            }
-
-            .main-content {
-                margin-left: 15px;
-            }
-        }
-
-    </style>
 </head>
-
 <body>
-
     @if ($message = Session::get('success'))
     <script>
         Swal.fire({
@@ -223,146 +24,165 @@
     </script>
     @endif
 
-    <div class="container-fluid d-flex">
-        <div id="sidebar" class="sidebar">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="">ระบบจัดการข้อมูล</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!" title="Toggle sidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                    </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">ระบบ</div>
+                        <a class="nav-link" href="{{route('PressReleaseHome')}}">
+                            <div class="sb-nav-link-icon">
+                                <i class="bi bi-database-add"></i>
+                            </div>
+                            จัดการข่าวประชาสัมพันธ์
+                        </a>
+                        <a class="nav-link" href="{{route('ActivityHome')}}">
+                            <div class="sb-nav-link-icon">
+                                <i class="bi bi-database-add"></i></div>
+                            จัดการกิจกรรม
+                        </a>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <i class="bi bi-database-add"></i>
+                            </div>
+                            การจัดการประกาศ
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{route('ProcurementResultsHome')}}">ผลจัดซื้อจัดจ้าง</a>
+                                <a class="nav-link" href="{{route('ProcurementHome')}}">ประกาศจัดซื้อจัดจ้าง</a>
+                                <a class="nav-link" href="{{route('AveragePriceHome')}}">ประกาศราคากลาง</a>
+                                <a class="nav-link" href="{{route('RevenueHome')}}">งานเก็บรายได้</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link" href="">
+                            <div class="sb-nav-link-icon">
+                                <i class="bi bi-database-add"></i>
+                            </div>
+                            จัดการบุคลากร
+                        </a>
 
-            <!-- Sidebar -->
-            <div class="d-flex justify-content-center align-content-center custom-border-bottom mb-3 mx-3">
-                <div class=" font-sarabun-bold d-none d-md-block" style="font-size: 40px">การจัดการข้อมูล
+                        {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-columns"></i>
+                            </div>
+                            Layouts
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="layout-static.html">Static Navigation</a>
+                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                            </nav>
+                        </div> --}}
+
+                        {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            Pages
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    Authentication
+                                    <div class="sb-sidenav-collapse-arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="login.html">Login</a>
+                                        <a class="nav-link" href="register.html">Register</a>
+                                        <a class="nav-link" href="password.html">Forgot Password</a>
+                                    </nav>
+                                </div>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                    Error
+                                    <div class="sb-sidenav-collapse-arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="401.html">401 Page</a>
+                                        <a class="nav-link" href="404.html">404 Page</a>
+                                        <a class="nav-link" href="500.html">500 Page</a>
+                                    </nav>
+                                </div>
+                            </nav>
+                        </div> --}}
+                    </div>
                 </div>
-                <a id="toggle-sidebars" class="font-sarabun-bold d-md-none my-2" style="font-size: 40px">
-                    ปิดเมนู
-                </a>
-            </div>
-            <!-- เมนูที่สามารถคลิกเพื่อเปิดตัวเลือกเพิ่มเติม -->
-            <div class="nav-item">
-
-                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{route('PressReleaseHome')}}">
-                    จัดการข่าวประชาสัมพันธ์
-                </a>
-                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{route('ActivityHome')}}">
-                    จัดการกิจกรรม
-                </a>
-
-                <a class="nav-link font-sarabun-bold toggle-collapse" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#moreOptions1">
-                    จัดการประกาศ
-                </a>
-                <div id="moreOptions1" class="collapse bg-option-nav mx-2">
-                    <div class="nav-item">
-                        <a class="nav-link" href="{{route('ProcurementHome')}}"><i class="fa-solid fa-caret-right"></i>ประกาศจัดซื้อจัดจ้าง</a>
-                    </div>
-                    <div class="nav-item">
-                        <a class="nav-link" href="{{route('ProcurementResultsHome')}}"><i class="fa-solid fa-caret-right"></i>ผลจัดซื้อจัดจ้าง</a>
-                    </div>
-                    <div class="nav-item">
-                        <a class="nav-link" href="{{route('AveragePriceHome')}}"><i class="fa-solid fa-caret-right"></i>ประกาศราคากลาง</a>
-                    </div>
-                    <div class="nav-item">
-                        <a class="nav-link" href="{{route('RevenueHome')}}"><i class="fa-solid fa-caret-right"></i>งานเก็บรายได้</a>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Start Bootstrap
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <div class="mt-5">
+                        @yield('user_content')
                     </div>
                 </div>
-            </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; บริษัท GM SKY สงวนสิทธิ์ 2024</div>
+                        {{-- <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div> --}}
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{{asset('js/scripts.js')}}"></script>
 
-    <!-- Main Content Area -->
-    <div class="flex-grow-1">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <div class="d-flex align-items-center w-100">
-                <!-- ปุ่มเปิดเมนู -->
-                <button id="toggle-sidebar" class="btn btn-outline-primary ms-3 d-md-none">
-                    เปิดเมนู
-                </button>
-
-                <!-- ข้อความตรงกลาง -->
-                <span class="text-secondary mx-auto" href="#">
-                    © บริษัท GM SKY สงวนสิทธิ์
-                </span>
-
-                <!-- ส่วนขวา -->
-                @if (Auth::check())
-                <div class="dropdown ms-auto">
-                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i> {{ Auth::user()->name }}
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                        <li>
-                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button class="dropdown-item fs-3" type="submit">ออกจากระบบ</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                @else
-                <div class="d-flex justify-content-end column-gap-3 me-3">
-                    <a class="btn btn-outline-primary" href="">
-                        <i class="fa-solid fa-lock-open"></i> เข้าสู่ระบบ
-                    </a>
-                    <a class="btn btn-outline-primary" href="">
-                        <i class="fa-solid fa-user"></i> สมัครใช้งาน
-                    </a>
-                </div>
-                @endif
-            </div>
-        </nav>
-
-        <!-- Dashboard Content -->
-        <div class="main-content">
-            @yield('user_content')
-        </div>
-
-    </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const toggleSidebar = document.getElementById('toggle-sidebar');
-        const toggleSidebars = document.getElementById('toggle-sidebars');
-        const sidebar = document.getElementById('sidebar');
-        const navbar = document.querySelector('.navbar');
-        const content = document.querySelector('.main-content');
-
-        toggleSidebar.addEventListener('click', function() {
-            sidebar.classList.toggle('show');
-            navbar.classList.toggle('collapsed');
-            content.classList.toggle('collapsed');
-        });
-        toggleSidebars.addEventListener('click', function() {
-            sidebar.classList.toggle('show');
-            navbar.classList.toggle('collapsed');
-            content.classList.toggle('collapsed');
-        });
-
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleButtons = document.querySelectorAll('.toggle-collapse'); // เลือกทุก .toggle-collapse
-
-            toggleButtons.forEach((toggleButton) => {
-                const targetSelector = toggleButton.getAttribute(
-                    'data-bs-target'); // ดึง target (เช่น #moreOptions1)
-                const targetDiv = document.querySelector(targetSelector);
-
-                // เพิ่มคลาส hover-active เมื่อเปิด
-                toggleButton.addEventListener('click', () => {
-                    if (targetDiv.classList.contains('show')) {
-                        toggleButton.classList.remove('hover-active');
-                    } else {
-                        toggleButton.classList.add('hover-active');
-                    }
-                });
-
-                // ลบคลาส hover-active เมื่อปิด (Bootstrap hidden.bs.collapse)
-                targetDiv.addEventListener('hidden.bs.collapse', () => {
-                    toggleButton.classList.remove('hover-active');
-                });
-            });
-        });
-
-    </script>
 </body>
-
 </html>

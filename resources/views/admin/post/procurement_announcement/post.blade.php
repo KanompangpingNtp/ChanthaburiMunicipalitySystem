@@ -52,7 +52,7 @@
 </div>
 
 <br><br>
-<table class="table table-bordered" id="data_table">
+<table class="table table-bordered text-center" id="data_table">
     <thead class="text-center">
         <tr>
             <th>#</th>

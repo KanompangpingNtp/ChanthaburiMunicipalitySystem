@@ -93,8 +93,8 @@
             <td>{{ $postDetail->topic_name ?? 'N/A' }}</td>
             <td>{{ $postDetail->details ?? 'N/A' }}</td>
             <td>
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#showFile-{{ $postDetail->id }}">
-                    <i class="bi bi-database"></i>
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#FileData-{{ $postDetail->id }}">
+                    <i class="bi bi-file-image"></i>
                 </button>
 
                 <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal-{{ $postDetail->id }}">
@@ -118,10 +118,10 @@
     <div class="modal-dialog modal-lg" style="margin-top: 5%;">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editModalLabel-{{ $postDetail->id }}">แก้ไขข่าวประชาสัมพันธ์</h1>
+                <h1 class="modal-title fs-5" id="editModalLabel-{{ $postDetail->id }}">แก้ไขกิจกรรม</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('ActivityUpdate', $postDetail->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('PressReleaseUpdate', $postDetail->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -141,6 +141,77 @@
                         <label for="details-{{ $postDetail->id }}" class="form-label">รายละเอียด</label>
                         <textarea class="form-control" id="details-{{ $postDetail->id }}" name="details">{{ $postDetail->details }}</textarea>
                     </div>
+
+                    <br>
+
+                    <h5>รูปภาพ</h5>
+                    @if($postDetail->photos->isNotEmpty())
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        @foreach($postDetail->photos as $photo)
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="{{ asset('storage/' . $photo->post_photo_file) }}" alt="Image" style="width:100px; height:100px; object-fit:cover; margin-bottom:10px;">
+                            <label for="delete_photo_{{ $photo->id }}"><span class="text-danger">ลบ</span></label>
+                            <input type="checkbox" name="delete_photo[]" id="delete_photo_{{ $photo->id }}" value="{{ $photo->id }}">
+                        </div>
+                        @endforeach
+                    </div>
+                    @else
+                    <p>ไม่มีรูปภาพ</p>
+                    @endif
+
+                    <br>
+
+                    <h5>วิดีโอ</h5>
+                    @if($postDetail->videos->isNotEmpty())
+                    <div>
+                        @foreach($postDetail->videos as $video)
+                        <div>
+                            <video width="320" height="240" controls>
+                                <source src="{{ asset('storage/' . $video->post_video_file) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <label for="delete_video_{{ $video->id }}"><span class="text-danger">ลบ</span></label>
+                            <input type="checkbox" name="delete_video[]" id="delete_video_{{ $video->id }}" value="{{ $video->id }}">
+                        </div>
+                        @endforeach
+                    </div>
+                    @else
+                    <p>ไม่มีวิดีโอ</p>
+                    @endif
+
+                    <br>
+
+                    <h5>ไฟล์ PDF</h5>
+                    @if($postDetail->pdfs->isNotEmpty())
+                    <ul>
+                        @foreach($postDetail->pdfs as $pdf)
+                        <li>
+                            <a href="{{ asset('storage/' . $pdf->post_pdf_file) }}" target="_blank">{{ basename($pdf->post_pdf_file) }}</a>
+                            <label for="delete_pdf_{{ $pdf->id }}"><span class="text-danger">ลบ</span></label>
+                            <input type="checkbox" name="delete_pdf[]" id="delete_pdf_{{ $pdf->id }}" value="{{ $pdf->id }}">
+                        </li>
+                        @endforeach
+                    </ul>
+                    @else
+                    <p>ไม่มีไฟล์ PDF</p>
+                    @endif
+
+                    <br>
+
+                    <h6 class="text-center"><span class="text-danger">#</span> อัปโหลดไฟล์ใหม่ (หากต้องการเปลี่ยนไฟล์เดิมให้เลือกไฟล์ที่มีอยู่แล้วตรงนี้ และอัพโหลดไฟล์ใหม่) <span class="text-danger">#</span></h6><br>
+                    <div class="mb-3">
+                        <label for="file_post" class="form-label">แนบไฟล์ภาพและPDF</label>
+                        <input type="file" class="form-control" id="file_post" name="file_post[]" multiple>
+                        <small class="text-muted">ประเภทไฟล์ที่รองรับ: jpg, jpeg, png, pdf (ขนาดไม่เกิน 10MB)</small>
+                        <div id="file-list" class="mt-1">
+                            <div class="d-flex flex-wrap gap-3"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="file_video" class="form-label">อัปโหลดวิดีโอ</label>
+                        <input type="file" class="form-control" id="file_video" name="file_video">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -150,102 +221,68 @@
         </div>
     </div>
 </div>
-@endforeach
 
-@foreach ($postDetails as $postDetail)
-<div class="modal fade" id="showFile-{{ $postDetail->id }}" tabindex="-1" aria-labelledby="showFileLabel-{{ $postDetail->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="margin-top: 5%;">
+<div class="modal fade" id="FileData-{{ $postDetail->id }}" tabindex="-1" aria-labelledby="FileDataLabel-{{ $postDetail->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="showFileLabel-{{ $postDetail->id }}">แสดงไฟล์</h1>
+                <h1 class="modal-title fs-5" id="FileDataLabel-{{ $postDetail->id }}">แสดงไฟล์</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('ActivityUpdateFile', $postDetail->id) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT') <!-- ถ้าเป็นการแก้ไขข้อมูล -->
-
-                    <div class="modal-body">
-                        <!-- แสดงรูปภาพ -->
-                        <h5>รูปภาพ</h5>
-                        @if($postDetail->photos->isNotEmpty())
-                        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                            @foreach($postDetail->photos as $photo)
-                            <div style="display: flex; flex-direction: column; align-items: center;">
-                                <img src="{{ asset('storage/' . $photo->post_photo_file) }}" alt="Image" style="width:100px; height:100px; object-fit:cover; margin-bottom:10px;">
-                                <label for="delete_photo_{{ $photo->id }}">ลบ</label>
-                                <input type="checkbox" name="delete_photo[]" id="delete_photo_{{ $photo->id }}" value="{{ $photo->id }}">
-                            </div>
-                            @endforeach
-                        </div>
-                        @else
-                        <p>ไม่มีรูปภาพ</p>
-                        @endif
-
-                        <br>
-
-                        <!-- แสดงวิดีโอ -->
-                        <h5>วิดีโอ</h5>
-                        @if($postDetail->videos->isNotEmpty())
-                        <div>
-                            @foreach($postDetail->videos as $video)
-                            <div>
-                                <video width="320" height="240" controls>
-                                    <source src="{{ asset('storage/' . $video->post_video_file) }}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                                <label for="delete_video_{{ $video->id }}">ลบ</label>
-                                <input type="checkbox" name="delete_video[]" id="delete_video_{{ $video->id }}" value="{{ $video->id }}">
-                            </div>
-                            @endforeach
-                        </div>
-                        @else
-                        <p>ไม่มีวิดีโอ</p>
-                        @endif
-
-                        <br>
-
-                        <!-- แสดงไฟล์ PDF -->
-                        <h5>ไฟล์ PDF</h5>
-                        @if($postDetail->pdfs->isNotEmpty())
-                        <ul>
-                            @foreach($postDetail->pdfs as $pdf)
-                            <li>
-                                <a href="{{ asset('storage/' . $pdf->post_pdf_file) }}" target="_blank">{{ basename($pdf->post_pdf_file) }}</a>
-                                <label for="delete_pdf_{{ $pdf->id }}">ลบ</label>
-                                <input type="checkbox" name="delete_pdf[]" id="delete_pdf_{{ $pdf->id }}" value="{{ $pdf->id }}">
-                            </li>
-                            @endforeach
-                        </ul>
-                        @else
-                        <p>ไม่มีไฟล์ PDF</p>
-                        @endif
-
-                        <br>
-
-                        <!-- ฟอร์มอัปโหลดไฟล์ใหม่ -->
-                        <h4 class="text-center">อัปโหลดไฟล์ใหม่ (หากต้องการเปลี่ยนไฟล์เดิมให้เลือกไฟล์ที่มีอยู่แล้วตรงนี้ และอัพโหลดไฟล์ใหม่)</h4>
-                        <div class="mb-3">
-                            <label for="file_post" class="form-label">แนบไฟล์ภาพและPDF</label>
-                            <input type="file" class="form-control" id="file_post" name="file_post[]" multiple>
-                            <small class="text-muted">ประเภทไฟล์ที่รองรับ: jpg, jpeg, png, pdf (ขนาดไม่เกิน 10MB)</small>
-                            <!-- แสดงรายการไฟล์ที่แนบ -->
-                            <div id="file-list" class="mt-1">
-                                <div class="d-flex flex-wrap gap-3"></div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="file_video" class="form-label">อัปโหลดวิดีโอ</label>
-                            <input type="file" class="form-control" id="file_video" name="file_video">
-                        </div>
-
+                <!-- Section: รูปภาพ -->
+                <h5>รูปภาพ</h5>
+                @if($postDetail->photos->isNotEmpty())
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    @foreach($postDetail->photos as $photo)
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <img src="{{ asset('storage/' . $photo->post_photo_file) }}" alt="Image"
+                             style="width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px;">
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">บันทึก</button>
+                    @endforeach
+                </div>
+                @else
+                <p>ไม่มีรูปภาพ</p>
+                @endif
+
+                <hr>
+
+                <!-- Section: วิดีโอ -->
+                <h5>วิดีโอ</h5>
+                @if($postDetail->videos->isNotEmpty())
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    @foreach($postDetail->videos as $video)
+                    <div>
+                        <video width="320" height="240" controls>
+                            <source src="{{ asset('storage/' . $video->post_video_file) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
-                </form>
+                    @endforeach
+                </div>
+                @else
+                <p>ไม่มีวิดีโอ</p>
+                @endif
+
+                <hr>
+
+                <h5>ไฟล์ PDF</h5>
+                @if($postDetail->pdfs->isNotEmpty())
+                <ul>
+                    @foreach($postDetail->pdfs as $pdf)
+                    <li>
+                        <a href="{{ asset('storage/' . $pdf->post_pdf_file) }}" target="_blank">
+                            {{ basename($pdf->post_pdf_file) }}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
+                @else
+                <p>ไม่มีไฟล์ PDF</p>
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
