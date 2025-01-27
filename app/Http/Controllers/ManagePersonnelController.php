@@ -128,7 +128,7 @@ class ManagePersonnelController extends Controller
             'post_photo_file' => 'nullable|file|mimes:jpg,jpeg,png',
         ]);
 
-        PersonnelDetail::create([
+        $PersonnelDetail = PersonnelDetail::create([
             'personnel_rank_id' => $DetailsId,
             'full_name' => $request->full_name,
             'phone' => $request->phone,
@@ -142,7 +142,7 @@ class ManagePersonnelController extends Controller
             $path = $file->storeAs('post_photo_file', $filename, 'public');
 
             PersonnelImage::create([
-                'personnel_detail_id' => $DetailsId,
+                'personnel_detail_id' => $PersonnelDetail->id,
                 'post_photo_file' => $path,
             ]);
         }
@@ -203,4 +203,13 @@ class ManagePersonnelController extends Controller
 
         return redirect()->back()->with('success', 'โพสถูกลบแล้ว');
     }
+
+    // public function PersonnelInformation()
+    // {
+    //     $agencies = PersonnelAgency::with([
+    //         'ranks.details.images'
+    //     ])->get();
+
+    //     return view('admin.post.personnel.personnel_information.personnel_information', compact('agencies'));
+    // }
 }
