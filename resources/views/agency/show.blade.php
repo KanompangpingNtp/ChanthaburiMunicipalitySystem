@@ -11,8 +11,6 @@
         @foreach ($agency->ranks as $rank)
         <li>
             <strong>{{ $rank->personnel_rank_name }}</strong>
-
-            <!-- แสดงข้อมูล Details ของ Rank -->
             @if ($rank->details->count() > 0)
             <ul>
                 @foreach ($rank->details as $detail)
@@ -22,8 +20,6 @@
                     <strong>status:</strong> {{ $detail->status }}<br>
                     <strong>แผนก </strong> {{ $detail->department ?? 'ว่าง' }}<br>
 
-
-                    <!-- แสดงรูปภาพที่เกี่ยวข้องกับรายละเอียด -->
                     @if ($detail->images->count() > 0)
                     <ul>
                         @foreach ($detail->images as $image)
@@ -48,7 +44,6 @@
     <p>No ranks available for this agency.</p>
     @endif
 
-    <!-- ลิงก์ย้อนกลับไปยังหน้าก่อนหน้า -->
     <a href="{{ url()->previous() }}">Back</a>
 </div>
 
