@@ -41,7 +41,7 @@
         @endforeach
     </ul>
     @else
-    <p>No ranks available for this agency.</p>
+        <p>No ranks available for this agency.</p>
     @endif
 
     <a href="{{ url()->previous() }}">Back</a>

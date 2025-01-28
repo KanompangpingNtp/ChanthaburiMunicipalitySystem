@@ -29,6 +29,7 @@ use App\Http\Controllers\PersonnelAgencyController;
 
 Route::get('/', [DataPostController::class, 'HomeIndex'])->name('HomeIndex');
 Route::get('/agency/{id}', [PersonnelAgencyController::class, 'show'])->name('agency.show');
+Route::get('/layout', [DataPostController::class, 'layout'])->name('layout');
 
 Route::middleware(['check.auth'])->group(function () {
     //admin PressRelease

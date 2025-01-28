@@ -67,4 +67,12 @@ class DataPostController extends Controller
             'personnelAgencies'
         ));
     }
+
+    public function layout()
+    {
+        $personnelAgencies = PersonnelAgency::with('ranks')->get();
+
+        return view('layouts.main.app', compact('personnelAgencies'));
+    }
+
 }
