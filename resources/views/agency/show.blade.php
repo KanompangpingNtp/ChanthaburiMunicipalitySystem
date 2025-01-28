@@ -1,7 +1,14 @@
 @extends('layouts.main.app')
 @section('content')
-
-<div class="container border py-5">
+<style>
+    .custom-gradient-shadow {
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), /* เงาพื้นฐาน */
+                0 0 50px -10px rgba(0, 60, 86, 0.8), /* เงาสีฟ้าเข้ม */
+                0 0 50px -10px rgba(0, 184, 184, 0.8); /* เงาสีฟ้าอ่อน */
+}
+</style>
+<div class="container  py-5 my-5 custom-gradient-shadow">
     <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="fs-3 mb-4">{{ $agency->personnel_agency_name }}</div>
 
@@ -24,7 +31,7 @@
 
             <!-- แสดงผลตามกลุ่ม status -->
             @foreach ($sortedDetails as $status => $details)
-                <div class="w-100 mb-4">
+                <div class="w-100 mb-4 px-5">
                     {{-- <h4 class="text-center mb-3">Status: {{ $status }}</h4> --}}
 
                         @foreach ($details->chunk(3) as $chunk)
@@ -36,12 +43,12 @@
                                             @if ($chunk->first()->images->count() > 0)
                                                 @foreach ($chunk->first()->images as $image)
                                                     <img src="{{ asset('storage/' . $image->post_photo_file) }}" alt="Personnel Image"
-                                                        style="width: auto; height: 200px; object-fit: cover;">
+                                                        style="width: auto; height: 250px; object-fit: cover;">
                                                 @endforeach
                                             @else
                                                 <p>No images available for this person.</p>
                                             @endif
-                                            <div class="fs-4">
+                                            <div class="fs-4 mt-2">
                                                 {{ $chunk->first()->full_name }}<br>
                                                 {{ $chunk->first()->department ?? 'ว่าง' }}<br>
                                                 {{ $chunk->first()->phone }}
@@ -55,12 +62,12 @@
                                             @if ($chunk->first()->images->count() > 0)
                                                 @foreach ($chunk->first()->images as $image)
                                                     <img src="{{ asset('storage/' . $image->post_photo_file) }}" alt="Personnel Image"
-                                                        style="width: auto; height: 200px; object-fit: cover;">
+                                                        style="width: auto; height: 250px; object-fit: cover;">
                                                 @endforeach
                                             @else
                                                 <p>No images available for this person.</p>
                                             @endif
-                                            <div class="fs-4">
+                                            <div class="fs-4 mt-2">
                                                 {{ $chunk->first()->full_name }}<br>
                                                 {{ $chunk->first()->department ?? 'ว่าง' }}<br>
                                                 {{ $chunk->first()->phone }}
@@ -72,12 +79,12 @@
                                             @if ($chunk->last()->images->count() > 0)
                                                 @foreach ($chunk->last()->images as $image)
                                                     <img src="{{ asset('storage/' . $image->post_photo_file) }}" alt="Personnel Image"
-                                                        style="width: auto; height: 200px; object-fit: cover;">
+                                                        style="width: auto; height: 250px; object-fit: cover;">
                                                 @endforeach
                                             @else
                                                 <p>No images available for this person.</p>
                                             @endif
-                                            <div class="fs-4">
+                                            <div class="fs-4 mt-2">
                                                 {{ $chunk->first()->full_name }}<br>
                                                 {{ $chunk->first()->department ?? 'ว่าง' }}<br>
                                                 {{ $chunk->first()->phone }}
@@ -92,12 +99,12 @@
                                                 @if ($detail->images->count() > 0)
                                                     @foreach ($detail->images as $image)
                                                         <img src="{{ asset('storage/' . $image->post_photo_file) }}" alt="Personnel Image"
-                                                            style="width: auto; height: 200px; object-fit: cover;">
+                                                            style="width: auto; height: 250px; object-fit: cover;">
                                                     @endforeach
                                                 @else
                                                     <p>No images available for this person.</p>
                                                 @endif
-                                                <div class="fs-4">
+                                                <div class="fs-4 mt-2">
                                                 {{ $chunk->first()->full_name }}<br>
                                                 {{ $chunk->first()->department ?? 'ว่าง' }}<br>
                                                 {{ $chunk->first()->phone }}
@@ -115,7 +122,7 @@
             <p>No ranks available for this agency.</p>
         @endif
 
-        <a href="{{ url()->previous() }}" class="mt-3">Back</a>
+        {{-- <a href="{{ url()->previous() }}" class="mt-3">Back</a> --}}
     </div>
 </div>
 
