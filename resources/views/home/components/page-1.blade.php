@@ -393,10 +393,20 @@
                         <div>บุคลากร</div>
                     </button>
                     <!-- ลิสต์รายการ -->
-                    <ul class="custom-dropdown-menu">
+                    {{-- <ul class="custom-dropdown-menu">
                         <li><a href="#person1" class="custom-dropdown-item">บุคคลที่ 1</a></li>
                         <li><a href="#person2" class="custom-dropdown-item">บุคคลที่ 2</a></li>
                         <li><a href="#person3" class="custom-dropdown-item">บุคคลที่ 3</a></li>
+                    </ul> --}}
+                    <ul class="custom-dropdown-menu">
+                        <a href="" style="text-decoration: none; color: black;">แผนผังองค์กรรวม</a>
+                        @foreach ($personnelAgencies as $agency)
+                        <li>
+                            <a style="text-decoration: none; color: black;" href="{{ route('agency.show', ['id' => $agency->id]) }}">
+                                {{ $agency->personnel_agency_name }}
+                            </a>
+                        </li>
+                    @endforeach
                     </ul>
                 </div>
 

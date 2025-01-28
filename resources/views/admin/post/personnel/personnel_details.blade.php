@@ -32,6 +32,11 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="department" class="form-label">แผนก</label>
+                        <input type="text" class="form-control" id="department" name="department" required>
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label">ระดับความสำคัญ</label>
                         <div>
                             @for ($i = 1; $i <= 5; $i++) <div class="form-check form-check-inline">
@@ -66,6 +71,7 @@
             <th>#</th>
             <th>ชื่อบุคลากร</th>
             <th>เบอร์ติดต่อ</th>
+            <th>แผนก</th>
             <th>ระดับความสำคัญ</th>
             <th>รูปภาพ</th>
             <th>การจัดการ</th>
@@ -77,6 +83,7 @@
             <td>{{ $key + 1 }}</td>
             <td>{{ $detail->full_name }}</td>
             <td>{{ $detail->phone }}</td>
+            <td></td>
             <td>{{ $detail->status }}</td>
             <td>
                 @if ($detail->images->isNotEmpty())
@@ -121,6 +128,11 @@
                     <div class="mb-3">
                         <label for="phone" class="form-label">เบอร์ติดต่อ</label>
                         <input type="text" class="form-control" id="phone" name="phone" value="{{ $detail->phone }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="department" class="form-label">แผนก</label>
+                        <input type="text" class="form-control" id="department" name="department" value="{{ $detail->department }}" required>
                     </div>
 
                     <div class="mb-3">

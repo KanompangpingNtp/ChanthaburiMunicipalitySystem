@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PostDetail;
+use App\Models\PersonnelAgency;
 
 class DataPostController extends Controller
 {
@@ -54,6 +55,8 @@ class DataPostController extends Controller
                 $query->where('type_name', 'งานเก็บรายได้');
             })->get();
 
+        $personnelAgencies = PersonnelAgency::with('ranks')->get();
+
         return view('home.index', compact(
             'pressRelease',
             'activity',
@@ -61,6 +64,7 @@ class DataPostController extends Controller
             'procurementResults',
             'average',
             'revenue',
+            'personnelAgencies'
         ));
     }
 }

@@ -9,7 +9,7 @@ class PersonnelDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['personnel_rank_id', 'full_name', 'phone', 'status'];
+    protected $fillable = ['personnel_rank_id', 'full_name', 'phone', 'status','department'];
 
     public function rank()
     {

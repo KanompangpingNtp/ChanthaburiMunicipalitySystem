@@ -10,6 +10,7 @@ use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\DataPostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ManagePersonnelController;
+use App\Http\Controllers\PersonnelAgencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ use App\Http\Controllers\ManagePersonnelController;
 // });
 
 Route::get('/', [DataPostController::class, 'HomeIndex'])->name('HomeIndex');
+Route::get('/agency/{id}', [PersonnelAgencyController::class, 'show'])->name('agency.show');
 
 Route::middleware(['check.auth'])->group(function () {
     //admin PressRelease
@@ -84,6 +86,7 @@ Route::middleware(['check.auth'])->group(function () {
     Route::delete('/Personnel/PersonnelRank/PersonnelDetails/delete{id}', [ManagePersonnelController::class, 'PersonnelDetailsDelete'])->name('PersonnelDetailsDelete');
 
     // Route::get('/PersonnelInformation/page', [ManagePersonnelController::class, 'PersonnelInformation'])->name('PersonnelInformation');
+
 });
 
 Route::get('/showLoginForm', [AuthController::class, 'showLoginForm'])->name('showLoginForm');

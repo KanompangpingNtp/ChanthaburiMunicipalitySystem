@@ -124,6 +124,7 @@ class ManagePersonnelController extends Controller
         $request->validate([
             'full_name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
+            'department' => 'required|string|max:255',
             'status' => 'required|string',
             'post_photo_file' => 'nullable|file|mimes:jpg,jpeg,png',
         ]);
@@ -132,6 +133,7 @@ class ManagePersonnelController extends Controller
             'personnel_rank_id' => $DetailsId,
             'full_name' => $request->full_name,
             'phone' => $request->phone,
+            'department' => $request->department,
             'status' => $request->status,
         ]);
 
@@ -155,6 +157,7 @@ class ManagePersonnelController extends Controller
         $request->validate([
             'full_name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
+            'department' => 'required|string|max:255',
             'status' => 'required|string',
             'post_photo_file' => 'nullable|file|mimes:jpg,jpeg,png',
         ]);
@@ -163,6 +166,7 @@ class ManagePersonnelController extends Controller
         $personnelDetail->update([
             'full_name' => $request->full_name,
             'phone' => $request->phone,
+            'department' => $request->department,
             'status' => $request->status,
         ]);
 
