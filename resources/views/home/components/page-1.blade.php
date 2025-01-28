@@ -225,53 +225,43 @@
         position: relative;
     }
 
-    /* ซ่อนลิสต์รายการเริ่มต้น */
+    /* สไตล์สำหรับ dropdown menu */
     .custom-dropdown-menu {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: none;
         position: absolute;
-        top: 120%;
-        /* เว้นระยะจากปุ่ม */
+        top: 100%;
         left: 50%;
         transform: translateX(-50%);
-        background-color: #ffffff;
-        border-radius: 0.5rem;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        list-style: none;
+        padding: 10px 0;
+        margin: 0;
+        font-size: 23px;
         min-width: 200px;
-        overflow: hidden;
         opacity: 0;
-        transition: all 0.3s ease;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
-    /* แสดงลิสต์เมื่อ hover */
-    .custom-hover-trigger:hover+.custom-dropdown-menu,
-    .custom-dropdown-menu:hover {
-        display: block;
+    .custom-dropdown-container:hover .custom-dropdown-menu {
         opacity: 1;
-        top: 100%;
-        /* เลื่อนขึ้นมา */
+        visibility: visible;
     }
 
-    /* การตั้งค่ารายการในลิสต์ */
-    .custom-dropdown-item {
-        padding: 10px 15px;
-        color: #333;
-        text-decoration: none;
+    /* สไตล์สำหรับแต่ละรายการใน dropdown */
+    .dropdown-item {
         display: block;
-        transition: background-color 0.3s ease, color 0.3s ease;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s ease;
     }
 
-    /* เอฟเฟกต์ hover สำหรับรายการ */
-    .custom-dropdown-item:hover {
-        background-color: #f1f1f1;
-        color: #007bff;
-    }
-
-    /* เพิ่มเอฟเฟกต์การแสดง dropdown */
-    .custom-dropdown-menu {
-        animation: slide-down 0.3s ease forwards;
+    .dropdown-item:hover {
+        background-color: #ececec;
+        border-radius: 4px;
     }
 
     /* Keyframes สำหรับ slide-down */
@@ -388,25 +378,22 @@
                 </div>
                 <div
                     class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
-                    <button class="custom-hover-trigger">
-                        <img src="{{ asset('images/navbar/facebook.png') }}" alt="facebook">
-                        <div>บุคลากร</div>
-                    </button>
+                    <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
+                        <img src="{{ asset('images/navbar/teamwork_3.png') }}" alt="teamwork" class="navbar-icon">
+                        <div class="navbar-text">บุคลากร</div>
+                    </a>
                     <!-- ลิสต์รายการ -->
-                    {{-- <ul class="custom-dropdown-menu">
-                        <li><a href="#person1" class="custom-dropdown-item">บุคคลที่ 1</a></li>
-                        <li><a href="#person2" class="custom-dropdown-item">บุคคลที่ 2</a></li>
-                        <li><a href="#person3" class="custom-dropdown-item">บุคคลที่ 3</a></li>
-                    </ul> --}}
                     <ul class="custom-dropdown-menu">
-                        <a href="" style="text-decoration: none; color: black;">แผนผังองค์กรรวม</a>
-                        @foreach ($personnelAgencies as $agency)
                         <li>
-                            <a style="text-decoration: none; color: black;" href="{{ route('agency.show', ['id' => $agency->id]) }}">
-                                {{ $agency->personnel_agency_name }}
-                            </a>
+                            <a href="#" class="dropdown-item">แผนผังองค์กรรวม</a>
                         </li>
-                    @endforeach
+                        @foreach ($personnelAgencies as $agency)
+                            <li>
+                                <a href="{{ route('agency.show', ['id' => $agency->id]) }}" class="dropdown-item">
+                                    {{ $agency->personnel_agency_name }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
