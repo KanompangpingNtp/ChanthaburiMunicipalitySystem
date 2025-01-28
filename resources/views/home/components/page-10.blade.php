@@ -126,7 +126,7 @@
                 <img src="{{ asset('images/pages/10/title-logo.png') }}" alt="title" class="title-logo-footer">
             </div>
             <div class="d-flex flex-column justify-content-center text-light fw-bold lh-1">
-                <div style="font-size:72px;">
+                <div style="font-size:82px;">
                     1132
                 </div>
                 <div class="fs-4">

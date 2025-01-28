@@ -219,6 +219,73 @@
         align-items: center;
         justify-content: center;
     }
+
+    /* ตั้งค่าเริ่มต้นของคอนเทนเนอร์ */
+    .custom-dropdown-container {
+        position: relative;
+    }
+
+    /* ซ่อนลิสต์รายการเริ่มต้น */
+    .custom-dropdown-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: none;
+        position: absolute;
+        top: 120%;
+        /* เว้นระยะจากปุ่ม */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffffff;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        min-width: 200px;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    /* แสดงลิสต์เมื่อ hover */
+    .custom-hover-trigger:hover+.custom-dropdown-menu,
+    .custom-dropdown-menu:hover {
+        display: block;
+        opacity: 1;
+        top: 100%;
+        /* เลื่อนขึ้นมา */
+    }
+
+    /* การตั้งค่ารายการในลิสต์ */
+    .custom-dropdown-item {
+        padding: 10px 15px;
+        color: #333;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* เอฟเฟกต์ hover สำหรับรายการ */
+    .custom-dropdown-item:hover {
+        background-color: #f1f1f1;
+        color: #007bff;
+    }
+
+    /* เพิ่มเอฟเฟกต์การแสดง dropdown */
+    .custom-dropdown-menu {
+        animation: slide-down 0.3s ease forwards;
+    }
+
+    /* Keyframes สำหรับ slide-down */
+    @keyframes slide-down {
+        0% {
+            opacity: 0;
+            transform: translateY(-10%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
 <main class="d-flex align-items-start justify-content-center bg-page1">
     <header class="text-black fixed-top">
@@ -319,12 +386,20 @@
                         <div>ศูนย์ข้อมูลข่าวสาร</div>
                     </a>
                 </div>
-                <div class="d-flex flex-column align-items-center justify-content-center">
-                    <a href="https://www.facebook.com/chanthaburi.town.municipality" class="navbar-item" target="_blank">
+                <div
+                    class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
+                    <button class="custom-hover-trigger">
                         <img src="{{ asset('images/navbar/facebook.png') }}" alt="facebook">
-                        <div>FBเพจเทศบาล</div>
-                    </a>
+                        <div>บุคลากร</div>
+                    </button>
+                    <!-- ลิสต์รายการ -->
+                    <ul class="custom-dropdown-menu">
+                        <li><a href="#person1" class="custom-dropdown-item">บุคคลที่ 1</a></li>
+                        <li><a href="#person2" class="custom-dropdown-item">บุคคลที่ 2</a></li>
+                        <li><a href="#person3" class="custom-dropdown-item">บุคคลที่ 3</a></li>
+                    </ul>
                 </div>
+
             </div>
 
         </div>
