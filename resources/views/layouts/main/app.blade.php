@@ -118,7 +118,7 @@
             border-right: 3px solid rgb(255, 208, 91);
         }
 
-        
+
 
 
         /* ซ่อน border-left และ border-right เมื่อหน้าจอเล็กกว่า lg */
@@ -171,7 +171,7 @@
             background-color: rgba(255, 255, 255, 0.8);
             /* สีขาวโปร่งใส */
         }
-    
+
         .fixed-top {
             position: absolute;
             /* เปลี่ยนจาก fixed เป็น absolute */
@@ -181,8 +181,8 @@
             z-index: 1000;
             /* เพิ่ม z-index เพื่อให้แน่ใจว่า navbar อยู่เหนือองค์ประกอบอื่น */
         }
-    
-    
+
+
         .bg-page1 {
             background-image: url('{{ asset('images/pages/1/bg-1.png') }}');
             background-size: cover;
@@ -191,48 +191,48 @@
             min-height: 100vh;
             /* ใช้ min-height เพื่อให้พื้นที่ครอบคลุมหน้าจอ */
         }
-    
-    
+
+
         .logo-header {
             height: 100px;
         }
-    
+
         .title-logo {
             height: 120px;
         }
-    
+
         .text-nav-link {
             color: #1a54c9;
             transition: color 0.3s ease, transform 0.2s ease;
         }
-    
+
         .text-nav-link a {
             color: #1a54c9;
             text-decoration: none;
             transition: color 0.3s ease, transform 0.2s ease;
         }
-    
+
         .text-nav-link a:hover {
             color: #003399;
             /* เปลี่ยนสีตัวอักษรเมื่อ hover */
             transform: scale(1.1);
             /* ขยายเล็กน้อยเมื่อ hover */
         }
-    
+
         /* ปรับขนาดตัวอักษร */
         .font-small {
             font-size: 24px;
         }
-    
+
         .font-medium {
             font-size: 30px;
             /* ขนาดปกติ */
         }
-    
+
         .font-large {
             font-size: 35px;
         }
-    
+
         .text-button {
             background: none;
             /* ไม่มีพื้นหลัง */
@@ -242,20 +242,20 @@
             cursor: pointer;
             /* เปลี่ยนเคอร์เซอร์เป็นมือเมื่อ hover */
             padding: 0;
-    
+
             /* ระยะห่างระหว่างปุ่ม */
             transition: color 0.3s ease, transform 0.2s ease;
         }
-    
+
         /* เอฟเฟกต์เมื่อ hover */
         .text-button:hover {
             color: #003399;
         }
-    
+
         .content-page1 {
             margin-top: 12rem;
         }
-    
+
         .bg-dark-transparent {
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 20px;
@@ -264,18 +264,18 @@
             padding-right: 2rem;
             padding-left: 2rem;
         }
-    
+
         .bg-dark-transparent .title {
             font-size: 70px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             /* เพิ่มเงาดำ */
         }
-    
+
         .bg-dark-transparent .detail {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             /* เพิ่มเงาดำ */
         }
-    
+
         .btn-login {
             display: inline-block;
             padding: 10px 20px;
@@ -289,11 +289,11 @@
             transition: transform 0.3s ease;
             /* แยก transition สำหรับ background และ transform */
         }
-    
+
         .btn-login:hover {
             transform: scale(1.05);
         }
-    
+
         .bg-blue {
             background: linear-gradient(to bottom, rgba(0, 0, 255, 0.5), rgba(128, 0, 128, 0.5));
             /* สีน้ำเงินที่โปร่งแสง */
@@ -301,13 +301,13 @@
             border-radius: 10px;
             /* เพิ่มมุมโค้งเล็กน้อย */
         }
-    
+
         .bg-blue p {
             color: white;
             text-align: center;
             margin-bottom: 10px;
         }
-    
+
         .bg-blue .d-flex img {
             width: 40px;
             /* กำหนดขนาดของไอคอน */
@@ -315,12 +315,12 @@
             transition: transform 0.3s ease;
             /* ให้ไอคอนขยายเมื่อ hover */
         }
-    
+
         .bg-blue .d-flex img:hover {
             transform: scale(1.2);
             /* ขยายขนาดไอคอนเมื่อ hover */
         }
-    
+
         .bg-menu {
             background: linear-gradient(to right, rgba(0, 60, 86, 0.8), rgba(0, 184, 184, 0.8));
             position: absolute;
@@ -330,12 +330,12 @@
             z-index: 1000;
             transition: transform 0.3s ease;
         }
-    
-    
+
+
         .navbar-hidden {
             transform: translateY(100%);
         }
-    
+
         .navbar-item {
             color: white;
             text-decoration: none;
@@ -345,7 +345,7 @@
             margin: 5px;
             transition: all 0.3s ease;
         }
-    
+
         .navbar-item img {
             width: 40px;
             height: 40px;
@@ -353,30 +353,30 @@
             transition: transform 0.3s ease;
             /* เพิ่ม effect การขยายขนาดของไอคอน */
         }
-    
+
         .navbar-item div {
             font-size: 23px;
             transition: color 0.3s ease;
             /* เพิ่มการเปลี่ยนแปลงสีของข้อความ */
         }
-    
+
         .navbar-item:hover {
             color: #00b8b8;
             /* เปลี่ยนสีของข้อความเมื่อ hover */
             border-radius: 10px;
             /* เพิ่มมุมโค้งเพื่อให้ดูนุ่มนวล */
         }
-    
+
         .navbar-item:hover img {
             transform: scale(1.1);
             /* ขยายขนาดไอคอนให้ใหญ่ขึ้นเมื่อ hover */
         }
-    
+
         .navbar-item:hover div {
             color: #00b8b8;
             /* เปลี่ยนสีของข้อความเมื่อ hover */
         }
-    
+
         /* แสดงแนวตั้งไอคอนและข้อความ */
         .navbar-item {
             display: flex;
@@ -384,12 +384,12 @@
             align-items: center;
             justify-content: center;
         }
-    
+
         /* ตั้งค่าเริ่มต้นของคอนเทนเนอร์ */
         .custom-dropdown-container {
             position: relative;
         }
-    
+
         /* สไตล์สำหรับ dropdown menu */
         .custom-dropdown-menu {
             position: absolute;
@@ -409,12 +409,12 @@
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-    
+
         .custom-dropdown-container:hover .custom-dropdown-menu {
             opacity: 1;
             visibility: visible;
         }
-    
+
         /* สไตล์สำหรับแต่ละรายการใน dropdown */
         .dropdown-item {
             display: block;
@@ -423,25 +423,24 @@
             color: #333;
             transition: background-color 0.3s ease;
         }
-    
+
         .dropdown-item:hover {
             background-color: #ececec;
             border-radius: 4px;
         }
-    
+
         /* Keyframes สำหรับ slide-down */
         @keyframes slide-down {
             0% {
                 opacity: 0;
                 transform: translateY(-10%);
             }
-    
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
     </style>
     <style>
         .bg-page10 {
@@ -450,12 +449,12 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-    
+
         .title-section-10 {
             font-size: 70px;
             text-shadow: 2px 2px 5px black;
         }
-    
+
         .bg-text-section-10 {
             background-color: rgba(0, 0, 0, 0.7);
             color: #ffff;
@@ -466,11 +465,11 @@
             padding-right: 4rem;
             padding-left: 2rem;
         }
-    
+
         .bg-text-section-10 img {
             width: 3rem;
         }
-    
+
         .bg-coute {
             background: rgba(0, 0, 0, 0.7);
             box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
@@ -481,16 +480,16 @@
             border-radius: 20px;
             width: 100%;
         }
-    
+
         .bg-footer {
             background: linear-gradient(to right, rgba(0, 60, 86, 0.8), rgba(0, 184, 184, 0.8));
             width: 100%;
         }
-    
+
         .logo-footer-section-10 {
             height: 160px;
         }
-    
+
         .title-logo-footer {
             height: 170px;
         }
@@ -514,7 +513,7 @@
                         </div>
                     </div> --}}
                 </div>
-    
+
                 <!-- เมนูด้านขวา -->
                 <div class="flex-fill d-flex justify-content-end align-items-center h-100">
                     <ul class="d-flex gap-3 list-unstyled mb-0 align-items-end text-nav-link">
@@ -531,8 +530,8 @@
                 </div>
             </div>
         </header>
-    
-    
+
+
         <div class="container content-page1 d-flex" style=" width: 100%;">
             <!-- ฝั่งซ้าย (ข้อความ) -->
             <div class="col-6 d-flex flex-column justify-content-start align-items-start" style="height: 70vh;">
@@ -543,8 +542,8 @@
                         การศึกษาก้าวหน้า สิ่งแวดล้อมยั่งยืน</div>
                 </div>
             </div>
-    
-    
+
+
             <!-- ฝั่งขวา (ข้อมูล) -->
             <div class="col-6 d-flex flex-column justify-content-end align-items-end p-3 text-white mb-4">
                 <div class="bg-blue">
@@ -557,7 +556,7 @@
                         <a href="#"><img src="{{ asset('images/pages/1/messeger.png') }}" alt="messeger"></a>
                     </div>
                 </div>
-    
+
             </div>
             <div class="  bg-menu pb-2 pt-3">
                 <div class="container d-flex flex-wrap justify-content-evenly">
@@ -617,9 +616,9 @@
                             @endforeach
                         </ul>
                     </div>
-    
+
                 </div>
-    
+
             </div>
         </div>
     </main>
@@ -628,7 +627,7 @@
         function changeFontSize(size) {
             document.body.style.fontSize = size;
         }
-    
+
         // กำหนดเหตุการณ์ให้กับปุ่ม
         document.querySelector('.font-small').addEventListener('click', () => changeFontSize('25px'));
         document.querySelector('.font-medium').addEventListener('click', () => changeFontSize('30px')); // ขนาดปกติ
@@ -636,7 +635,7 @@
     </script>
 
     @yield('content')
-    
+
     <main class="bg-page10 d-flex flex-column justify-content-start align-items-center gap-5">
         <div class="container d-flex mt-5">
             <div class="title-section-10 lh-1 text-white" style="font-size: 72px;">
@@ -670,11 +669,15 @@
                 </div>
                 <div class="d-flex align-items-end lh-1 gap-3">
                     <img src="{{ asset('images/pages/10/google-maps.png') }}" alt="icon">
-                    <a href="https://maps.app.goo.gl/cAnHZwdeLUMz89sa9" target="_blank" class="btn btn-primary fs-5 px-4" style="border-radius: 30px;"> ไปที่ Google map </a>
+                    <a href="https://maps.app.goo.gl/cAnHZwdeLUMz89sa9" target="_blank"
+                        class="btn btn-primary fs-5 px-4" style="border-radius: 30px;"> ไปที่ Google map </a>
                 </div>
             </div>
             <div class="d-flex align-items-end ">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31149.617128833102!2d102.07114761286515!3d12.601871743491508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31048192adecbd05%3A0xf0e5e2b5d3162870!2z4LmA4LiX4Lio4Lia4Liy4Lil4LmA4Lih4Li34Lit4LiH4LiI4Lix4LiZ4LiX4Lia4Li44Lij4Li1IOC4reC4s-C5gOC4oOC4reC5gOC4oeC4t-C4reC4h-C4iOC4seC4meC4l-C4muC4uOC4o-C4tSDguIjguLHguJnguJfguJrguLjguKPguLUgMjIwMDA!5e0!3m2!1sth!2sth!4v1737962171621!5m2!1sth!2sth" width="600" height="450" style="border:0px solid black; border-radius:20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31149.617128833102!2d102.07114761286515!3d12.601871743491508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31048192adecbd05%3A0xf0e5e2b5d3162870!2z4LmA4LiX4Lio4Lia4Liy4Lil4LmA4Lih4Li34Lit4LiH4LiI4Lix4LiZ4LiX4Lia4Li44Lij4Li1IOC4reC4s-C5gOC4oOC4reC5gOC4oeC4t-C4reC4h-C4iOC4seC4meC4l-C4muC4uOC4o-C4tSDguIjguLHguJnguJfguJrguLjguKPguLUgMjIwMDA!5e0!3m2!1sth!2sth!4v1737962171621!5m2!1sth!2sth"
+                    width="600" height="450" style="border:0px solid black; border-radius:20px;"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
         <div class="container bg-coute mb-2 ">
@@ -708,8 +711,10 @@
         <div class="bg-footer d-flex">
             <div class="container d-flex justify-content-between">
                 <div class="d-flex align-items-center">
-                    <img src="{{ asset('images/pages/10/logox.png') }}" alt="icon" class="logo-footer-section-10">
-                    <img src="{{ asset('images/pages/10/title-logo.png') }}" alt="title" class="title-logo-footer">
+                    <img src="{{ asset('images/pages/10/logox.png') }}" alt="icon"
+                        class="logo-footer-section-10">
+                    <img src="{{ asset('images/pages/10/title-logo.png') }}" alt="title"
+                        class="title-logo-footer">
                 </div>
                 <div class="d-flex flex-column justify-content-center text-light fw-bold lh-1">
                     <div style="font-size:82px;">
