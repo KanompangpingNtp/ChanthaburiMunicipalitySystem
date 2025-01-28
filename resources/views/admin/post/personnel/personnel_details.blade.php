@@ -83,7 +83,7 @@
             <td>{{ $key + 1 }}</td>
             <td>{{ $detail->full_name }}</td>
             <td>{{ $detail->phone }}</td>
-            <td></td>
+            <td>{{ $detail->department }}</td>
             <td>{{ $detail->status }}</td>
             <td>
                 @if ($detail->images->isNotEmpty())
