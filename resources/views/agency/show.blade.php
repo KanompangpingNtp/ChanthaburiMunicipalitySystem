@@ -126,14 +126,14 @@
                                                         @foreach ($detail->images as $image)
                                                             <img src="{{ asset('storage/' . $image->post_photo_file) }}"
                                                                 alt="Personnel Image"
-                                                                style="width: auto; height: 200px; object-fit: cover;">
+                                                                style="width: auto; height: 250px; object-fit: cover;">
                                                         @endforeach
                                                     @else
                                                         <p>No images available for this person.</p>
                                                     @endif
 
                                                     <!-- แสดงข้อมูลของแต่ละรายการ -->
-                                                    <div class="fs-4">
+                                                    <div class="fs-4 mt-2">
                                                         {{ $detail->full_name }}<br>
                                                         {{ $detail->department ?? 'ว่าง' }}<br>
                                                         {{ $detail->phone }}
