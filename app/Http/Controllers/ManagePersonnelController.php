@@ -207,13 +207,4 @@ class ManagePersonnelController extends Controller
 
         return redirect()->back()->with('success', 'โพสถูกลบแล้ว');
     }
-
-    // public function PersonnelInformation()
-    // {
-    //     $agencies = PersonnelAgency::with([
-    //         'ranks.details.images'
-    //     ])->get();
-
-    //     return view('admin.post.personnel.personnel_information.personnel_information', compact('agencies'));
-    // }
 }
