@@ -26,31 +26,36 @@
             @foreach ($sortedDetails as $status => $details)
                 <div class="w-100 mb-4">
                     {{-- <h4 class="text-center mb-3">Status: {{ $status }}</h4> --}}
-
                         @foreach ($details->chunk(3) as $chunk)
                             <div class="row mb-3 justify-content-center">
                                 @if ($chunk->count() == 1)
                                     <!-- ถ้ามี 1 ข้อมูล: แสดงตรงกลาง -->
-                                    <div class="col-md-4 ">
+                                    @foreach ($chunk as $detail)
+                                    <div class="col-md-4">
                                         <div class="d-flex flex-column justify-content-center align-items-center text-center lh-1 border p-3">
-                                            @if ($chunk->first()->images->count() > 0)
-                                                @foreach ($chunk->first()->images as $image)
+                                            @if ($detail->images->count() > 0)
+                                                @foreach ($detail->images as $image)
                                                     <img src="{{ asset('storage/' . $image->post_photo_file) }}" alt="Personnel Image"
                                                         style="width: auto; height: 200px; object-fit: cover;">
                                                 @endforeach
                                             @else
                                                 <p>No images available for this person.</p>
                                             @endif
+
+                                            <!-- แสดงข้อมูลของแต่ละรายการ -->
                                             <div class="fs-4">
-                                                {{ $chunk->first()->full_name }}<br>
-                                                {{ $chunk->first()->department ?? 'ว่าง' }}<br>
-                                                {{ $chunk->first()->phone }}
+                                                {{ $detail->full_name }}<br>
+                                                {{ $detail->department ?? 'ว่าง' }}<br>
+                                                {{ $detail->phone }}
                                             </div>
                                         </div>
                                     </div>
+                                @endforeach
+
                                 @elseif ($chunk->count() == 2)
-                                    <!-- ถ้ามี 2 ข้อมูล: แยกซ้ายและขวา -->
-                                    <div class="col-md-4 ">
+                                <div class="row">
+                                    <!-- แสดงข้อมูลของ first item -->
+                                    <div class="col-md-4">
                                         <div class="d-flex flex-column justify-content-center align-items-center text-center lh-1 border p-3">
                                             @if ($chunk->first()->images->count() > 0)
                                                 @foreach ($chunk->first()->images as $image)
@@ -67,6 +72,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- แสดงข้อมูลของ last item -->
                                     <div class="col-md-4">
                                         <div class="d-flex flex-column justify-content-center align-items-center text-center lh-1 border p-3">
                                             @if ($chunk->last()->images->count() > 0)
@@ -78,33 +84,37 @@
                                                 <p>No images available for this person.</p>
                                             @endif
                                             <div class="fs-4">
-                                                {{ $chunk->first()->full_name }}<br>
-                                                {{ $chunk->first()->department ?? 'ว่าง' }}<br>
-                                                {{ $chunk->first()->phone }}
+                                                {{ $chunk->last()->full_name }}<br>
+                                                {{ $chunk->last()->department ?? 'ว่าง' }}<br>
+                                                {{ $chunk->last()->phone }}
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 @else
                                     <!-- ถ้ามี 3 ข้อมูล: แสดงเต็มแถว -->
                                     @foreach ($chunk as $detail)
-                                        <div class="col-md-4">
-                                            <div class="d-flex flex-column justify-content-center align-items-center text-center lh-1 border p-3">
-                                                @if ($detail->images->count() > 0)
-                                                    @foreach ($detail->images as $image)
-                                                        <img src="{{ asset('storage/' . $image->post_photo_file) }}" alt="Personnel Image"
-                                                            style="width: auto; height: 200px; object-fit: cover;">
-                                                    @endforeach
-                                                @else
-                                                    <p>No images available for this person.</p>
-                                                @endif
-                                                <div class="fs-4">
-                                                {{ $chunk->first()->full_name }}<br>
-                                                {{ $chunk->first()->department ?? 'ว่าง' }}<br>
-                                                {{ $chunk->first()->phone }}
-                                            </div>
+                                    <div class="col-md-4">
+                                        <div class="d-flex flex-column justify-content-center align-items-center text-center lh-1 border p-3">
+                                            @if ($detail->images->count() > 0)
+                                                @foreach ($detail->images as $image)
+                                                    <img src="{{ asset('storage/' . $image->post_photo_file) }}" alt="Personnel Image"
+                                                        style="width: auto; height: 200px; object-fit: cover;">
+                                                @endforeach
+                                            @else
+                                                <p>No images available for this person.</p>
+                                            @endif
+
+                                            <!-- แสดงข้อมูลของแต่ละรายการ -->
+                                            <div class="fs-4">
+                                                {{ $detail->full_name }}<br>
+                                                {{ $detail->department ?? 'ว่าง' }}<br>
+                                                {{ $detail->phone }}
                                             </div>
                                         </div>
-                                    @endforeach
+                                    </div>
+                                @endforeach
+
                                 @endif
                             </div>
                         @endforeach
