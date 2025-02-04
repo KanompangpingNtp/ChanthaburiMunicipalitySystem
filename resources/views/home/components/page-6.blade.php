@@ -120,27 +120,26 @@
             <p>ข่าวประชาสัมพันธ์</p>
         </div>
     </div>
-    
+
     <!-- Main Content: Carousel Section -->
     <div class="container d-flex align-items-end justify-content-center gap-4 flex-grow-1">
         <div class="d-flex flex-column align-items-end justify-content-center my-4">
             <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
                 <!-- Indicators -->
-                <div class="carousel-indicators">
+                {{-- <div class="carousel-indicators">
                     @foreach ($pressRelease->chunk(4) as $index => $chunk)
                     <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                     @endforeach
-                </div>
+                </div> --}}
 
                 <!-- Carousel Items -->
-                <div class="carousel-inner">
+                {{-- <div class="carousel-inner">
                     @foreach ($pressRelease->chunk(4) as $chunk)
                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                         <div class="row">
                             @foreach ($chunk as $release)
                             <div class="col-md-3">
                                 <div class="card">
-                                    {{-- แสดงรูปภาพ --}}
                                     @if($release->photos->isNotEmpty())
                                     <div class="img-container w-100">
                                         <img src="{{ asset('storage/' . $release->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
@@ -162,9 +161,57 @@
                         </div>
                     </div>
                     @endforeach
-                </div>
-                
-                
+                </div> --}}
+                <!-- Indicators -->
+<div class="carousel-indicators">
+    @foreach ($pressRelease->chunk(4) as $index => $chunk)
+        <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}"
+            class="{{ $index === 0 ? 'active' : '' }}"
+            aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+            aria-label="Slide {{ $index + 1 }}">
+        </button>
+    @endforeach
+</div>
+
+<!-- Carousel Items -->
+<div class="carousel-inner">
+    @foreach ($pressRelease->chunk(4) as $index => $chunk)
+        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+            <div class="row">
+                @foreach ($chunk as $release)
+                    <div class="col-md-3">
+                        <div class="card">
+                            <!-- แสดงรูปภาพ -->
+                            <div class="img-container w-100">
+                                @if($release->photos->isNotEmpty())
+                                    <img src="{{ asset('storage/' . $release->photos->first()->post_photo_file) }}"
+                                        class="card-img-top" alt="Activity Image">
+                                @else
+                                    <img src="default-image.jpg" class="card-img-top" alt="Default Image">
+                                @endif
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 22px;">
+                                    {{ Str::limit($release->title_name, 60) }}
+                                </h5>
+                                <p class="card-text" style="font-size: 16px;">
+                                    {{ Str::limit($release->details, 70) }}
+                                </p>
+                                <a href="#" class="btn-costom-card w-100">
+                                    ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endforeach
+</div>
+
+
+
 
                 <!-- Controls -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
@@ -183,5 +230,5 @@
     <div class="container d-flex align-items-center justify-content-center mt-4">
         <a href="" class="w-100 btn-viewall"> ดูกิจกรรมทั้งหมด <i class="fa-solid fa-circle-chevron-right"></i></a>
     </div>
-    
+
 </main>
