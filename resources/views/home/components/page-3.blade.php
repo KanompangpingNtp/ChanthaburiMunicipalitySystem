@@ -133,10 +133,10 @@
                     <div class="carousel-item">
                         <img src="{{ asset('images/pages/3/11.jpg') }}" class="d-block w-100" alt="Image 2">
                     </div>
-                    <!-- สไลด์ที่สอง -->
+                    {{-- <!-- สไลด์ที่สอง -->
                     <div class="carousel-item">
                         <img src="{{ asset('images/pages/3/12.jpg') }}" class="d-block w-100" alt="Image 2">
-                    </div>
+                    </div> --}}
                     <!-- สไลด์ที่สอง -->
                     <div class="carousel-item">
                         <img src="{{ asset('images/pages/3/13.jpg') }}" class="d-block w-100" alt="Image 2">
