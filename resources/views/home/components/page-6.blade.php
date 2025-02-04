@@ -129,101 +129,97 @@
                 {{-- <div class="carousel-indicators">
                     @foreach ($pressRelease->chunk(4) as $index => $chunk)
                     <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-                    @endforeach
-                </div> --}}
+                @endforeach
+            </div> --}}
 
-                <!-- Carousel Items -->
-                {{-- <div class="carousel-inner">
+            <!-- Carousel Items -->
+            {{-- <div class="carousel-inner">
                     @foreach ($pressRelease->chunk(4) as $chunk)
                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                        <div class="row">
-                            @foreach ($chunk as $release)
-                            <div class="col-md-3">
-                                <div class="card">
-                                    @if($release->photos->isNotEmpty())
-                                    <div class="img-container w-100">
-                                        <img src="{{ asset('storage/' . $release->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
-                                    </div>
-                                    @else
-                                    <div class="img-container">
-                                        <img src="default-image.jpg" class="card-img-top" alt="Default Image">
-                                    </div>
-                                    @endif
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 22px;">{{ Str::limit($release->title_name, 60) }}</h5>
-                                        <p class="card-text" style="font-size: 16px;">
-                                            {{ Str::limit($release->details, 70) }}</p>
-                                        <a href="#" class="btn-costom-card w-100">ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    @endforeach
-                </div> --}}
-                <!-- Indicators -->
-<div class="carousel-indicators">
-    @foreach ($pressRelease->chunk(4) as $index => $chunk)
-        <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}"
-            class="{{ $index === 0 ? 'active' : '' }}"
-            aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-            aria-label="Slide {{ $index + 1 }}">
-        </button>
-    @endforeach
-</div>
-
-<!-- Carousel Items -->
-<div class="carousel-inner">
-    @foreach ($pressRelease->chunk(4) as $index => $chunk)
-        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
             <div class="row">
                 @foreach ($chunk as $release)
-                    <div class="col-md-3">
-                        <div class="card">
-                            <!-- แสดงรูปภาพ -->
-                            <div class="img-container w-100">
-                                @if($release->photos->isNotEmpty())
-                                    <img src="{{ asset('storage/' . $release->photos->first()->post_photo_file) }}"
-                                        class="card-img-top" alt="Activity Image">
-                                @else
-                                    <img src="default-image.jpg" class="card-img-top" alt="Default Image">
-                                @endif
-                            </div>
-
-                            <div class="card-body">
-                                <h5 class="card-title" style="font-size: 22px;">
-                                    {{ Str::limit($release->title_name, 60) }}
-                                </h5>
-                                <p class="card-text" style="font-size: 16px;">
-                                    {{ Str::limit($release->details, 70) }}
-                                </p>
-                                <a href="#" class="btn-costom-card w-100">
-                                    ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i>
-                                </a>
-                            </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        @if($release->photos->isNotEmpty())
+                        <div class="img-container w-100">
+                            <img src="{{ asset('storage/' . $release->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
+                        </div>
+                        @else
+                        <div class="img-container">
+                            <img src="default-image.jpg" class="card-img-top" alt="Default Image">
+                        </div>
+                        @endif
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 22px;">{{ Str::limit($release->title_name, 60) }}</h5>
+                            <p class="card-text" style="font-size: 16px;">
+                                {{ Str::limit($release->details, 70) }}</p>
+                            <a href="#" class="btn-costom-card w-100">ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i></a>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
         </div>
-    @endforeach
-</div>
+        @endforeach
+    </div> --}}
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        @foreach ($pressRelease->chunk(4) as $index => $chunk)
+        <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}">
+        </button>
+        @endforeach
+    </div>
 
+    <!-- Carousel Items -->
+    <div class="carousel-inner">
+        @foreach ($pressRelease->chunk(4) as $index => $chunk)
+        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+            <div class="row">
+                @foreach ($chunk as $release)
+                <div class="col-md-3">
+                    <div class="card">
+                        <!-- แสดงรูปภาพ -->
+                        <div class="img-container w-100">
+                            @if($release->photos->isNotEmpty())
+                            <img src="{{ asset('storage/' . $release->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
+                            @else
+                            <img src="default-image.jpg" class="card-img-top" alt="Default Image">
+                            @endif
+                        </div>
 
-
-
-                <!-- Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 22px;">
+                                {{ Str::limit($release->title_name, 60) }}
+                            </h5>
+                            <p class="card-text" style="font-size: 16px;">
+                                {{ Str::limit($release->details, 70) }}
+                            </p>
+                            <a href="#" class="btn-costom-card w-100">
+                                ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
+        @endforeach
+    </div>
+
+
+
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+    </div>
     </div>
 
     <!-- View All Button -->

@@ -264,14 +264,13 @@
         background-color: #00b8b8;
         /* สีปุ่มเมื่อ active */
     }
+
     .img-container {
-    height: 300px; /* ความสูงที่กำหนดเท่ากัน */
-    overflow: hidden; /* ตัดส่วนเกิน */
-}
-
-
-
-
+        height: 300px;
+        /* ความสูงที่กำหนดเท่ากัน */
+        overflow: hidden;
+        /* ตัดส่วนเกิน */
+    }
 
 </style>
 
@@ -288,58 +287,100 @@
     <div class="container d-flex align-items-end justify-content-center gap-4 flex-grow-1">
         <div class="d-flex flex-column align-items-end justify-content-center my-4">
             <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
-                <!-- Indicators -->
+                {{-- <!-- Indicators -->
                 <div class="carousel-indicators">
                     @foreach ($activity->chunk(4) as $index => $chunk)
                     <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-                    @endforeach
-                </div>
+                @endforeach
+            </div>
 
-                <!-- Carousel Items -->
-                <div class="carousel-inner">
-                    @foreach ($activity->chunk(4) as $chunk)
-                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                        <div class="row">
-                            @foreach ($chunk as $activitys)
-                            <div class="col-md-3">
-                                <div class="card">
-                                    {{-- แสดงรูปภาพ --}}
-                                    @if($activitys->photos->isNotEmpty())
-                                    <div class="img-container w-100">
-                                        <img src="{{ asset('storage/' . $activitys->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
-                                    </div>
-                                    @else
-                                    <div class="img-container">
-                                        <img src="default-image.jpg" class="card-img-top" alt="Default Image">
-                                    </div>
-                                    @endif
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="font-size: 22px;">{{ Str::limit($activitys->title_name, 60) }}</h5>
-                                        <p class="card-text" style="font-size: 16px;">
-                                            {{ Str::limit($activitys->details, 70) }}</p>
-                                        <a href="#" class="btn-costom-card w-100">ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i></a>
-                                    </div>
+            <!-- Carousel Items -->
+            <div class="carousel-inner">
+                @foreach ($activity->chunk(4) as $chunk)
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                    <div class="row">
+                        @foreach ($chunk as $activitys)
+                        <div class="col-md-3">
+                            <div class="card">
+                                @if($activitys->photos->isNotEmpty())
+                                <div class="img-container w-100">
+                                    <img src="{{ asset('storage/' . $activitys->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
+                                </div>
+                                @else
+                                <div class="img-container">
+                                    <img src="default-image.jpg" class="card-img-top" alt="Default Image">
+                                </div>
+                                @endif
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 22px;">{{ Str::limit($activitys->title_name, 60) }}</h5>
+                                    <p class="card-text" style="font-size: 16px;">
+                                        {{ Str::limit($activitys->details, 70) }}</p>
+                                    <a href="#" class="btn-costom-card w-100">ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i></a>
                                 </div>
                             </div>
-                            @endforeach
                         </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
-                
-                
+                @endforeach
+            </div> --}}
 
-                <!-- Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                @foreach ($activity->chunk(4) as $index => $chunk)
+                <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}">
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                @endforeach
             </div>
+
+            <!-- Carousel Items -->
+            <div class="carousel-inner">
+                @foreach ($activity->chunk(4) as $index => $chunk)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <div class="row">
+                        @foreach ($chunk as $activityItem)
+                        <div class="col-md-3">
+                            <div class="card">
+                                <!-- แสดงรูปภาพ -->
+                                <div class="img-container w-100">
+                                    @if($activityItem->photos->isNotEmpty())
+                                    <img src="{{ asset('storage/' . $activityItem->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
+                                    @else
+                                    <img src="default-image.jpg" class="card-img-top" alt="Default Image">
+                                    @endif
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 22px;">
+                                        {{ Str::limit($activityItem->title_name, 60) }}
+                                    </h5>
+                                    <p class="card-text" style="font-size: 16px;">
+                                        {{ Str::limit($activityItem->details, 70) }}
+                                    </p>
+                                    <a href="#" class="btn-costom-card w-100">
+                                        ดูเพิ่มเติม <i class="fa-solid fa-square-up-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+    </div>
     </div>
 
     <!-- View All Button -->
