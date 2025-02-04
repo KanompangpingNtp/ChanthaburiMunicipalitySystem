@@ -326,27 +326,33 @@
             </div> --}}
 
             <!-- Indicators -->
-            <div class="carousel-indicators">
-                @foreach ($activity->chunk(4) as $index => $chunk)
-                <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}">
-                </button>
-                @endforeach
-            </div>
+          <!-- Indicators -->
+    <div class="carousel-indicators">
+        @foreach ($activity->chunk(4) as $index => $chunk)
+            <button type="button" data-bs-target="#cardCarousel"
+                data-bs-slide-to="{{ $index }}"
+                class="{{ $index === 0 ? 'active' : '' }}"
+                aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                aria-label="Slide {{ $index + 1 }}">
+            </button>
+        @endforeach
+    </div>
 
-            <!-- Carousel Items -->
-            <div class="carousel-inner">
-                @foreach ($activity->chunk(4) as $index => $chunk)
-                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                    <div class="row">
-                        @foreach ($chunk as $activityItem)
+    <!-- Carousel Items -->
+    <div class="carousel-inner">
+        @foreach ($activity->chunk(4) as $index => $chunk)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                <div class="row">
+                    @foreach ($chunk as $activityItem)
                         <div class="col-md-3">
                             <div class="card">
                                 <!-- แสดงรูปภาพ -->
                                 <div class="img-container w-100">
                                     @if($activityItem->photos->isNotEmpty())
-                                    <img src="{{ asset('storage/' . $activityItem->photos->first()->post_photo_file) }}" class="card-img-top" alt="Activity Image">
+                                        <img src="{{ asset('storage/' . $activityItem->photos->first()->post_photo_file) }}"
+                                            class="card-img-top" alt="Activity Image">
                                     @else
-                                    <img src="default-image.jpg" class="card-img-top" alt="Default Image">
+                                        <img src="default-image.jpg" class="card-img-top" alt="Default Image">
                                     @endif
                                 </div>
 
@@ -363,22 +369,21 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
+        @endforeach
+    </div>
 
-
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
         </div>
     </div>
     </div>
