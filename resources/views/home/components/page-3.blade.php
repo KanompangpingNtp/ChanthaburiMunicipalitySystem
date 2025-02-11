@@ -79,12 +79,13 @@
         /* ป้องกันเนื้อหาเกินขอบ */
     }
 
+
+
     .carousel-item img {
+        max-width: 100%;
+        max-height: 560px;
         object-fit: cover;
-        /* หรือ "contain" ขึ้นอยู่กับว่าต้องการให้ภาพถูกตัดหรือไม่ */
-        height: 100%;
-        /* หรือกำหนดความสูงที่เหมาะสม */
-        width: 100%;
+        /* ทำให้รูปอยู่ในพื้นที่โดยไม่ถูกครอบตัด */
     }
 </style>
 <!-- Content Section -->
@@ -97,7 +98,7 @@
         </div>
         <!-- Carousel Section -->
         <div class="bg-view-in-detail shadow">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+            <div id="carouselExampleIndicators" class="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
                         class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -132,14 +133,6 @@
                     <!-- สไลด์ที่สอง -->
                     <div class="carousel-item">
                         <img src="{{ asset('images/pages/3/11.jpg') }}" class="d-block w-100" alt="Image 2">
-                    </div>
-                    {{-- <!-- สไลด์ที่สอง -->
-                    <div class="carousel-item">
-                        <img src="{{ asset('images/pages/3/12.jpg') }}" class="d-block w-100" alt="Image 2">
-                    </div> --}}
-                    <!-- สไลด์ที่สอง -->
-                    <div class="carousel-item">
-                        <img src="{{ asset('images/pages/3/13.jpg') }}" class="d-block w-100" alt="Image 2">
                     </div>
                     <!-- สไลด์ที่สอง -->
                     <div class="carousel-item">
