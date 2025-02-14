@@ -142,6 +142,12 @@
                     <div class="carousel-item">
                         <img src="{{ asset('images/pages/3/17.jpg') }}" class="d-block w-100" alt="Image 2">
                     </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/pages/3/140268.jpg') }}" class="d-block w-100" alt="Image 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/pages/3/140268_2.jpg') }}" class="d-block w-100" alt="Image 2">
+                    </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
