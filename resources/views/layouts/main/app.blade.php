@@ -587,20 +587,20 @@
                     <div class="d-flex flex-column align-items-center justify-content-center">
                         <a href="#" class="navbar-item">
                             <img src="{{ asset('images/navbar/5.png') }}" alt="search">
-                            <div>คู่มือประชาชน</div>
+                            <div>การดำเนินงาน</div>
                         </a>
                     </div>
                     <div class="d-flex flex-column align-items-center justify-content-center">
                         <a href="#" class="navbar-item">
                             <img src="{{ asset('images/navbar/6.png') }}" alt="icon">
-                            <div>สารจันทบุรี</div>
+                            <div>คู่มือประชาชน</div>
                         </a>
                     </div>
                     <div
                         class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
                         <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
                             <img src="{{ asset('images/navbar/7.png') }}" alt="teamwork" class="navbar-icon">
-                            <div class="navbar-text">บุคลากร</div>
+                            <div class="navbar-text">สารจันทบุรี</div>
                         </a>
                         <!-- ลิสต์รายการ -->
                         <ul class="custom-dropdown-menu">
