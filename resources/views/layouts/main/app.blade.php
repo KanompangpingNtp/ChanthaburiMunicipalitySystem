@@ -162,6 +162,7 @@
                 line-height: 1;
             }
         }
+
     </style>
     <style>
         header {
@@ -441,6 +442,7 @@
                 transform: translateY(0);
             }
         }
+
     </style>
     <style>
         .bg-page10 {
@@ -493,6 +495,7 @@
         .title-logo-footer {
             height: 170px;
         }
+
     </style>
 </head>
 
@@ -549,8 +552,7 @@
                 <div class="bg-blue">
                     <p>สื่อประชาสัมพันธ์เทศบาลเมืองจันทบุรี</p>
                     <div class="d-flex align-items-center justify-content-center gap-4">
-                        <a href="https://www.facebook.com/chanthaburi.town.municipality" target="_blank"><img
-                                src="{{ asset('images/pages/1/facebook-logo.png') }}" alt="facebook"></a>
+                        <a href="https://www.facebook.com/chanthaburi.town.municipality" target="_blank"><img src="{{ asset('images/pages/1/facebook-logo.png') }}" alt="facebook"></a>
                         <a href="#"><img src="{{ asset('images/pages/1/tiktok.png') }}" alt="tiktok"></a>
                         <a href="#"><img src="{{ asset('images/pages/1/youtube.png') }}" alt="youtube"></a>
                         <a href="#"><img src="{{ asset('images/pages/1/messeger.png') }}" alt="messeger"></a>
@@ -584,42 +586,58 @@
                             <div>แผนพัฒนาท้องถิ่น</div>
                         </a>
                     </div>
-                    <div class="d-flex flex-column align-items-center justify-content-center">
+                    {{-- <div class="d-flex flex-column align-items-center justify-content-center">
                         <a href="#" class="navbar-item">
                             <img src="{{ asset('images/navbar/5.png') }}" alt="search">
-                            <div>การดำเนินงาน</div>
-                        </a>
-                    </div>
-                    <div class="d-flex flex-column align-items-center justify-content-center">
-                        <a href="#" class="navbar-item">
-                            <img src="{{ asset('images/navbar/6.png') }}" alt="icon">
-                            <div>คู่มือประชาชน</div>
-                        </a>
-                    </div>
-                    <div
-                        class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
-                        <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
-                            <img src="{{ asset('images/navbar/7.png') }}" alt="teamwork" class="navbar-icon">
-                            <div class="navbar-text">สารจันทบุรี</div>
-                        </a>
-                        <!-- ลิสต์รายการ -->
-                        <ul class="custom-dropdown-menu">
-                            <li>
-                                <a class="dropdown-item">แผนผังองค์กรรวม</a>
-                            </li>
-                            @foreach ($personnelAgencies as $agency)
-                                <li>
-                                    <a href="{{ route('agency.show', ['id' => $agency->id]) }}" class="dropdown-item">
-                                        {{ $agency->personnel_agency_name }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
+                    <div>การดำเนินงาน</div>
+                    </a>
+                </div> --}}
+                <div class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
+                    <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
+                        <img src="{{ asset('images/navbar/5.png') }}" alt="teamwork" class="navbar-icon">
+                        <div class="navbar-text">การดำเนินงาน</div>
+                    </a>
+                    <!-- ลิสต์รายการ Dropdown -->
+                    <ul class="custom-dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{{route('PlanProgressPage')}}">แผนและความก้าวหน้าในการดำเนินงานและการใช้จ่ายงบประมาณประจำปี</a>
+                            <a class="dropdown-item" href="{{route('AnnualPlanPage')}}">แผนดำเนินงานและการใช้งบประมาณประจำปี</a>
+                            <a class="dropdown-item" href="{{route('BudgetReportPage')}}">รายงานการกำกับติดตามการดำเนินงานและการใช้งบประมาณประจำปีรอบ 6 เดือน</a>
+                            <a class="dropdown-item" href="{{route('AnnualReportPage')}}">รายงานผลการดำเนินงานประจำปี</a>
+                            <a class="dropdown-item" href="{{route('WorkforcePlanPage')}}">แผนอัตรากำลัง 3 ปี</a>
+                        </li>
+                    </ul>
+                </div>
 
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <a href="#" class="navbar-item">
+                        <img src="{{ asset('images/navbar/6.png') }}" alt="icon">
+                        <div>คู่มือประชาชน</div>
+                    </a>
+                </div>
+                <div class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
+                    <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
+                        <img src="{{ asset('images/navbar/7.png') }}" alt="teamwork" class="navbar-icon">
+                        <div class="navbar-text">สารจันทบุรี</div>
+                    </a>
+                    <!-- ลิสต์รายการ -->
+                    <ul class="custom-dropdown-menu">
+                        <li>
+                            <a class="dropdown-item">แผนผังองค์กรรวม</a>
+                        </li>
+                        @foreach ($personnelAgencies as $agency)
+                        <li>
+                            <a href="{{ route('agency.show', ['id' => $agency->id]) }}" class="dropdown-item">
+                                {{ $agency->personnel_agency_name }}
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
 
             </div>
+
+        </div>
         </div>
     </main>
     <script>
@@ -632,6 +650,7 @@
         document.querySelector('.font-small').addEventListener('click', () => changeFontSize('25px'));
         document.querySelector('.font-medium').addEventListener('click', () => changeFontSize('30px')); // ขนาดปกติ
         document.querySelector('.font-large').addEventListener('click', () => changeFontSize('35px'));
+
     </script>
 
     @yield('content')
@@ -669,15 +688,11 @@
                 </div>
                 <div class="d-flex align-items-end lh-1 gap-3">
                     <img src="{{ asset('images/pages/10/google-maps.png') }}" alt="icon">
-                    <a href="https://maps.app.goo.gl/cAnHZwdeLUMz89sa9" target="_blank"
-                        class="btn btn-primary fs-5 px-4" style="border-radius: 30px;"> ไปที่ Google map </a>
+                    <a href="https://maps.app.goo.gl/cAnHZwdeLUMz89sa9" target="_blank" class="btn btn-primary fs-5 px-4" style="border-radius: 30px;"> ไปที่ Google map </a>
                 </div>
             </div>
             <div class="d-flex align-items-end ">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31149.617128833102!2d102.07114761286515!3d12.601871743491508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31048192adecbd05%3A0xf0e5e2b5d3162870!2z4LmA4LiX4Lio4Lia4Liy4Lil4LmA4Lih4Li34Lit4LiH4LiI4Lix4LiZ4LiX4Lia4Li44Lij4Li1IOC4reC4s-C5gOC4oOC4reC5gOC4oeC4t-C4reC4h-C4iOC4seC4meC4l-C4muC4uOC4o-C4tSDguIjguLHguJnguJfguJrguLjguKPguLUgMjIwMDA!5e0!3m2!1sth!2sth!4v1737962171621!5m2!1sth!2sth"
-                    width="600" height="450" style="border:0px solid black; border-radius:20px;"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31149.617128833102!2d102.07114761286515!3d12.601871743491508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31048192adecbd05%3A0xf0e5e2b5d3162870!2z4LmA4LiX4Lio4Lia4Liy4Lil4LmA4Lih4Li34Lit4LiH4LiI4Lix4LiZ4LiX4Lia4Li44Lij4Li1IOC4reC4s-C5gOC4oOC4reC5gOC4oeC4t-C4reC4h-C4iOC4seC4meC4l-C4muC4uOC4o-C4tSDguIjguLHguJnguJfguJrguLjguKPguLUgMjIwMDA!5e0!3m2!1sth!2sth!4v1737962171621!5m2!1sth!2sth" width="600" height="450" style="border:0px solid black; border-radius:20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
         <div class="container bg-coute mb-2 ">
@@ -711,10 +726,8 @@
         <div class="bg-footer d-flex">
             <div class="container d-flex justify-content-between">
                 <div class="d-flex align-items-center">
-                    <img src="{{ asset('images/pages/10/logox.png') }}" alt="icon"
-                        class="logo-footer-section-10">
-                    <img src="{{ asset('images/pages/10/title-logo.png') }}" alt="title"
-                        class="title-logo-footer">
+                    <img src="{{ asset('images/pages/10/logox.png') }}" alt="icon" class="logo-footer-section-10">
+                    <img src="{{ asset('images/pages/10/title-logo.png') }}" alt="title" class="title-logo-footer">
                 </div>
                 <div class="d-flex flex-column justify-content-center text-light fw-bold lh-1">
                     <div style="font-size:82px;">
