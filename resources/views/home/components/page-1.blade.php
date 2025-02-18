@@ -303,10 +303,57 @@
             <div class="flex-fill d-flex justify-content-end align-items-center h-100">
                 <ul class="d-flex gap-3 list-unstyled mb-0 align-items-end text-nav-link">
                     <li class="d-flex align-items-baseline gap-1">
-                        <img src="{{ asset('images/pages/1/po.png') }}" alt="logo">
+                        <img src="{{ asset('images/pages/1/po.png') }}" alt="logo" id="toggleTheme"
+                            class="text-button">
+                        <style>
+                            .dark-mode * {
+                                background-color: black !important;
+                                color: white !important;
+                            }
+                        </style>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                const toggleButton = document.getElementById("toggleTheme");
+
+                                toggleButton.addEventListener("click", function() {
+                                    document.body.classList.toggle("dark-mode");
+                                });
+                            });
+                        </script>
                         <div class="font-small text-button ">ก</div>
                         <div class="font-medium text-button ">ก</div>
                         <div class="font-large text-button ">ก</div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                let defaultFontSize = 20; // ขนาดเริ่มต้น
+                                const minFontSize = 10;
+                                const maxFontSize = 40;
+                                const step = 2;
+
+                                function updateFontSize(size) {
+                                    document.querySelectorAll("*").forEach(el => {
+                                        el.style.fontSize = size + "px";
+                                    });
+                                }
+
+                                document.querySelectorAll("img[data-action]").forEach(img => {
+                                    img.addEventListener("click", function() {
+                                        let action = this.getAttribute("data-action");
+
+                                        if (action === "decrease") {
+                                            defaultFontSize = Math.max(minFontSize, defaultFontSize - step);
+                                        } else if (action === "normal") {
+                                            defaultFontSize = 20;
+                                        } else if (action === "increase") {
+                                            defaultFontSize = Math.min(maxFontSize, defaultFontSize + step);
+                                        }
+
+                                        updateFontSize(defaultFontSize);
+                                    });
+                                });
+                            });
+                        </script>
                     </li>
                     <li><a href="#">หน้าแรก</a></li>
                     <li><a href="#">ข่าวสารเทศบาล</a></li>
