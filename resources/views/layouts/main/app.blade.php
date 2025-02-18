@@ -605,7 +605,7 @@
                         <!-- ลิสต์รายการ -->
                         <ul class="custom-dropdown-menu">
                             <li>
-                                <a href="#" class="dropdown-item">แผนผังองค์กรรวม</a>
+                                <a class="dropdown-item">แผนผังองค์กรรวม</a>
                             </li>
                             @foreach ($personnelAgencies as $agency)
                                 <li>
