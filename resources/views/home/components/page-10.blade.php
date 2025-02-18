@@ -57,7 +57,7 @@
             <div class="d-flex align-items-end gap-3">
                 แผนที่ <img src="{{ asset('images/pages/10/india.png') }}" alt="icon-map" width="80">
             </div>
-            <div class="fs-2">เทศบาบเมืองจันบุรี</div>
+            <div class="fs-2">เทศบาลเมืองจันทบุรี</div>
         </div>
     </div>
     <div class="container d-flex justify-content-between align-items-center">
@@ -79,16 +79,20 @@
             <div class="d-flex align-items-end lh-1 gap-3">
                 <img src="{{ asset('images/pages/10/phone-call.png') }}" alt="icon">
                 <div class="text" style="font-size: 50px;">
-                    039-313-669
+                    0 3931 3669
                 </div>
             </div>
             <div class="d-flex align-items-end lh-1 gap-3">
                 <img src="{{ asset('images/pages/10/google-maps.png') }}" alt="icon">
-                <a href="https://maps.app.goo.gl/cAnHZwdeLUMz89sa9" target="_blank" class="btn btn-primary fs-5 px-4" style="border-radius: 30px;"> ไปที่ Google map </a>
+                <a href="https://maps.app.goo.gl/cAnHZwdeLUMz89sa9" target="_blank" class="btn btn-primary fs-5 px-4"
+                    style="border-radius: 30px;"> ไปที่ Google map </a>
             </div>
         </div>
         <div class="d-flex align-items-end ">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31149.617128833102!2d102.07114761286515!3d12.601871743491508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31048192adecbd05%3A0xf0e5e2b5d3162870!2z4LmA4LiX4Lio4Lia4Liy4Lil4LmA4Lih4Li34Lit4LiH4LiI4Lix4LiZ4LiX4Lia4Li44Lij4Li1IOC4reC4s-C5gOC4oOC4reC5gOC4oeC4t-C4reC4h-C4iOC4seC4meC4l-C4muC4uOC4o-C4tSDguIjguLHguJnguJfguJrguLjguKPguLUgMjIwMDA!5e0!3m2!1sth!2sth!4v1737962171621!5m2!1sth!2sth" width="600" height="450" style="border:0px solid black; border-radius:20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31149.617128833102!2d102.07114761286515!3d12.601871743491508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31048192adecbd05%3A0xf0e5e2b5d3162870!2z4LmA4LiX4Lio4Lia4Liy4Lil4LmA4Lih4Li34Lit4LiH4LiI4Lix4LiZ4LiX4Lia4Li44Lij4Li1IOC4reC4s-C5gOC4oOC4reC5gOC4oeC4t-C4reC4h-C4iOC4seC4meC4l-C4muC4uOC4o-C4tSDguIjguLHguJnguJfguJrguLjguKPguLUgMjIwMDA!5e0!3m2!1sth!2sth!4v1737962171621!5m2!1sth!2sth"
+                width="600" height="450" style="border:0px solid black; border-radius:20px;" allowfullscreen=""
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
     <div class="container bg-coute mb-2 ">
@@ -125,12 +129,12 @@
                 <img src="{{ asset('images/pages/10/logox.png') }}" alt="icon" class="logo-footer-section-10">
                 <img src="{{ asset('images/pages/10/title-logo.png') }}" alt="title" class="title-logo-footer">
             </div>
-            <div class="d-flex flex-column justify-content-center text-light fw-bold lh-1">
-                <div style="font-size:82px;">
+            <div class="d-flex flex-column justify-content-center align-items-center text-light  lh-1">
+                <div style="font-size:82px;" class="fw-bold">
                     1132
                 </div>
                 <div class="fs-4">
-                    สายด่วนเทศบาล
+                    สายด่วนเมืองจันท์
                 </div>
             </div>
         </div>
