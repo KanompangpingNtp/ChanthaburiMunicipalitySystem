@@ -748,12 +748,6 @@
         </div>
     </main>
 
-        // กำหนดเหตุการณ์ให้กับปุ่ม
-        document.querySelector('.font-small').addEventListener('click', () => changeFontSize('25px'));
-        document.querySelector('.font-medium').addEventListener('click', () => changeFontSize('30px')); // ขนาดปกติ
-        document.querySelector('.font-large').addEventListener('click', () => changeFontSize('35px'));
-    </script>
-
     @yield('content')
 
     <main class="bg-page10 d-flex flex-column justify-content-start align-items-center gap-5">

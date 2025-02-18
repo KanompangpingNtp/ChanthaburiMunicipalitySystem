@@ -2,7 +2,7 @@
 @section('content')
 <style>
     .bg {
-        background-image: url('{{ asset('images/bg/bg-i.png') }}');
+        background-image: url('{{ asset('images/agency/BG-AENGY.png') }}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
