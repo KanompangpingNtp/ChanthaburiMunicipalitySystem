@@ -121,6 +121,24 @@
                             </div>
                             จัดการบุคลากร
                         </a>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts1">
+                            <div class="sb-nav-link-icon">
+                                <i class="bi bi-database-add"></i>
+                            </div>
+                            ผลการดำเนินงาน
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{route('PlanProgressAdmin')}}">แผนและความก้าวหน้าในการดำเนินงานและการใช้จ่ายงบประมาณประจำปี</a>
+                                <a class="nav-link" href="{{route('AnnualPlanAdmin')}}">แผนดำเนินงานและการใช้งบประมาณประจำปี</a>
+                                <a class="nav-link" href="{{route('BudgetReportAdmin')}}">รายงานการกำกับติดตามการดำเนินงานและการใช้งบประมาณประจำปีรอบ 6 เดือน</a>
+                                <a class="nav-link" href="{{route('AnnualReportAdmin')}}">รายงานผลการดำเนินงานประจำปี</a>
+                                <a class="nav-link" href="{{route('WorkforcePlanAdmin')}}">แผนอัตรากำลัง 3 ปี</a>
+                            </nav>
+                        </div>
 
                         {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon">

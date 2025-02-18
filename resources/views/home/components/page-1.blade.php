@@ -281,6 +281,7 @@
             transform: translateY(0);
         }
     }
+
 </style>
 <main class="d-flex align-items-start justify-content-center bg-page1">
     <header class="text-black fixed-top">
@@ -303,13 +304,13 @@
             <div class="flex-fill d-flex justify-content-end align-items-center h-100">
                 <ul class="d-flex gap-3 list-unstyled mb-0 align-items-end text-nav-link">
                     <li class="d-flex align-items-baseline gap-1">
-                        <img src="{{ asset('images/pages/1/po.png') }}" alt="logo" id="toggleTheme"
-                            class="text-button">
+                        <img src="{{ asset('images/pages/1/po.png') }}" alt="logo" id="toggleTheme" class="text-button">
                         <style>
                             .dark-mode * {
                                 background-color: black !important;
                                 color: white !important;
                             }
+
                         </style>
 
                         <script>
@@ -320,6 +321,7 @@
                                     document.body.classList.toggle("dark-mode");
                                 });
                             });
+
                         </script>
                         <div class="font-small text-button ">ก</div>
                         <div class="font-medium text-button ">ก</div>
@@ -353,6 +355,7 @@
                                     });
                                 });
                             });
+
                         </script>
                     </li>
                     <li><a href="#">หน้าแรก</a></li>
@@ -381,8 +384,7 @@
             <div class="bg-blue">
                 <p>สื่อประชาสัมพันธ์เทศบาลเมืองจันทบุรี</p>
                 <div class="d-flex align-items-center justify-content-center gap-4">
-                    <a href="https://www.facebook.com/chanthaburi.town.municipality" target="_blank"><img
-                            src="{{ asset('images/pages/1/facebook-logo.png') }}" alt="facebook"></a>
+                    <a href="https://www.facebook.com/chanthaburi.town.municipality" target="_blank"><img src="{{ asset('images/pages/1/facebook-logo.png') }}" alt="facebook"></a>
                     <a href="#"><img src="{{ asset('images/pages/1/tiktok.png') }}" alt="tiktok"></a>
                     <a href="#"><img src="{{ asset('images/pages/1/youtube.png') }}" alt="youtube"></a>
                     <a href="#"><img src="{{ asset('images/pages/1/messeger.png') }}" alt="messeger"></a>
@@ -398,76 +400,94 @@
                         <div>ข้อมูลพื้นฐาน</div>
                     </a>
                 </div>
-                <div class="d-flex flex-column align-items-center justify-content-center">
-                    <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/2.png') }}" alt="service">
-                        <div>ทำเนียบบุคลากร</div>
-                    </a>
-                </div>
-                <div class="d-flex flex-column align-items-center justify-content-center">
-                    <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/3.png') }}" alt="law">
-                        <div>อำนาจหน้าที่</div>
-                    </a>
-                </div>
-                <div class="d-flex flex-column align-items-center justify-content-center">
-                    <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/4.png') }}" alt="speech">
-                        <div>แผนพัฒนาท้องถิ่น</div>
-                    </a>
-                </div>
                 {{-- <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/5.png') }}" alt="search">
-                        <div>การดำเนินงาน</div>
-                    </a>
-                </div> --}}
-                <div class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
-                    <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
-                        <img src="{{ asset('images/navbar/5.png') }}" alt="teamwork" class="navbar-icon">
-                        <div class="navbar-text">การดำเนินงาน</div>
-                    </a>
-                    <!-- ลิสต์รายการ Dropdown -->
-                    <ul class="custom-dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="{{route('PlanProgressPage')}}">แผนและความก้าวหน้าในการดำเนินงานและการใช้จ่ายงบประมาณประจำปี</a>
-                            <a class="dropdown-item" href="{{route('AnnualPlanPage')}}">แผนดำเนินงานและการใช้งบประมาณประจำปี</a>
-                            <a class="dropdown-item" href="{{route('BudgetReportPage')}}">รายงานการกำกับติดตามการดำเนินงานและการใช้งบประมาณประจำปีรอบ 6 เดือน</a>
-                            <a class="dropdown-item" href="{{route('AnnualReportPage')}}">รายงานผลการดำเนินงานประจำปี</a>
-                            <a class="dropdown-item" href="{{route('WorkforcePlanPage')}}">แผนอัตรากำลัง 3 ปี</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="d-flex flex-column align-items-center justify-content-center">
+                        <img src="{{ asset('images/navbar/2.png') }}" alt="service">
+                <div>ทำเนียบบุคลากร</div>
+                </a>
+            </div> --}}
+            <div class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
+                <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
+                    <img src="{{ asset('images/navbar/2.png') }}" alt="teamwork" class="navbar-icon">
+                    <div class="navbar-text">ทำเนียบบุคลากร</div>
+                </a>
+                <!-- Dropdown Menu -->
+                <ul class="custom-dropdown-menu">
+                    <li>
+                        <a class="dropdown-item">แผนผังองค์กรรวม</a>
+                    </li>
+                    @foreach ($personnelAgencies as $agency)
+                    <li>
+                        <a href="{{ route('agency.show', ['id' => $agency->id]) }}" class="dropdown-item">
+                            {{ $agency->personnel_agency_name }}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <a href="#" class="navbar-item">
+                    <img src="{{ asset('images/navbar/3.png') }}" alt="law">
+                    <div>อำนาจหน้าที่</div>
+                </a>
+            </div>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <a href="#" class="navbar-item">
+                    <img src="{{ asset('images/navbar/4.png') }}" alt="speech">
+                    <div>แผนพัฒนาท้องถิ่น</div>
+                </a>
+            </div>
+            {{-- <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/6.png') }}" alt="icon">
-                        <div>คู่มือประชาชน</div>
-                    </a>
-                </div>
-                <div
-                    class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
-                    <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
-                        <img src="{{ asset('images/navbar/7.png') }}" alt="teamwork" class="navbar-icon">
-                        <div class="navbar-text">สารจันทบุรี</div>
-                    </a>
-                    <!-- ลิสต์รายการ -->
-                    <ul class="custom-dropdown-menu">
+                        <img src="{{ asset('images/navbar/5.png') }}" alt="search">
+            <div>การดำเนินงาน</div>
+            </a>
+        </div> --}}
+        <div class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
+            <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
+                <img src="{{ asset('images/navbar/5.png') }}" alt="teamwork" class="navbar-icon">
+                <div class="navbar-text">การดำเนินงาน</div>
+            </a>
+            <!-- ลิสต์รายการ Dropdown -->
+            <ul class="custom-dropdown-menu">
+                <li>
+                    <a class="dropdown-item" href="{{route('PlanProgressPage')}}">แผนและความก้าวหน้าในการดำเนินงานและการใช้จ่ายงบประมาณประจำปี</a>
+                    <a class="dropdown-item" href="{{route('AnnualPlanPage')}}">แผนดำเนินงานและการใช้งบประมาณประจำปี</a>
+                    <a class="dropdown-item" href="{{route('BudgetReportPage')}}">รายงานการกำกับติดตามการดำเนินงานและการใช้งบประมาณประจำปีรอบ 6 เดือน</a>
+                    <a class="dropdown-item" href="{{route('AnnualReportPage')}}">รายงานผลการดำเนินงานประจำปี</a>
+                    <a class="dropdown-item" href="{{route('WorkforcePlanPage')}}">แผนอัตรากำลัง 3 ปี</a>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <a href="#" class="navbar-item">
+                <img src="{{ asset('images/navbar/6.png') }}" alt="icon">
+                <div>คู่มือประชาชน</div>
+            </a>
+        </div>
+        <div class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
+            <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
+                <img src="{{ asset('images/navbar/7.png') }}" alt="teamwork" class="navbar-icon">
+                <div class="navbar-text">สารจันทบุรี</div>
+            </a>
+            <!-- ลิสต์รายการ -->
+            {{-- <ul class="custom-dropdown-menu">
                         <li>
                             <a href="#" class="dropdown-item">แผนผังองค์กรรวม</a>
                         </li>
                         @foreach ($personnelAgencies as $agency)
                             <li>
                                 <a href="{{ route('agency.show', ['id' => $agency->id]) }}" class="dropdown-item">
-                                    {{ $agency->personnel_agency_name }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-
-            </div>
-
+            {{ $agency->personnel_agency_name }}
+            </a>
+            </li>
+            @endforeach
+            </ul> --}}
         </div>
+
+    </div>
+
+    </div>
     </div>
 </main>
 <script>
@@ -480,4 +500,5 @@
     document.querySelector('.font-small').addEventListener('click', () => changeFontSize('25px'));
     document.querySelector('.font-medium').addEventListener('click', () => changeFontSize('30px')); // ขนาดปกติ
     document.querySelector('.font-large').addEventListener('click', () => changeFontSize('35px'));
+
 </script>

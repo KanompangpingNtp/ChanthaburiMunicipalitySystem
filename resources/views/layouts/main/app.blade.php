@@ -675,11 +675,30 @@
                             <div>ข้อมูลพื้นฐาน</div>
                         </a>
                     </div>
-                    <div class="d-flex flex-column align-items-center justify-content-center">
+                    {{-- <div class="d-flex flex-column align-items-center justify-content-center">
                         <a href="#" class="navbar-item">
                             <img src="{{ asset('images/navbar/2.png') }}" alt="service">
                             <div>ทำเนียบบุคลากร</div>
                         </a>
+                    </div> --}}
+                    <div class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
+                        <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
+                            <img src="{{ asset('images/navbar/2.png') }}" alt="teamwork" class="navbar-icon">
+                            <div class="navbar-text">ทำเนียบบุคลากร</div>
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <ul class="custom-dropdown-menu">
+                            <li>
+                                <a class="dropdown-item">แผนผังองค์กรรวม</a>
+                            </li>
+                            @foreach ($personnelAgencies as $agency)
+                            <li>
+                                <a href="{{ route('agency.show', ['id' => $agency->id]) }}" class="dropdown-item">
+                                    {{ $agency->personnel_agency_name }}
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
                     </div>
                     <div class="d-flex flex-column align-items-center justify-content-center">
                         <a href="#" class="navbar-item">
