@@ -243,7 +243,7 @@
             cursor: pointer;
             /* เปลี่ยนเคอร์เซอร์เป็นมือเมื่อ hover */
             padding: 0;
-
+            text-decoration: none;
             /* ระยะห่างระหว่างปุ่ม */
             transition: color 0.3s ease, transform 0.2s ease;
         }
@@ -496,6 +496,65 @@
             height: 170px;
         }
 
+        /* ตั้งค่าเริ่มต้นของคอนเทนเนอร์ */
+        .custom-dropdown-container {
+            position: relative;
+
+        }
+
+        /* สไตล์สำหรับ dropdown menu */
+        .custom-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00b8b8c9;
+            border: 1px solid #007777;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            font-size: 23px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        .custom-dropdown-container:hover .custom-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* สไตล์สำหรับแต่ละรายการใน dropdown */
+        .dropdown-item {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            color: rgb(0, 0, 0);
+            background-color: #00dfdf;
+            border-radius: 4px;
+        }
+
+        /* Keyframes สำหรับ slide-down */
+        @keyframes slide-down {
+            0% {
+                opacity: 0;
+                transform: translateY(-10%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -521,11 +580,59 @@
                 <div class="flex-fill d-flex justify-content-end align-items-center h-100">
                     <ul class="d-flex gap-3 list-unstyled mb-0 align-items-end text-nav-link">
                         <li class="d-flex align-items-baseline gap-1">
-                            <img src="{{ asset('images/pages/1/po.png') }}" alt="logo">
+                            <img src="{{ asset('images/pages/1/po.png') }}" alt="logo" id="toggleTheme"
+                                class="text-button">
+                            <style>
+                                .dark-mode * {
+                                    background-color: black !important;
+                                    color: white !important;
+                                }
+                            </style>
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    const toggleButton = document.getElementById("toggleTheme");
+
+                                    toggleButton.addEventListener("click", function() {
+                                        document.body.classList.toggle("dark-mode");
+                                    });
+                                });
+                            </script>
                             <div class="font-small text-button ">ก</div>
                             <div class="font-medium text-button ">ก</div>
                             <div class="font-large text-button ">ก</div>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    let defaultFontSize = 20; // ขนาดเริ่มต้น
+                                    const minFontSize = 10;
+                                    const maxFontSize = 40;
+                                    const step = 2;
+
+                                    function updateFontSize(size) {
+                                        document.querySelectorAll("*").forEach(el => {
+                                            el.style.fontSize = size + "px";
+                                        });
+                                    }
+
+                                    document.querySelectorAll("img[data-action]").forEach(img => {
+                                        img.addEventListener("click", function() {
+                                            let action = this.getAttribute("data-action");
+
+                                            if (action === "decrease") {
+                                                defaultFontSize = Math.max(minFontSize, defaultFontSize - step);
+                                            } else if (action === "normal") {
+                                                defaultFontSize = 20;
+                                            } else if (action === "increase") {
+                                                defaultFontSize = Math.min(maxFontSize, defaultFontSize + step);
+                                            }
+
+                                            updateFontSize(defaultFontSize);
+                                        });
+                                    });
+                                });
+                            </script>
                         </li>
+
                         <li><a href="#">หน้าแรก</a></li>
                         <li><a href="#">ข่าวสารเทศบาล</a></li>
                         <li><a href="#">ติดต่อ</a></li>
@@ -640,17 +747,11 @@
         </div>
         </div>
     </main>
-    <script>
-        // ฟังก์ชันสำหรับเปลี่ยนขนาดตัวอักษร
-        function changeFontSize(size) {
-            document.body.style.fontSize = size;
-        }
 
         // กำหนดเหตุการณ์ให้กับปุ่ม
         document.querySelector('.font-small').addEventListener('click', () => changeFontSize('25px'));
         document.querySelector('.font-medium').addEventListener('click', () => changeFontSize('30px')); // ขนาดปกติ
         document.querySelector('.font-large').addEventListener('click', () => changeFontSize('35px'));
-
     </script>
 
     @yield('content')
