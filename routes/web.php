@@ -41,6 +41,26 @@ Route::get('/', [DataPostController::class, 'HomeIndex'])->name('HomeIndex');
 Route::get('/agency/{id}', [PersonnelAgencyController::class, 'show'])->name('agency.show');
 Route::get('/layout', [DataPostController::class, 'layout'])->name('layout');
 
+//แผนและความก้าวหน้าในการดำเนินงานและการใช้จ่ายงบประมาณประจำปี
+Route::get('/PlanProgress/page', [PlanProgressController::class, 'PlanProgressPage'])->name('PlanProgressPage');
+Route::get('/PlanProgress/show/details/{id}', [PlanProgressController::class, 'PlanProgressDetail'])->name('PlanProgressDetail');
+
+//แผนดำเนินงานและการใช้งบประมาณประจำปี
+Route::get('/AnnualPlan/page', [AnnualPlanController::class, 'AnnualPlanPage'])->name('AnnualPlanPage');
+Route::get('/AnnualPlan/show/details/{id}', [AnnualPlanController::class, 'AnnualPlanDetail'])->name('AnnualPlanDetail');
+
+//รายงานการกำกับติดตามการดำเนินงานและการใช้งบประมาณประจำปีรอบ6เดือน
+Route::get('/BudgetReport/page', [BudgetReportController::class, 'BudgetReportPage'])->name('BudgetReportPage');
+Route::get('/BudgetReport/show/details/{id}', [BudgetReportController::class, 'BudgetReportDetail'])->name('BudgetReportDetail');
+
+//รายงานผลการดำเนินงานประจำปี
+Route::get('/AnnualReport/page', [AnnualReportController::class, 'AnnualReportPage'])->name('AnnualReportPage');
+Route::get('/AnnualReport/show/details/{id}', [AnnualReportController::class, 'AnnualReportDetail'])->name('AnnualReportDetail');
+
+//แผนอัตรากำลัง3ปี
+Route::get('/WorkforcePlan/page', [WorkforcePlanController::class, 'WorkforcePlanPage'])->name('WorkforcePlanPage');
+Route::get('/WorkforcePlan/show/details/{id}', [WorkforcePlanController::class, 'WorkforcePlanDetail'])->name('WorkforcePlanDetail');
+
 Route::middleware(['check.auth'])->group(function () {
     //admin PressRelease
     Route::get('/PressRelease/page', [PressReleaseController::class, 'PressReleaseHome'])->name('PressReleaseHome');

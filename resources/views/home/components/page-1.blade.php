@@ -416,11 +416,27 @@
                         <div>แผนพัฒนาท้องถิ่น</div>
                     </a>
                 </div>
-                <div class="d-flex flex-column align-items-center justify-content-center">
+                {{-- <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">
                         <img src="{{ asset('images/navbar/5.png') }}" alt="search">
                         <div>การดำเนินงาน</div>
                     </a>
+                </div> --}}
+                <div class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
+                    <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
+                        <img src="{{ asset('images/navbar/5.png') }}" alt="teamwork" class="navbar-icon">
+                        <div class="navbar-text">การดำเนินงาน</div>
+                    </a>
+                    <!-- ลิสต์รายการ Dropdown -->
+                    <ul class="custom-dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{{route('PlanProgressPage')}}">แผนและความก้าวหน้าในการดำเนินงานและการใช้จ่ายงบประมาณประจำปี</a>
+                            <a class="dropdown-item" href="{{route('AnnualPlanPage')}}">แผนดำเนินงานและการใช้งบประมาณประจำปี</a>
+                            <a class="dropdown-item" href="{{route('BudgetReportPage')}}">รายงานการกำกับติดตามการดำเนินงานและการใช้งบประมาณประจำปีรอบ 6 เดือน</a>
+                            <a class="dropdown-item" href="{{route('AnnualReportPage')}}">รายงานผลการดำเนินงานประจำปี</a>
+                            <a class="dropdown-item" href="{{route('WorkforcePlanPage')}}">แผนอัตรากำลัง 3 ปี</a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">

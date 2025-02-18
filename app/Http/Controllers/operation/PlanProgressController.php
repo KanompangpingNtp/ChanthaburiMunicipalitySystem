@@ -4,8 +4,29 @@ namespace App\Http\Controllers\operation;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\PerfResultsType;
+use App\Models\PersonnelAgency;
+use App\Models\PerfSingleTopic;
 
 class PlanProgressController extends Controller
 {
-    //
+    public function PlanProgressPage()
+    {
+        $personnelAgencies = PersonnelAgency::with('ranks')->get();
+
+        $perfResultsType = PerfResultsType::all();
+        $perfResultsTypeID = $perfResultsType->firstWhere('type_name', 'แผนและความก้าวหน้าในการดำเนินงานและการใช้จ่ายงบประมาณประจำปี')->id;
+        $PerfSingleTopic = PerfSingleTopic::where('perf_results_type_id', $perfResultsTypeID)->get();
+
+        return view('operation.planprogress.page',compact('personnelAgencies','PerfSingleTopic','perfResultsType'));
+    }
+
+    public function PlanProgressDetail($id)
+    {
+        $personnelAgencies = PersonnelAgency::with('ranks')->get();
+
+        $PerfSingleTopic = PerfSingleTopic::with('files')->findOrFail($id);
+
+        return view('operation.planprogress.show_details', compact('PerfSingleTopic','personnelAgencies'));
+    }
 }
