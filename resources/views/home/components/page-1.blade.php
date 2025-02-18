@@ -220,9 +220,12 @@
         justify-content: center;
     }
 
+
+
     /* ตั้งค่าเริ่มต้นของคอนเทนเนอร์ */
     .custom-dropdown-container {
         position: relative;
+
     }
 
     /* สไตล์สำหรับ dropdown menu */
@@ -231,8 +234,8 @@
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
-        background-color: white;
-        border: 1px solid #ddd;
+        background-color: #00b8b8c9;
+        border: 1px solid #007777;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         list-style: none;
@@ -243,6 +246,7 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 999;
     }
 
     .custom-dropdown-container:hover .custom-dropdown-menu {
@@ -255,12 +259,13 @@
         display: block;
         padding: 10px 20px;
         text-decoration: none;
-        color: #333;
-        transition: background-color 0.3s ease;
+        color: #ffffff;
+        transition: all 0.3s ease;
     }
 
     .dropdown-item:hover {
-        background-color: #ececec;
+        color: rgb(0, 0, 0);
+        background-color: #00dfdf;
         border-radius: 4px;
     }
 

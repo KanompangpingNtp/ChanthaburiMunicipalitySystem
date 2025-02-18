@@ -493,6 +493,66 @@
         .title-logo-footer {
             height: 170px;
         }
+
+        /* ตั้งค่าเริ่มต้นของคอนเทนเนอร์ */
+        .custom-dropdown-container {
+            position: relative;
+
+        }
+
+        /* สไตล์สำหรับ dropdown menu */
+        .custom-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00b8b8c9;
+            border: 1px solid #007777;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            font-size: 23px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        .custom-dropdown-container:hover .custom-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* สไตล์สำหรับแต่ละรายการใน dropdown */
+        .dropdown-item {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            color: rgb(0, 0, 0);
+            background-color: #00dfdf;
+            border-radius: 4px;
+        }
+
+        /* Keyframes สำหรับ slide-down */
+        @keyframes slide-down {
+            0% {
+                opacity: 0;
+                transform: translateY(-10%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 

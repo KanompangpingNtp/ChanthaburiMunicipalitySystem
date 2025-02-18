@@ -2,7 +2,7 @@
 @section('content')
     <style>
         .bg {
-            background-image: url('{{ asset('images/bg/bg-i.png') }}');
+            background-image: url('{{ asset('images/agency/BG-AENGY.png') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -18,6 +18,24 @@
                 0 0 50px -10px rgba(0, 184, 184, 0.8);
             /* เงาสีฟ้าอ่อน */
             background-color: #ffffff;
+        }
+
+        .title-section {
+            font-size: 60px;
+            font-weight: bold;
+            color: white;
+            text-shadow:
+                2px 2px 0px rgba(0, 0, 0, 0.8),
+                4px 4px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .img-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .img-hover:hover {
+            transform: scale(1.1);
         }
     </style>
     <div class="bg">
