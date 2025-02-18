@@ -11,6 +11,16 @@ use App\Http\Controllers\DataPostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ManagePersonnelController;
 use App\Http\Controllers\PersonnelAgencyController;
+use App\Http\Controllers\operation\AdminPlanProgressController;
+use App\Http\Controllers\operation\PlanProgressController;
+use App\Http\Controllers\operation\AdminAnnualPlanController;
+use App\Http\Controllers\operation\AnnualPlanController;
+use App\Http\Controllers\operation\AdminBudgetReportController;
+use App\Http\Controllers\operation\BudgetReportController;
+use App\Http\Controllers\operation\AdminAnnualReportController;
+use App\Http\Controllers\operation\AnnualReportController;
+use App\Http\Controllers\operation\AdminWorkforcePlanController;
+use App\Http\Controllers\operation\WorkforcePlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,8 +96,50 @@ Route::middleware(['check.auth'])->group(function () {
     Route::put('/Personnel/PersonnelRank/PersonnelDetails/update/{id}', [ManagePersonnelController::class, 'PersonnelDetailsUpdate'])->name('PersonnelDetailsUpdate');
     Route::delete('/Personnel/PersonnelRank/PersonnelDetails/delete{id}', [ManagePersonnelController::class, 'PersonnelDetailsDelete'])->name('PersonnelDetailsDelete');
 
-    // Route::get('/PersonnelInformation/page', [ManagePersonnelController::class, 'PersonnelInformation'])->name('PersonnelInformation');
+    //PlanProgress
+    Route::get('/Admin/PlanProgress/page', [AdminPlanProgressController::class, 'PlanProgressAdmin'])->name('PlanProgressAdmin');
+    Route::post('/Admin/PlanProgress/create', [AdminPlanProgressController::class, 'PlanProgressCreate'])->name('PlanProgressCreate');
+    Route::put('/Admin/PlanProgress/{id}/update', [AdminPlanProgressController::class, 'PlanProgressUpdate'])->name('PlanProgressUpdate');
+    Route::delete('/Admin/PlanProgress/{id}/delete', [AdminPlanProgressController::class, 'PlanProgressDelete'])->name('PlanProgressDelete');
+    Route::get('/Admin/PlanProgress/show/details/{id}', [AdminPlanProgressController::class, 'PlanProgressShowDetails'])->name('PlanProgressShowDetails');
+    Route::post('/Admin/PlanProgress/details/{id}/create', [AdminPlanProgressController::class, 'PlanProgressCreateFiles'])->name('PlanProgressCreateFiles');
+    Route::delete('/Admin/PlanProgress/details/{id}/delete', [AdminPlanProgressController::class, 'PlanProgressDetailsDelete'])->name('PlanProgressDetailsDelete');
 
+    //AnnualPlan
+    Route::get('/Admin/AnnualPlan/page', [AdminAnnualPlanController::class, 'AnnualPlanAdmin'])->name('AnnualPlanAdmin');
+    Route::post('/Admin/AnnualPlan/create', [AdminAnnualPlanController::class, 'AnnualPlanCreate'])->name('AnnualPlanCreate');
+    Route::put('/Admin/AnnualPlan/{id}/update', [AdminAnnualPlanController::class, 'AnnualPlanUpdate'])->name('AnnualPlanUpdate');
+    Route::delete('/Admin/AnnualPlan/{id}/delete', [AdminAnnualPlanController::class, 'AnnualPlanDelete'])->name('AnnualPlanDelete');
+    Route::get('/Admin/AnnualPlan/show/details/{id}', [AdminAnnualPlanController::class, 'AnnualPlanShowDetails'])->name('AnnualPlanShowDetails');
+    Route::post('/Admin/AnnualPlan/details/{id}/create', [AdminAnnualPlanController::class, 'AnnualPlanCreateFiles'])->name('AnnualPlanCreateFiles');
+    Route::delete('/Admin/AnnualPlan/details/{id}/delete', [AdminAnnualPlanController::class, 'AnnualPlanDetailsDelete'])->name('AnnualPlanDetailsDelete');
+
+    //BudgetReport
+    Route::get('/Admin/BudgetReport/page', [AdminBudgetReportController::class, 'BudgetReportAdmin'])->name('BudgetReportAdmin');
+    Route::post('/Admin/BudgetReport/create', [AdminBudgetReportController::class, 'BudgetReportCreate'])->name('BudgetReportCreate');
+    Route::put('/Admin/BudgetReport/{id}/update', [AdminBudgetReportController::class, 'BudgetReportUpdate'])->name('BudgetReportUpdate');
+    Route::delete('/Admin/BudgetReport/{id}/delete', [AdminBudgetReportController::class, 'BudgetReportDelete'])->name('BudgetReportDelete');
+    Route::get('/Admin/BudgetReport/show/details/{id}', [AdminBudgetReportController::class, 'BudgetReportShowDetails'])->name('BudgetReportShowDetails');
+    Route::post('/Admin/BudgetReport/details/{id}/create', [AdminBudgetReportController::class, 'BudgetReportCreateFiles'])->name('BudgetReportCreateFiles');
+    Route::delete('/Admin/BudgetReport/details/{id}/delete', [AdminBudgetReportController::class, 'BudgetReportDetailsDelete'])->name('BudgetReportDetailsDelete');
+
+    //AnnualReport
+    Route::get('/Admin/AnnualReport/page', [AdminAnnualReportController::class, 'AnnualReportAdmin'])->name('AnnualReportAdmin');
+    Route::post('/Admin/AnnualReport/create', [AdminAnnualReportController::class, 'AnnualReportCreate'])->name('AnnualReportCreate');
+    Route::put('/Admin/AnnualReport/{id}/update', [AdminAnnualReportController::class, 'AnnualReportUpdate'])->name('AnnualReportUpdate');
+    Route::delete('/Admin/AnnualReport/{id}/delete', [AdminAnnualReportController::class, 'AnnualReportDelete'])->name('AnnualReportDelete');
+    Route::get('/Admin/AnnualReport/show/details/{id}', [AdminAnnualReportController::class, 'AnnualReportShowDetails'])->name('AnnualReportShowDetails');
+    Route::post('/Admin/AnnualReport/details/{id}/create', [AdminAnnualReportController::class, 'AnnualReportCreateFiles'])->name('AnnualReportCreateFiles');
+    Route::delete('/Admin/AnnualReport/details/{id}/delete', [AdminAnnualReportController::class, 'AnnualReportDetailsDelete'])->name('AnnualReportDetailsDelete');
+
+    //WorkforcePlan
+    Route::get('/Admin/WorkforcePlan/page', [AdminWorkforcePlanController::class, 'WorkforcePlanAdmin'])->name('WorkforcePlanAdmin');
+    Route::post('/Admin/WorkforcePlan/create', [AdminWorkforcePlanController::class, 'WorkforcePlanCreate'])->name('WorkforcePlanCreate');
+    Route::put('/Admin/WorkforcePlan/{id}/update', [AdminWorkforcePlanController::class, 'WorkforcePlanUpdate'])->name('WorkforcePlanUpdate');
+    Route::delete('/Admin/WorkforcePlan/{id}/delete', [AdminWorkforcePlanController::class, 'WorkforcePlanDelete'])->name('WorkforcePlanDelete');
+    Route::get('/Admin/WorkforcePlan/show/details/{id}', [AdminWorkforcePlanController::class, 'WorkforcePlanShowDetails'])->name('WorkforcePlanShowDetails');
+    Route::post('/Admin/WorkforcePlan/details/{id}/create', [AdminWorkforcePlanController::class, 'WorkforcePlanCreateFiles'])->name('WorkforcePlanCreateFiles');
+    Route::delete('/Admin/WorkforcePlan/details/{id}/delete', [AdminWorkforcePlanController::class, 'WorkforcePlanDetailsDelete'])->name('WorkforcePlanDetailsDelete');
 });
 
 Route::get('/showLoginForm', [AuthController::class, 'showLoginForm'])->name('showLoginForm');
