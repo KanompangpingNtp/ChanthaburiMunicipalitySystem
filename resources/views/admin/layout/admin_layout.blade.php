@@ -121,7 +121,7 @@
                             </div>
                             จัดการบุคลากร
                         </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts1">
+                        {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts1">
                             <div class="sb-nav-link-icon">
                                 <i class="bi bi-database-add"></i>
                             </div>
@@ -138,7 +138,7 @@
                                 <a class="nav-link" href="{{route('AnnualReportAdmin')}}">รายงานผลการดำเนินงานประจำปี</a>
                                 <a class="nav-link" href="{{route('WorkforcePlanAdmin')}}">แผนอัตรากำลัง 3 ปี</a>
                             </nav>
-                        </div>
+                        </div> --}}
 
                         {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon">
