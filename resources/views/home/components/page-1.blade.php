@@ -342,44 +342,44 @@
             <div class="container d-flex flex-wrap justify-content-evenly">
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/users.png') }}" alt="users">
+                        <img src="{{ asset('images/navbar/1.png') }}" alt="users">
                         <div>ข้อมูลพื้นฐาน</div>
                     </a>
                 </div>
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/service.png') }}" alt="service">
+                        <img src="{{ asset('images/navbar/2.png') }}" alt="service">
                         <div>ทำเนียบบุคลากร</div>
                     </a>
                 </div>
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/law.png') }}" alt="law">
+                        <img src="{{ asset('images/navbar/3.png') }}" alt="law">
                         <div>อำนาจหน้าที่</div>
                     </a>
                 </div>
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/speech.png') }}" alt="speech">
+                        <img src="{{ asset('images/navbar/4.png') }}" alt="speech">
                         <div>แผนพัฒนาท้องถิ่น</div>
                     </a>
                 </div>
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/search.png') }}" alt="search">
+                        <img src="{{ asset('images/navbar/5.png') }}" alt="search">
                         <div>การดำเนินงาน</div>
                     </a>
                 </div>
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <a href="#" class="navbar-item">
-                        <img src="{{ asset('images/navbar/icon.png') }}" alt="icon">
+                        <img src="{{ asset('images/navbar/6.png') }}" alt="icon">
                         <div>คู่มือประชาชน</div>
                     </a>
                 </div>
                 <div
                     class="custom-dropdown-container d-flex flex-column align-items-center justify-content-center position-relative">
                     <a class="custom-hover-trigger navbar-item d-flex flex-column align-items-center">
-                        <img src="{{ asset('images/navbar/teamwork_3.png') }}" alt="teamwork" class="navbar-icon">
+                        <img src="{{ asset('images/navbar/7.png') }}" alt="teamwork" class="navbar-icon">
                         <div class="navbar-text">สารจันทบุรี</div>
                     </a>
                     <!-- ลิสต์รายการ -->
