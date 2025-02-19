@@ -4,7 +4,8 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        height: 100vh;
+        min-height: 100vh;
+        padding: 3rem 0rem;
         /* ใช้ min-height เพื่อให้พื้นที่ครอบคลุมหน้าจอ */
     }
 
@@ -98,7 +99,7 @@
 </style>
 <!-- Content Section -->
 <main class="d-flex align-items-center justify-content-center bg-page2">
-    <div class="container d-flex justify-content-between align-content-center" style="height: 100%;">
+    <div class="container d-flex justify-content-between align-content-center overflow-auto" style="height: 100%;">
         {{-- ด้านซ้าย --}}
         <div class="d-flex flex-column justify-content-center align-items-center mb-5 pb-3">
             <div class="d-flex flex-column justify-content-center align-items-center">
