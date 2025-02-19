@@ -21,6 +21,10 @@ use App\Http\Controllers\operation\AdminAnnualReportController;
 use App\Http\Controllers\operation\AnnualReportController;
 use App\Http\Controllers\operation\AdminWorkforcePlanController;
 use App\Http\Controllers\operation\WorkforcePlanController;
+use App\Http\Controllers\FinanceTreasuryMgmt\AdminBudgetTransferController;
+use App\Http\Controllers\FinanceTreasuryMgmt\BudgetTransferController;
+use App\Http\Controllers\FinanceTreasuryMgmt\AdminTrialBalanceController;
+use App\Http\Controllers\FinanceTreasuryMgmt\TrialBalanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -160,6 +164,24 @@ Route::middleware(['check.auth'])->group(function () {
     Route::get('/Admin/WorkforcePlan/show/details/{id}', [AdminWorkforcePlanController::class, 'WorkforcePlanShowDetails'])->name('WorkforcePlanShowDetails');
     Route::post('/Admin/WorkforcePlan/details/{id}/create', [AdminWorkforcePlanController::class, 'WorkforcePlanCreateFiles'])->name('WorkforcePlanCreateFiles');
     Route::delete('/Admin/WorkforcePlan/details/{id}/delete', [AdminWorkforcePlanController::class, 'WorkforcePlanDetailsDelete'])->name('WorkforcePlanDetailsDelete');
+
+    //BudgetTransfer
+    Route::get('/Admin/BudgetTransfer/page', [AdminBudgetTransferController::class, 'BudgetTransferAdmin'])->name('BudgetTransferAdmin');
+    Route::post('/Admin/BudgetTransfer/create', [AdminBudgetTransferController::class, 'BudgetTransferCreate'])->name('BudgetTransferCreate');
+    Route::put('/Admin/BudgetTransfer/{id}/update', [AdminBudgetTransferController::class, 'BudgetTransferUpdate'])->name('BudgetTransferUpdate');
+    Route::delete('/Admin/BudgetTransfer/{id}/delete', [AdminBudgetTransferController::class, 'BudgetTransferDelete'])->name('BudgetTransferDelete');
+    Route::get('/Admin/BudgetTransfer/show/details/{id}', [AdminBudgetTransferController::class, 'BudgetTransferShowDetails'])->name('BudgetTransferShowDetails');
+    Route::post('/Admin/BudgetTransfer/details/{id}/create', [AdminBudgetTransferController::class, 'BudgetTransferCreateFiles'])->name('BudgetTransferCreateFiles');
+    Route::delete('/Admin/BudgetTransfer/details/{id}/delete', [AdminBudgetTransferController::class, 'BudgetTransferDetailsDelete'])->name('BudgetTransferDetailsDelete');
+
+    //TrialBalance
+    Route::get('/Admin/TrialBalance/page', [AdminTrialBalanceController::class, 'TrialBalanceAdmin'])->name('TrialBalanceAdmin');
+    Route::post('/Admin/TrialBalance/create', [AdminTrialBalanceController::class, 'TrialBalanceCreate'])->name('TrialBalanceCreate');
+    Route::put('/Admin/TrialBalance/{id}/update', [AdminTrialBalanceController::class, 'TrialBalanceUpdate'])->name('TrialBalanceUpdate');
+    Route::delete('/Admin/TrialBalance/{id}/delete', [AdminTrialBalanceController::class, 'TrialBalanceDelete'])->name('TrialBalanceDelete');
+    Route::get('/Admin/TrialBalance/show/details/{id}', [AdminTrialBalanceController::class, 'TrialBalanceShowDetails'])->name('TrialBalanceShowDetails');
+    Route::post('/Admin/TrialBalance/details/{id}/create', [AdminTrialBalanceController::class, 'TrialBalanceCreateFiles'])->name('TrialBalanceCreateFiles');
+    Route::delete('/Admin/TrialBalance/details/{id}/delete', [AdminTrialBalanceController::class, 'TrialBalanceDetailsDelete'])->name('TrialBalanceDetailsDelete');
 });
 
 Route::get('/showLoginForm', [AuthController::class, 'showLoginForm'])->name('showLoginForm');

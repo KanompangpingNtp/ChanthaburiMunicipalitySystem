@@ -121,22 +121,22 @@
                             </div>
                             จัดการบุคลากร
                         </a>
-                        {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts1">
+                        {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
                             <div class="sb-nav-link-icon">
                                 <i class="bi bi-database-add"></i>
                             </div>
-                            ผลการดำเนินงาน
+                            การบริหารการเงินและการคลัง
                             <div class="sb-sidenav-collapse-arrow">
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </a>
-                        <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{route('PlanProgressAdmin')}}">แผนและความก้าวหน้าในการดำเนินงานและการใช้จ่ายงบประมาณประจำปี</a>
-                                <a class="nav-link" href="{{route('AnnualPlanAdmin')}}">แผนดำเนินงานและการใช้งบประมาณประจำปี</a>
-                                <a class="nav-link" href="{{route('BudgetReportAdmin')}}">รายงานการกำกับติดตามการดำเนินงานและการใช้งบประมาณประจำปีรอบ 6 เดือน</a>
-                                <a class="nav-link" href="{{route('AnnualReportAdmin')}}">รายงานผลการดำเนินงานประจำปี</a>
-                                <a class="nav-link" href="{{route('WorkforcePlanAdmin')}}">แผนอัตรากำลัง 3 ปี</a>
+                                <a class="nav-link" href="{{route('BudgetTransferAdmin')}}">โอนเงินงบประมาณรายจ่าย</a>
+                                <a class="nav-link" href="{{route('TrialBalanceAdmin')}}">งบทดลอง</a>
+                                <a class="nav-link" href="">ข้อมูลสาระสำคัญในสัญญา</a>
+                                <a class="nav-link" href="">รายรับ/รายจ่าย</a>
+                                <a class="nav-link" href="">สัญญาจ้าง/สัญญาซื้อ</a>
                             </nav>
                         </div> --}}
 
