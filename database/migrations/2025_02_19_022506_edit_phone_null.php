@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::table('personnel_details', function (Blueprint $table) {
             //
+            $table->string('full_name')->nullable()->change();
             $table->string('phone')->nullable()->change();
+            $table->string('department')->nullable()->change();
         });
     }
 
@@ -24,7 +26,9 @@ return new class extends Migration
     {
         Schema::table('personnel_details', function (Blueprint $table) {
             //
+            $table->string('full_name')->nullable(false)->change();
             $table->string('phone')->nullable(false)->change();
+            $table->string('department')->nullable(false)->change();
         });
     }
 };

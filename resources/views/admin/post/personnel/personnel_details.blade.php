@@ -23,7 +23,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="full_name" class="form-label">ชื่อบุคลากร</label>
-                        <input type="text" class="form-control" id="full_name" name="full_name" required>
+                        <input type="text" class="form-control" id="full_name" name="full_name" >
                     </div>
 
                     <div class="mb-3">
@@ -33,7 +33,7 @@
 
                     <div class="mb-3">
                         <label for="department" class="form-label">แผนก</label>
-                        <input type="text" class="form-control" id="department" name="department" required>
+                        <input type="text" class="form-control" id="department" name="department" >
                     </div>
 
                     <div class="mb-3">
@@ -122,7 +122,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="full_name" class="form-label">ชื่อบุคลากร</label>
-                        <input type="text" class="form-control" id="full_name" name="full_name" value="{{ $detail->full_name }}" required>
+                        <input type="text" class="form-control" id="full_name" name="full_name" value="{{ $detail->full_name }}" >
                     </div>
 
                     <div class="mb-3">
@@ -132,7 +132,7 @@
 
                     <div class="mb-3">
                         <label for="department" class="form-label">แผนก</label>
-                        <input type="text" class="form-control" id="department" name="department" value="{{ $detail->department }}" required>
+                        <input type="text" class="form-control" id="department" name="department" value="{{ $detail->department }}" >
                     </div>
 
                     <div class="mb-3">

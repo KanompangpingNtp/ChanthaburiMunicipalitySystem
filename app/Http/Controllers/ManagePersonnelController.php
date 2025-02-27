@@ -122,10 +122,10 @@ class ManagePersonnelController extends Controller
     public function PersonnelDetailsCreate(Request $request, $DetailsId)
     {
         $request->validate([
-            'full_name' => 'required|string|max:255',
+            'full_name' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
-            'department' => 'required|string|max:255',
-            'status' => 'required|string',
+            'department' => 'nullable|string|max:255',
+            'status' => 'nullable|string',
             'post_photo_file' => 'nullable|file|mimes:jpg,jpeg,png',
         ]);
 
@@ -155,10 +155,10 @@ class ManagePersonnelController extends Controller
     public function PersonnelDetailsUpdate(Request $request, $DetailsId)
     {
         $request->validate([
-            'full_name' => 'required|string|max:255',
+            'full_name' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
-            'department' => 'required|string|max:255',
-            'status' => 'required|string',
+            'department' => 'nullable|string|max:255',
+            'status' => 'nullable|string',
             'post_photo_file' => 'nullable|file|mimes:jpg,jpeg,png',
         ]);
 

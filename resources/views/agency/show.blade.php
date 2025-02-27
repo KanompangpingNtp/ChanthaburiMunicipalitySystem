@@ -85,7 +85,7 @@
                                                     <!-- แสดงข้อมูลของแต่ละรายการ -->
                                                     <div class="fs-4 mt-2">
                                                         {{ $detail->full_name }}<br>
-                                                        {{ $detail->department ?? 'ว่าง' }}<br>
+                                                        {{ $detail->department ?? '' }}<br>
                                                         {{ $detail->phone }}
                                                     </div>
                                                 </div>
@@ -108,7 +108,7 @@
                                                     @endif
                                                     <div class="fs-4 mt-2">
                                                         {{ $chunk->first()->full_name }}<br>
-                                                        {{ $chunk->first()->department ?? 'ว่าง' }}<br>
+                                                        {{ $chunk->first()->department ?? '' }}<br>
                                                         {{ $chunk->first()->phone }}
                                                     </div>
                                                 </div>
@@ -128,7 +128,7 @@
                                                     @endif
                                                     <div class="fs-4 mt-2">
                                                         {{ $chunk->last()->full_name }}<br>
-                                                        {{ $chunk->last()->department ?? 'ว่าง' }}<br>
+                                                        {{ $chunk->last()->department ?? '' }}<br>
                                                         {{ $chunk->last()->phone }}
                                                     </div>
                                                 </div>
@@ -153,7 +153,7 @@
                                                     <!-- แสดงข้อมูลของแต่ละรายการ -->
                                                     <div class="fs-4 mt-2">
                                                         {{ $detail->full_name }}<br>
-                                                        {{ $detail->department ?? 'ว่าง' }}<br>
+                                                        {{ $detail->department ?? '' }}<br>
                                                         {{ $detail->phone }}
                                                     </div>
                                                 </div>
